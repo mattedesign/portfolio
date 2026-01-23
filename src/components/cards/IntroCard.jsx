@@ -1,6 +1,6 @@
 export default function IntroCard() {
   return (
-    <div className="bg-[#1a1c1e] overflow-clip relative rounded-[20px] w-full min-h-screen">
+    <div className="bg-[#1a1c1e] overflow-clip relative w-full h-full">
       {/* Top bar */}
       <div className="absolute flex items-center justify-between left-0 p-8 md:p-12 text-base md:text-xl text-white top-0 w-full">
         <p className="font-light tracking-wide">

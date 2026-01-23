@@ -37,8 +37,11 @@ export default function StackedCard({ children, index, totalCards }) {
     [1, 1, index === totalCards - 1 ? 1 : 0.6]
   );
 
+  // Not the last card - show peek of next card
+  const isLastCard = index === totalCards - 1;
+
   return (
-    <div ref={cardRef} className="relative">
+    <div ref={cardRef} className="relative" style={{ marginBottom: isLastCard ? 0 : '-120px' }}>
       <motion.div
         style={{
           scale,
@@ -48,7 +51,14 @@ export default function StackedCard({ children, index, totalCards }) {
         }}
         className="sticky top-[40px] will-change-transform"
       >
-        <div className="shadow-2xl rounded-[20px] overflow-hidden">
+        <div
+          className="shadow-2xl overflow-hidden"
+          style={{
+            borderRadius: '32px',
+            // Leave space at bottom for next card to peek
+            minHeight: isLastCard ? 'calc(100vh - 80px)' : 'calc(100vh - 160px)',
+          }}
+        >
           {children}
         </div>
       </motion.div>

@@ -147,7 +147,7 @@ const CAREER_TIMELINE = [
 
 export default function ExperienceCard() {
   return (
-    <div className="bg-[#1a1c1e] overflow-clip relative rounded-[20px] w-full min-h-screen flex flex-col">
+    <div className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
       {/* Header */}
       <div className="absolute flex items-center justify-between left-0 p-8 md:p-12 text-base md:text-xl text-white top-0 w-full z-10">
         <p className="font-medium tracking-[-0.02em]">

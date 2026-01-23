@@ -18,7 +18,7 @@ const PILLARS = [
 
 export default function AppliedIntelligenceCard() {
   return (
-    <div className="bg-[#f6f8ed] overflow-clip relative rounded-[20px] w-full min-h-screen flex flex-col">
+    <div className="bg-[#f6f8ed] overflow-clip relative w-full h-full flex flex-col">
       {/* Header section */}
       <div className="w-full">
         <div className="flex flex-row justify-between px-8 md:px-16 py-12 md:py-20">
