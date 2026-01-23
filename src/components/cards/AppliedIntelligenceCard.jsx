@@ -37,7 +37,7 @@ export default function AppliedIntelligenceCard() {
       {/* Main statement */}
       <div className="px-8 md:px-12 flex-1">
         <h2 className="font-extrabold text-[clamp(32px,6vw,72px)] text-[#1a1c1e] leading-[1.15] tracking-[-0.03em] max-w-[1100px]">
-          I bridge vision and system. From boardroom strategy to production code, I translate complex problems into elegant solutions.
+          I specialize in the gap between Data Science and Product Strategy—where AI models meet business reality.
         </h2>
       </div>
 

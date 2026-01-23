@@ -4,7 +4,7 @@ export default function IntroCard() {
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
-          Principal Product Architect & AI Systems Designer
+          Bridging Data Science & Product Strategy
         </p>
         <p className="text-[#f6f8ed] text-base md:text-lg font-medium">
           Matt Brown

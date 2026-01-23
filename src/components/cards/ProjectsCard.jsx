@@ -1,19 +1,19 @@
 const WORK = [
   {
     type: "ai",
-    summary: "Built a three-tier AI document engine processing 100,000+ logistics documents daily. Uses compounding templates, local LLMs (Ollama), and cloud escalation (Claude/GPT-4o). Operator corrections feed into template discovery and rule learning for self-improvement without model retraining."
+    summary: "Architected a document engine processing 100k+ logistics documents daily—runs primarily on hardware with tiered cloud fallback. Already saving tens of thousands daily with high accuracy, and as it matures, it becomes increasingly self-reliant through operator feedback loops."
   },
   {
     type: "ai",
-    summary: "Built an AI-powered operational coaching platform analyzing freight broker data—loads, exceptions, AR, carrier performance—to deliver visual-first dashboard intelligence with quantified cost impact (labor, aging capital, late fees) and prioritized recommendations."
+    summary: "Built an operational coaching platform that analyzes freight broker data and surfaces actionable intelligence with quantified cost impact. Pattern detection identifies anomalies and tracks implementation outcomes for measurable 30/60/90-day ROI."
   },
   {
     type: "ai",
-    summary: "Built an automated trading system detecting price dislocations between Kalshi prediction markets and sportsbooks. Priority-cascade rule engine with AND/OR gate conditions, lot-based position tracking, and multi-tier profit targets accounting for 7% fees."
+    summary: "Designed a trading system detecting price dislocations between prediction markets and sportsbooks. Priority-cascade rule engine prevents conflicting trades while lot-based position tracking manages multi-tier profit targets."
   },
   {
     type: "ai",
-    summary: "Engineered compound AI audit system analyzing accessibility (WCAG 2.1 AA), conversion optimization, and design quality through multi-modal input. 251+ API endpoints with enterprise analytics integration (GA4, Clarity, Hotjar, Mixpanel) and 37 research-backed conversion patterns."
+    summary: "Exploring the deeper potential of AI—compounding intelligence, predictive awareness, and spatial reasoning. Multi-modal audit system analyzing accessibility, conversion patterns, and design quality through 251+ endpoints with enterprise analytics integration."
   }
 ];
 
