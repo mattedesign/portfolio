@@ -53,7 +53,7 @@ export default function ContactCard() {
             </a>
           </div>
 
-          <div className="flex flex-col gap-3 md:border-l md:border-[#1a1c1e]/10 md:pl-16">
+          <div className="flex flex-col gap-3 pt-6 border-t border-[#1a1c1e]/10 md:pt-0 md:border-t-0 md:border-l md:pl-16">
             <p className="text-sm text-[#1a1c1e]/50 uppercase tracking-wider font-medium">
               Want to see more?
             </p>

@@ -5,6 +5,17 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* iOS momentum scrolling */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent double-tap zoom on interactive elements */
+button, a, input, textarea {
+  touch-action: manipulation;
 }
 
 /* Custom scrollbar */

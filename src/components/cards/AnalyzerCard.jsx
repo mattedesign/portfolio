@@ -317,7 +317,7 @@ export default function AnalyzerCard() {
               {/* Left: File upload area */}
               <div className="flex-1">
                 <div
-                  className={`h-[180px] border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-6 transition-colors cursor-pointer ${
+                  className={`h-[140px] md:h-[180px] border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-4 md:p-6 transition-colors cursor-pointer ${
                     isDragging
                       ? 'border-[#f6f8ed] bg-[#f6f8ed]/10'
                       : fileData
@@ -339,8 +339,8 @@ export default function AnalyzerCard() {
 
                   {fileName ? (
                     <div className="text-center">
-                      <FileText size={48} className="text-[#f6f8ed]/60 mx-auto mb-4" />
-                      <p className="text-[#f6f8ed] font-medium mb-2">{fileName}</p>
+                      <FileText size={36} className="md:w-12 md:h-12 text-[#f6f8ed]/60 mx-auto mb-3 md:mb-4" />
+                      <p className="text-[#f6f8ed] font-medium mb-2 text-sm md:text-base truncate max-w-[200px] mx-auto">{fileName}</p>
                       {fileData && (
                         <p className="text-[#f6f8ed]/40 text-xs mb-3">
                           {fileData.type === 'pdf' ? 'PDF ready for Claude Vision' : 'Image ready for analysis'}
@@ -355,11 +355,11 @@ export default function AnalyzerCard() {
                     </div>
                   ) : (
                     <div className="text-center">
-                      <Upload size={48} className="text-[#f6f8ed]/40 mx-auto mb-4" />
-                      <p className="text-[#f6f8ed]/70 font-medium mb-2">
+                      <Upload size={36} className="md:w-12 md:h-12 text-[#f6f8ed]/40 mx-auto mb-3 md:mb-4" />
+                      <p className="text-[#f6f8ed]/70 font-medium mb-1 md:mb-2 text-sm md:text-base">
                         Drop file or click to upload
                       </p>
-                      <p className="text-[#f6f8ed]/40 text-sm">
+                      <p className="text-[#f6f8ed]/40 text-xs md:text-sm">
                         PDF, images, or text files
                       </p>
                     </div>
@@ -370,7 +370,7 @@ export default function AnalyzerCard() {
               {/* Right: Text area and button */}
               <div className="flex-1">
                 <textarea
-                  className="h-[180px] w-full bg-[#f6f8ed] border-0 rounded-2xl p-6 text-[#1a1c1e] text-base focus:outline-none focus:ring-2 focus:ring-[#f6f8ed]/50 resize-none"
+                  className="h-[140px] md:h-[180px] w-full bg-[#f6f8ed] border-0 rounded-2xl p-4 md:p-6 text-[#1a1c1e] text-base focus:outline-none focus:ring-2 focus:ring-[#f6f8ed]/50 resize-none"
                   placeholder="Or paste job description here..."
                   value={jobDescription}
                   onChange={(e) => {
