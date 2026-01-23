@@ -55,7 +55,7 @@ const CAREER_TIMELINE = [
         tags: ["SaaS", "Design Systems", "User Experience Design", "Enterprise Design Patterns"]
       },
       {
-        role: "Lead UX Designer → Senior UX Designer",
+        role: "Senior UX Designer → Lead UX Designer",
         company: "First American",
         dates: "Jul 2020 — Dec 2022",
         highlights: [
