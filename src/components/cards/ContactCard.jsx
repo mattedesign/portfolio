@@ -1,7 +1,8 @@
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail, Linkedin, Phone } from 'lucide-react';
 
 export default function ContactCard() {
   const email = "sparkingmatt@gmail.com";
+  const phone = "214-893-0003";
 
   return (
     <div className="bg-[#f6f8ed] overflow-clip relative w-full h-full flex flex-col">
@@ -34,22 +35,20 @@ export default function ContactCard() {
             {email}
           </a>
           <a
-            href="https://linkedin.com/in/matthewsparks"
+            href={`tel:${phone.replace(/-/g, '')}`}
+            className="flex items-center gap-3 text-lg md:text-xl text-[#1a1c1e] hover:opacity-60 transition-opacity"
+          >
+            <Phone size={20} />
+            {phone}
+          </a>
+          <a
+            href="https://www.linkedin.com/in/matte-design/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-lg md:text-xl text-[#1a1c1e] hover:opacity-60 transition-opacity"
           >
             <Linkedin size={20} />
             LinkedIn
-          </a>
-          <a
-            href="https://github.com/sparkingmatt"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 text-lg md:text-xl text-[#1a1c1e] hover:opacity-60 transition-opacity"
-          >
-            <Github size={20} />
-            GitHub
           </a>
         </div>
       </div>
