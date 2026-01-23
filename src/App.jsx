@@ -866,7 +866,7 @@ Example: We're looking for a Senior Product Manager with experience in AI/ML pro
 
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-slate-500 font-mono">
-                    {!apiKey && "* Demo Mode (intelligent mock analysis)"}
+                    {!effectiveApiKey && "* Demo Mode (intelligent mock analysis)"}
                   </span>
                   <Button
                     onClick={analyzeFit}
