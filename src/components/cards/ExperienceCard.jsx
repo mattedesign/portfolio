@@ -18,14 +18,14 @@ const CAREER_TIMELINE = [
       },
       {
         role: "Founder",
-        company: "Foresera (Figmant)",
-        companyNote: "Autonomous Research Platform",
+        company: "Figmant",
+        companyNote: "AI-Powered Website Optimization",
         dates: "2023 — Present",
         highlights: [
-          "Engineered an agentic system that acts as an autonomous user researcher, synthesizing findings across multiple data sources.",
-          "Built a 'Chat-to-Component' engine where AI generates visual dashboards on-the-fly based on data findings."
+          "Engineered compound AI audit system analyzing accessibility (WCAG 2.1 AA), conversion optimization, and design quality through multi-modal input with 251+ API endpoints.",
+          "Built enterprise analytics integration connecting GA4, Clarity, Hotjar, Mixpanel with 37 research-backed conversion patterns and ROI impact calculations."
         ],
-        tags: ["Agentic Workflows", "Prompt Engineering", "RAG", "React", "Figma"]
+        tags: ["Compound AI", "WCAG", "Node.js", "React", "BullMQ", "OAuth"]
       }
     ]
   },

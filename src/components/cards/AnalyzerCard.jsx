@@ -9,7 +9,7 @@ SUMMARY: Principal Product Architect with 18+ years spanning Executive Creative 
 
 KEY VENTURES (IP):
 1. Fr8 Document Engine: Co-Founder/Architect. Built doc engine handling 100k+ daily logistics documents. Defined generalizable model definitions (compounding templates) to avoid client-specific retraining. Self-healing logic with Human-in-the-Loop workflows.
-2. Foresera/Figmant: Founder. Autonomous AI agent for user research. Compound intelligence prompts. Chat-to-UI React engine that generates visual dashboards on-the-fly.
+2. Figmant: Founder. AI-powered website optimization platform. Compound AI audit system analyzing accessibility (WCAG 2.1 AA), conversion optimization, and design quality through multi-modal input. 251+ API endpoints with real-time SSE streaming. Enterprise analytics integration (GA4, Clarity, Hotjar, Mixpanel). 37 research-backed conversion patterns with ROI impact calculations.
 
 ENTERPRISE EXPERIENCE:
 1. Triumph Financial (Principal Product Designer): Broker Dashboards, Cash Flow Management. Strategic translation of financial goals to UX. Trust design for factoring - solved the "Black Box" problem.

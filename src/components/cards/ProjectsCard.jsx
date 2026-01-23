@@ -14,18 +14,18 @@ const PROJECTS = [
     insight: "The key insight was that documents share structural DNA across carriers. By defining generalizable taxonomies rather than rigid templates, the system compounds its understanding over time."
   },
   {
-    name: "Foresera (Figmant)",
+    name: "Figmant",
     type: "ai",
     role: "Founder",
-    problem: "User research is expensive, slow, and often biased. Companies need continuous insight into user behavior but can't afford ongoing research teams.",
-    solution: "Engineered an autonomous AI research agent that synthesizes data from multiple sources, identifies patterns, and generates visual dashboards on-the-fly.",
+    problem: "Websites lose revenue to accessibility issues, poor conversion design, and missed optimization opportunities that manual audits can't catch at scale.",
+    solution: "Built AI-powered audit platform processing screenshots, URLs, and PDFs to analyze accessibility (WCAG 2.1 AA), conversion optimization, and design quality with 251+ API endpoints. Integrated enterprise analytics (GA4, Clarity, Hotjar, Mixpanel) with 37 research-backed conversion patterns.",
     impact: [
-      "Research cycles reduced from weeks to hours",
-      "Dynamic UI generation from natural language queries",
-      "Agentic workflow orchestration"
+      "Multi-modal analysis across screenshots, URLs, HTML, PDFs",
+      "Real-time SSE streaming with BullMQ background jobs",
+      "Automated WCAG auditing and VPAT report generation"
     ],
-    techStack: ["React", "Figma API", "Prompt Engineering", "Agentic Workflows"],
-    insight: "The breakthrough was treating research as a conversation, not a report. The AI doesn't just find answers—it asks better questions and visualizes findings in real-time."
+    techStack: ["React", "Node.js", "BullMQ", "OAuth", "WAVE API", "axe-core"],
+    insight: "The key insight was combining accessibility compliance with conversion optimization—companies will invest in accessibility when they see the ROI impact on conversions."
   },
   {
     name: "Triumph Financial Dashboard",
