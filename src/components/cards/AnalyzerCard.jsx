@@ -39,24 +39,37 @@ export default function AnalyzerCard() {
   const envApiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
 
   const handleFileRead = async (file) => {
-    setFileName(file.name);
     setError(null);
 
     // Handle text files directly
     if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
+      setFileName(file.name);
       const text = await file.text();
       setJobDescription(text);
       return;
     }
 
-    // For PDF and Word docs, try to read as text (may not work for binary)
+    // For Word docs and PDFs, show helpful message
+    if (file.name.endsWith('.docx') || file.name.endsWith('.doc')) {
+      setError("Word files need to be copy/pasted. Open the document, select all (Cmd+A), copy (Cmd+C), then paste below.");
+      setFileName(null);
+      return;
+    }
+
+    if (file.name.endsWith('.pdf')) {
+      setError("PDF files need to be copy/pasted. Open the PDF, select all (Cmd+A), copy (Cmd+C), then paste below.");
+      setFileName(null);
+      return;
+    }
+
+    // Try to read other files as text
     try {
       const text = await file.text();
-      // Check if we got readable text (not binary garbage)
       if (text && !text.includes('\x00') && text.length > 50) {
+        setFileName(file.name);
         setJobDescription(text);
       } else {
-        setError("Could not extract text. Please paste the job description below.");
+        setError("Could not read this file format. Please paste the job description below.");
         setFileName(null);
       }
     } catch {
@@ -213,7 +226,7 @@ export default function AnalyzerCard() {
                   <input
                     ref={fileInputRef}
                     type="file"
-                    accept=".txt,.pdf,.doc,.docx"
+                    accept=".txt"
                     onChange={handleFileSelect}
                     className="hidden"
                   />
@@ -233,10 +246,10 @@ export default function AnalyzerCard() {
                     <div className="text-center">
                       <Upload size={48} className="text-[#f6f8ed]/40 mx-auto mb-4" />
                       <p className="text-[#f6f8ed]/70 font-medium mb-2">
-                        Drop file here or click to upload
+                        Drop .txt file or click to upload
                       </p>
                       <p className="text-[#f6f8ed]/40 text-sm">
-                        PDF, Word, or text files
+                        For Word/PDF, copy-paste text on the right
                       </p>
                     </div>
                   )}
