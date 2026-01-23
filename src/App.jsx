@@ -672,14 +672,20 @@ function RoleAnalyzer() {
   const [apiKey, setApiKey] = useState('');
   const [showApiInput, setShowApiInput] = useState(false);
 
+  // Check for environment variable API key (set in Vercel)
+  // Note: In Vite, env vars must be prefixed with VITE_ to be exposed to client code
+  // Set VITE_ANTHROPIC_API_KEY in Vercel environment variables
+  const envApiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
+  const effectiveApiKey = apiKey || envApiKey;
+
   const analyzeFit = async () => {
     if (!jobDescription.trim()) return;
     setLoading(true);
     setError(null);
     setAnalysis(null);
 
-    // If no API key, use mock analysis
-    if (!apiKey) {
+    // If no API key (neither user-provided nor env), use mock analysis
+    if (!effectiveApiKey) {
       setTimeout(() => {
         setAnalysis(generateMockAnalysis(jobDescription));
         setLoading(false);
@@ -714,7 +720,7 @@ Be specific and reference actual experience from the profile. Do not use generic
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': apiKey,
+          'x-api-key': effectiveApiKey,
           'anthropic-version': '2023-06-01',
           'anthropic-dangerous-direct-browser-access': 'true'
         },
