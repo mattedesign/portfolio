@@ -23,7 +23,7 @@ const PROCESS_STEPS = [
 
 export default function AppliedIntelligenceCard() {
   return (
-    <div className="bg-[#f6f8ed] overflow-clip relative w-full h-full flex flex-col">
+    <div className="bg-[#f6f8ed] overflow-hidden rounded-[32px] relative w-full h-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#1a1c1e] text-base md:text-lg font-normal">
@@ -35,14 +35,14 @@ export default function AppliedIntelligenceCard() {
       </div>
 
       {/* Main statement */}
-      <div className="px-8 md:px-12 flex-1">
+      <div className="px-8 md:px-12 mb-12 md:mb-16">
         <h2 className="font-extrabold text-[clamp(32px,6vw,72px)] text-[#1a1c1e] leading-[1.15] tracking-[-0.03em] max-w-[1100px]">
           I specialize in the gap between Data Science and Product Strategy—where AI models meet business reality.
         </h2>
       </div>
 
       {/* Process grid */}
-      <div className="p-8 md:p-12 pt-12 md:pt-16">
+      <div className="p-8 md:p-12 pt-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-[900px]">
           {PROCESS_STEPS.map((step, index) => (
             <div key={index}>

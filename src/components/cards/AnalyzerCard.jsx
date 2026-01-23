@@ -289,9 +289,9 @@ export default function AnalyzerCard() {
   const hasInput = jobDescription.trim() || fileData;
 
   return (
-    <div id="analyzer" className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
+    <div id="analyzer" className="bg-[#1a1c1e] overflow-hidden rounded-[32px] relative w-full flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between p-8 md:p-12">
+      <div className="flex items-center justify-between p-8 md:p-12 pb-0">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
           Role Fit Analyzer
         </p>
@@ -301,9 +301,9 @@ export default function AnalyzerCard() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col p-8 md:p-12 pt-0">
+      <div className="flex flex-col p-8 md:p-12">
         {!analysis ? (
-          <div className="flex-1 flex flex-col">
+          <div className="flex flex-col">
             <div className="mb-8">
               <h2 className="font-extrabold text-[clamp(36px,8vw,96px)] text-[#f6f8ed] leading-[1.05] tracking-[-0.03em] mb-4">
                 Analyze My Fit
@@ -313,11 +313,11 @@ export default function AnalyzerCard() {
               </p>
             </div>
 
-            <div className="flex-1 flex flex-col lg:flex-row gap-6 lg:gap-8">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
               {/* Left: File upload area */}
-              <div className="flex-1 flex flex-col">
+              <div className="flex-1">
                 <div
-                  className={`flex-1 min-h-[200px] lg:min-h-0 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-8 transition-colors cursor-pointer ${
+                  className={`h-[180px] border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-6 transition-colors cursor-pointer ${
                     isDragging
                       ? 'border-[#f6f8ed] bg-[#f6f8ed]/10'
                       : fileData
@@ -368,9 +368,9 @@ export default function AnalyzerCard() {
               </div>
 
               {/* Right: Text area and button */}
-              <div className="flex-1 flex flex-col">
+              <div className="flex-1">
                 <textarea
-                  className="flex-1 min-h-[200px] lg:min-h-0 w-full bg-[#f6f8ed] border-0 rounded-2xl p-6 text-[#1a1c1e] text-base focus:outline-none focus:ring-2 focus:ring-[#f6f8ed]/50 resize-none"
+                  className="h-[180px] w-full bg-[#f6f8ed] border-0 rounded-2xl p-6 text-[#1a1c1e] text-base focus:outline-none focus:ring-2 focus:ring-[#f6f8ed]/50 resize-none"
                   placeholder="Or paste job description here..."
                   value={jobDescription}
                   onChange={(e) => {
@@ -405,7 +405,7 @@ export default function AnalyzerCard() {
             </div>
           </div>
         ) : (
-          <div className="flex-1 flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:flex-row gap-8">
             {/* Left column: Score and summary */}
             <div className="lg:w-1/3">
               <div className="p-8 bg-[#f6f8ed]/5 rounded-2xl mb-6">

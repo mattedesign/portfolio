@@ -1,6 +1,6 @@
 export default function IntroCard() {
   return (
-    <div className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
+    <div className="bg-[#1a1c1e] overflow-hidden rounded-[32px] relative w-full h-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">

@@ -36,10 +36,10 @@ export default function StackedCard({ children, index, totalCards }) {
         className={isLastCard ? "" : "sticky top-0 will-change-transform"}
       >
         <div
-          className="shadow-2xl overflow-hidden"
+          className="shadow-2xl"
           style={{
             borderRadius: '32px',
-            minHeight: 'calc(100vh - 40px)',
+            minHeight: isLastCard ? undefined : 'calc(100vh - 40px)',
             marginTop: '20px',
             marginBottom: isLastCard ? '20px' : undefined,
           }}
