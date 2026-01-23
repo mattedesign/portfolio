@@ -147,7 +147,7 @@ const CAREER_TIMELINE = [
 
 export default function ExperienceCard() {
   return (
-    <div className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
+    <div className="bg-[#1a1c1e] relative w-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
@@ -159,7 +159,7 @@ export default function ExperienceCard() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col p-8 md:p-12 pt-0 overflow-hidden">
+      <div className="flex flex-col p-8 md:p-12 pt-0 pb-12">
         <div className="space-y-10 md:space-y-12">
           {CAREER_TIMELINE.map((era, eraIndex) => (
             <div key={eraIndex}>

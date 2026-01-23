@@ -39,7 +39,7 @@ export default function StackedCard({ children, index, totalCards }) {
           className="shadow-2xl overflow-hidden"
           style={{
             borderRadius: '32px',
-            height: isLastCard ? 'auto' : 'calc(100vh - 40px)',
+            minHeight: 'calc(100vh - 40px)',
             marginTop: '20px',
             marginBottom: isLastCard ? '20px' : undefined,
           }}
