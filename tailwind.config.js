@@ -8,8 +8,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       colors: {
         primary: {
@@ -23,6 +23,18 @@ export default {
           700: '#047857',
           800: '#065f46',
           900: '#064e3b',
+        },
+        cream: {
+          DEFAULT: '#f5f5f0',
+          50: '#fafaf8',
+          100: '#f5f5f0',
+          200: '#e8e8e0',
+        },
+        charcoal: {
+          DEFAULT: '#1a1a1a',
+          50: '#2a2a2a',
+          100: '#1a1a1a',
+          200: '#0f0f0f',
         }
       },
       animation: {
