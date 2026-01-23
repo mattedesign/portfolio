@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Zap, Loader, AlertTriangle, CheckCircle, Search } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Zap, Loader, Upload, FileText, X } from 'lucide-react';
 
 const CANDIDATE_PROFILE = {
   email: "sparkingmatt@gmail.com",
@@ -32,8 +32,56 @@ export default function AnalyzerCard() {
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [fileName, setFileName] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef(null);
 
   const envApiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
+
+  const handleFileRead = async (file) => {
+    setFileName(file.name);
+    setError(null);
+
+    // Handle text files directly
+    if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
+      const text = await file.text();
+      setJobDescription(text);
+      return;
+    }
+
+    // For PDF and Word docs, try to read as text (may not work for binary)
+    try {
+      const text = await file.text();
+      // Check if we got readable text (not binary garbage)
+      if (text && !text.includes('\x00') && text.length > 50) {
+        setJobDescription(text);
+      } else {
+        setError("Could not extract text. Please paste the job description below.");
+        setFileName(null);
+      }
+    } catch {
+      setError("Could not read file. Please paste the job description below.");
+      setFileName(null);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) handleFileRead(file);
+  };
+
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    if (file) handleFileRead(file);
+  };
+
+  const clearFile = () => {
+    setFileName(null);
+    setJobDescription('');
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
 
   const analyzeFit = async () => {
     if (!jobDescription.trim()) return;
@@ -124,7 +172,7 @@ export default function AnalyzerCard() {
   };
 
   return (
-    <div className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
+    <div id="analyzer" className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
@@ -136,68 +184,122 @@ export default function AnalyzerCard() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col justify-center p-8 md:p-12 pt-0">
-        <div className="max-w-[800px] w-full">
-          {!analysis ? (
-            <div className="space-y-8">
-              <div>
-                <h2 className="font-extrabold text-[clamp(36px,6vw,72px)] text-[#f6f8ed] leading-[1.1] tracking-[-0.03em] mb-4">
-                  Analyze My Fit
-                </h2>
-                <p className="text-base md:text-lg text-[#f6f8ed]/60 leading-[1.6]">
-                  Paste any job description. AI analyzes my profile against your requirements.
-                </p>
+      <div className="flex-1 flex flex-col p-8 md:p-12 pt-0">
+        {!analysis ? (
+          <div className="flex-1 flex flex-col">
+            <div className="mb-8">
+              <h2 className="font-extrabold text-[clamp(36px,8vw,96px)] text-[#f6f8ed] leading-[1.05] tracking-[-0.03em] mb-4">
+                Analyze My Fit
+              </h2>
+              <p className="text-base md:text-xl text-[#f6f8ed]/60 leading-[1.6] max-w-[600px]">
+                Upload or paste any job description. AI analyzes my profile against your requirements.
+              </p>
+            </div>
+
+            <div className="flex-1 flex flex-col lg:flex-row gap-6 lg:gap-8">
+              {/* Left: File upload area */}
+              <div className="flex-1 flex flex-col">
+                <div
+                  className={`flex-1 min-h-[200px] lg:min-h-0 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-8 transition-colors cursor-pointer ${
+                    isDragging
+                      ? 'border-[#f6f8ed] bg-[#f6f8ed]/10'
+                      : 'border-[#f6f8ed]/20 hover:border-[#f6f8ed]/40'
+                  }`}
+                  onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                  onDragLeave={() => setIsDragging(false)}
+                  onDrop={handleDrop}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".txt,.pdf,.doc,.docx"
+                    onChange={handleFileSelect}
+                    className="hidden"
+                  />
+
+                  {fileName ? (
+                    <div className="text-center">
+                      <FileText size={48} className="text-[#f6f8ed]/60 mx-auto mb-4" />
+                      <p className="text-[#f6f8ed] font-medium mb-2">{fileName}</p>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); clearFile(); }}
+                        className="text-[#f6f8ed]/40 hover:text-[#f6f8ed] text-sm flex items-center gap-1 mx-auto"
+                      >
+                        <X size={14} /> Remove
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <Upload size={48} className="text-[#f6f8ed]/40 mx-auto mb-4" />
+                      <p className="text-[#f6f8ed]/70 font-medium mb-2">
+                        Drop file here or click to upload
+                      </p>
+                      <p className="text-[#f6f8ed]/40 text-sm">
+                        PDF, Word, or text files
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
 
-              <textarea
-                className="w-full h-40 bg-[#f6f8ed] border-0 rounded-2xl p-5 text-[#1a1c1e] text-base focus:outline-none focus:ring-2 focus:ring-[#f6f8ed]/50 resize-none"
-                placeholder="Paste job description here..."
-                value={jobDescription}
-                onChange={(e) => setJobDescription(e.target.value)}
-              />
-
-              {error && (
-                <div className="text-amber-400 text-sm flex items-center gap-2">
-                  <AlertTriangle size={16} />
-                  {error}
-                </div>
-              )}
-
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-[#f6f8ed]/40">
-                  {!envApiKey && "Demo Mode"}
-                </span>
-                <button
-                  onClick={analyzeFit}
-                  disabled={loading || !jobDescription.trim()}
-                  className="flex items-center gap-2 px-6 py-3 bg-[#f6f8ed] text-[#1a1c1e] rounded-xl font-medium text-base hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loading ? <Loader className="animate-spin" size={18} /> : <Zap size={18} />}
-                  {loading ? 'Analyzing...' : 'Run Analysis'}
-                </button>
+              {/* Right: Text area and button */}
+              <div className="flex-1 flex flex-col">
+                <textarea
+                  className="flex-1 min-h-[200px] lg:min-h-0 w-full bg-[#f6f8ed] border-0 rounded-2xl p-6 text-[#1a1c1e] text-base focus:outline-none focus:ring-2 focus:ring-[#f6f8ed]/50 resize-none"
+                  placeholder="Or paste job description here..."
+                  value={jobDescription}
+                  onChange={(e) => setJobDescription(e.target.value)}
+                />
               </div>
             </div>
-          ) : (
-            <div className="space-y-5">
-              {/* Fit Score */}
-              <div className="flex items-center gap-5 p-5 bg-emerald-500/10 rounded-xl">
-                <div className="text-4xl font-bold text-emerald-400">
+
+            {error && (
+              <p className="text-[#f6f8ed]/60 text-sm mt-4">{error}</p>
+            )}
+
+            <div className="flex justify-between items-center mt-6">
+              <span className="text-sm text-[#f6f8ed]/40">
+                {!envApiKey && "Demo Mode"}
+              </span>
+              <button
+                onClick={analyzeFit}
+                disabled={loading || !jobDescription.trim()}
+                className="flex items-center gap-2 px-8 py-4 bg-[#f6f8ed] text-[#1a1c1e] rounded-xl font-medium text-base hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? <Loader className="animate-spin" size={20} /> : <Zap size={20} />}
+                {loading ? 'Analyzing...' : 'Run Analysis'}
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="flex-1 flex flex-col lg:flex-row gap-8">
+            {/* Left column: Score and summary */}
+            <div className="lg:w-1/3">
+              <div className="p-8 bg-[#f6f8ed]/5 rounded-2xl mb-6">
+                <div className="text-[clamp(48px,10vw,80px)] font-extrabold text-[#f6f8ed] leading-none mb-2">
                   {analysis.fit_score}%
                 </div>
-                <div>
-                  <div className="text-xs font-medium text-emerald-400 mb-1">Fit Score</div>
-                  <div className="text-sm text-[#f6f8ed]/70">{analysis.fit_summary}</div>
-                </div>
+                <p className="text-[#f6f8ed]/40 text-sm uppercase tracking-wider mb-4">Fit Score</p>
+                <p className="text-[#f6f8ed]/80 text-base leading-relaxed">{analysis.fit_summary}</p>
               </div>
 
+              <button
+                onClick={() => { setAnalysis(null); setJobDescription(''); setFileName(null); }}
+                className="w-full py-4 text-[#f6f8ed]/60 hover:text-[#f6f8ed] font-medium transition-colors border border-[#f6f8ed]/20 rounded-xl hover:bg-white/5"
+              >
+                Analyze Another Role
+              </button>
+            </div>
+
+            {/* Right column: Details */}
+            <div className="lg:w-2/3 space-y-6">
               {/* Strengths */}
-              <div className="p-5 bg-white/5 rounded-xl">
-                <h3 className="text-emerald-400 font-medium flex items-center gap-2 mb-3 text-sm">
-                  <CheckCircle size={16} /> Core Strengths
-                </h3>
-                <ul className="space-y-2">
+              <div className="p-6 bg-[#f6f8ed]/5 rounded-2xl">
+                <h3 className="text-[#f6f8ed] font-semibold text-lg mb-4">Core Strengths</h3>
+                <ul className="space-y-3">
                   {analysis.strengths.map((point, i) => (
-                    <li key={i} className="text-[#f6f8ed]/70 text-sm leading-relaxed">
+                    <li key={i} className="text-[#f6f8ed]/70 text-base leading-relaxed pl-4 border-l-2 border-[#f6f8ed]/20">
                       {point}
                     </li>
                   ))}
@@ -205,13 +307,11 @@ export default function AnalyzerCard() {
               </div>
 
               {/* Hidden Value */}
-              <div className="p-5 bg-white/5 rounded-xl">
-                <h3 className="text-blue-400 font-medium flex items-center gap-2 mb-3 text-sm">
-                  <Search size={16} /> Hidden Delta
-                </h3>
-                <ul className="space-y-2">
+              <div className="p-6 bg-[#f6f8ed]/5 rounded-2xl">
+                <h3 className="text-[#f6f8ed] font-semibold text-lg mb-4">Hidden Value</h3>
+                <ul className="space-y-3">
                   {analysis.hidden_value.map((point, i) => (
-                    <li key={i} className="text-[#f6f8ed]/70 text-sm leading-relaxed">
+                    <li key={i} className="text-[#f6f8ed]/70 text-base leading-relaxed pl-4 border-l-2 border-[#f6f8ed]/20">
                       {point}
                     </li>
                   ))}
@@ -219,28 +319,19 @@ export default function AnalyzerCard() {
               </div>
 
               {/* Gaps */}
-              <div className="p-5 bg-white/5 rounded-xl">
-                <h3 className="text-amber-400 font-medium flex items-center gap-2 mb-3 text-sm">
-                  <AlertTriangle size={16} /> Honest Gaps
-                </h3>
-                <ul className="space-y-2">
+              <div className="p-6 bg-[#f6f8ed]/5 rounded-2xl">
+                <h3 className="text-[#f6f8ed] font-semibold text-lg mb-4">Honest Gaps</h3>
+                <ul className="space-y-3">
                   {analysis.gaps.map((point, i) => (
-                    <li key={i} className="text-[#f6f8ed]/70 text-sm leading-relaxed">
+                    <li key={i} className="text-[#f6f8ed]/70 text-base leading-relaxed pl-4 border-l-2 border-[#f6f8ed]/20">
                       {point}
                     </li>
                   ))}
                 </ul>
               </div>
-
-              <button
-                onClick={() => { setAnalysis(null); setJobDescription(''); }}
-                className="w-full py-3 text-[#f6f8ed]/60 hover:text-[#f6f8ed] font-medium transition-colors border border-[#f6f8ed]/20 rounded-xl hover:bg-white/5"
-              >
-                Analyze Another Role
-              </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
