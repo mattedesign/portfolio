@@ -7,21 +7,14 @@ export default function StackedCard({ children, index, totalCards }) {
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start end", "end start"]
+    offset: ["start start", "end start"]
   });
 
-  // Scale effect - cards scale down as they get scrolled past
+  // Scale down slightly as the next card covers this one
   const scale = useTransform(
     scrollYProgress,
-    [0.4, 0.5, 0.6],
-    [1, 1, isLastCard ? 1 : 0.95]
-  );
-
-  // Opacity - fade slightly when stacked behind
-  const opacity = useTransform(
-    scrollYProgress,
-    [0.4, 0.5, 0.6],
-    [1, 1, isLastCard ? 1 : 0.7]
+    [0, 0.5, 1],
+    [1, 1, isLastCard ? 1 : 0.92]
   );
 
   return (
@@ -29,24 +22,26 @@ export default function StackedCard({ children, index, totalCards }) {
       ref={cardRef}
       className="relative"
       style={{
-        // Height includes space for the card plus peek area
-        height: isLastCard ? 'auto' : 'calc(100vh - 100px)',
-        marginBottom: isLastCard ? 0 : '20px',
+        // Each card needs scroll height except the last
+        height: isLastCard ? 'auto' : '100vh',
+        // z-index ensures cards stack properly - higher index = on top
+        zIndex: index + 1,
       }}
     >
       <motion.div
         style={{
           scale,
-          opacity,
           transformOrigin: "top center",
         }}
-        className="sticky top-[20px] will-change-transform"
+        className="sticky top-0 will-change-transform"
       >
         <div
           className="shadow-2xl overflow-hidden"
           style={{
             borderRadius: '32px',
-            minHeight: isLastCard ? 'calc(100vh - 80px)' : 'calc(100vh - 120px)',
+            height: isLastCard ? 'auto' : 'calc(100vh - 40px)',
+            minHeight: isLastCard ? 'calc(100vh - 40px)' : undefined,
+            marginTop: '20px',
           }}
         >
           {children}
