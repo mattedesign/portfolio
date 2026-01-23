@@ -26,14 +26,35 @@ export default function App() {
     <div className="min-h-screen bg-[#0a0b0c] relative overflow-x-hidden">
       {/* Floating Analyzer Button */}
       <motion.button
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.5, duration: 0.5 }}
+        initial={{ opacity: 0, x: 40 }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{
+          delay: 2,
+          duration: 0.6,
+          ease: [0.25, 0.1, 0.25, 1]
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.98 }}
         onClick={scrollToAnalyzer}
-        className="fixed right-6 top-1/2 -translate-y-1/2 z-50 bg-[#f6f8ed] text-[#1a1c1e] px-4 py-3 rounded-full shadow-lg hover:bg-white transition-colors flex items-center gap-2 font-medium text-sm"
+        className="fixed right-4 top-1/2 -translate-y-1/2 z-50 bg-[#f6f8ed] text-[#1a1c1e] px-3 py-4 rounded-full shadow-xl hover:bg-white transition-colors flex items-center gap-1.5 font-medium text-xs tracking-wide"
         style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
       >
-        <Zap size={16} className="rotate-90" />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            delay: 3,
+            duration: 0.6,
+            repeat: 2,
+            repeatDelay: 0.3
+          }}
+        >
+          <Zap size={14} className="rotate-90" />
+        </motion.div>
         <span>Analyze Fit</span>
       </motion.button>
 
