@@ -33,13 +33,29 @@ export default function AnalyzerCard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [fileName, setFileName] = useState(null);
+  const [fileData, setFileData] = useState(null); // Store base64 file data for PDFs
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
 
   const envApiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
 
+  // Convert file to base64
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // Remove the data URL prefix (e.g., "data:application/pdf;base64,")
+        const base64 = reader.result.split(',')[1];
+        resolve(base64);
+      };
+      reader.onerror = reject;
+    });
+  };
+
   const handleFileRead = async (file) => {
     setError(null);
+    setFileData(null);
 
     // Handle text files directly
     if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
@@ -49,17 +65,41 @@ export default function AnalyzerCard() {
       return;
     }
 
-    // For Word docs and PDFs, show helpful message
+    // Handle PDFs - use Claude's document understanding
+    if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
+      try {
+        setFileName(file.name);
+        const base64 = await fileToBase64(file);
+        setFileData({ type: 'pdf', base64, mediaType: 'application/pdf' });
+        setJobDescription(''); // Clear text since we're using the PDF
+        return;
+      } catch {
+        setError("Could not read PDF. Please try copy/paste instead.");
+        setFileName(null);
+        return;
+      }
+    }
+
+    // Handle Word docs - convert to images for vision (or suggest PDF)
     if (file.name.endsWith('.docx') || file.name.endsWith('.doc')) {
-      setError("Word files need to be copy/pasted. Open the document, select all (Cmd+A), copy (Cmd+C), then paste below.");
+      setError("For best results, save your Word doc as PDF and upload that. Or copy/paste the text directly.");
       setFileName(null);
       return;
     }
 
-    if (file.name.endsWith('.pdf')) {
-      setError("PDF files need to be copy/pasted. Open the PDF, select all (Cmd+A), copy (Cmd+C), then paste below.");
-      setFileName(null);
-      return;
+    // Handle images - use Claude's vision
+    if (file.type.startsWith('image/')) {
+      try {
+        setFileName(file.name);
+        const base64 = await fileToBase64(file);
+        setFileData({ type: 'image', base64, mediaType: file.type });
+        setJobDescription('');
+        return;
+      } catch {
+        setError("Could not read image. Please try again.");
+        setFileName(null);
+        return;
+      }
     }
 
     // Try to read other files as text
@@ -92,19 +132,22 @@ export default function AnalyzerCard() {
 
   const clearFile = () => {
     setFileName(null);
+    setFileData(null);
     setJobDescription('');
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   const analyzeFit = async () => {
-    if (!jobDescription.trim()) return;
+    // Need either text or file data
+    if (!jobDescription.trim() && !fileData) return;
+
     setLoading(true);
     setError(null);
     setAnalysis(null);
 
     if (!envApiKey) {
       setTimeout(() => {
-        setAnalysis(generateMockAnalysis(jobDescription));
+        setAnalysis(generateMockAnalysis(jobDescription || 'document upload'));
         setLoading(false);
       }, 2000);
       return;
@@ -112,9 +155,47 @@ export default function AnalyzerCard() {
 
     const systemPrompt = `You are an expert Executive Talent Strategist. Analyze the fit between a candidate profile and a job description. Be honest but persuasive.`;
 
-    const userPrompt = `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nJOB DESCRIPTION:\n${jobDescription}\n\nAnalyze fit. Return JSON: { "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`;
-
     try {
+      let userContent;
+
+      if (fileData) {
+        // Use Claude's vision/document capabilities
+        if (fileData.type === 'pdf') {
+          userContent = [
+            {
+              type: 'document',
+              source: {
+                type: 'base64',
+                media_type: fileData.mediaType,
+                data: fileData.base64
+              }
+            },
+            {
+              type: 'text',
+              text: `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nThe document above contains a job description. Extract the key requirements and analyze the fit between this candidate and the role.\n\nReturn JSON: { "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`
+            }
+          ];
+        } else if (fileData.type === 'image') {
+          userContent = [
+            {
+              type: 'image',
+              source: {
+                type: 'base64',
+                media_type: fileData.mediaType,
+                data: fileData.base64
+              }
+            },
+            {
+              type: 'text',
+              text: `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nThe image above contains a job description. Extract the key requirements and analyze the fit between this candidate and the role.\n\nReturn JSON: { "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`
+            }
+          ];
+        }
+      } else {
+        // Plain text job description
+        userContent = `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nJOB DESCRIPTION:\n${jobDescription}\n\nAnalyze fit. Return JSON: { "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`;
+      }
+
       const response = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
@@ -127,11 +208,15 @@ export default function AnalyzerCard() {
           model: 'claude-sonnet-4-20250514',
           max_tokens: 1024,
           system: systemPrompt,
-          messages: [{ role: 'user', content: userPrompt }]
+          messages: [{ role: 'user', content: userContent }]
         })
       });
 
-      if (!response.ok) throw new Error(`API error: ${response.status}`);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || `API error: ${response.status}`);
+      }
+
       const data = await response.json();
       const text = data.content[0].text;
       const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -141,9 +226,10 @@ export default function AnalyzerCard() {
         throw new Error('Could not parse response');
       }
     } catch (err) {
+      console.error('Analysis error:', err);
       setError("Analysis failed. Using demo mode.");
       setTimeout(() => {
-        setAnalysis(generateMockAnalysis(jobDescription));
+        setAnalysis(generateMockAnalysis(jobDescription || 'document'));
         setLoading(false);
       }, 1000);
     } finally {
@@ -184,6 +270,8 @@ export default function AnalyzerCard() {
     };
   };
 
+  const hasInput = jobDescription.trim() || fileData;
+
   return (
     <div id="analyzer" className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
       {/* Header */}
@@ -205,7 +293,7 @@ export default function AnalyzerCard() {
                 Analyze My Fit
               </h2>
               <p className="text-base md:text-xl text-[#f6f8ed]/60 leading-[1.6] max-w-[600px]">
-                Upload or paste any job description. AI analyzes my profile against your requirements.
+                Upload a job description (PDF, image, or text) and AI analyzes my profile against your requirements.
               </p>
             </div>
 
@@ -216,7 +304,9 @@ export default function AnalyzerCard() {
                   className={`flex-1 min-h-[200px] lg:min-h-0 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-8 transition-colors cursor-pointer ${
                     isDragging
                       ? 'border-[#f6f8ed] bg-[#f6f8ed]/10'
-                      : 'border-[#f6f8ed]/20 hover:border-[#f6f8ed]/40'
+                      : fileData
+                        ? 'border-[#f6f8ed]/40 bg-[#f6f8ed]/5'
+                        : 'border-[#f6f8ed]/20 hover:border-[#f6f8ed]/40'
                   }`}
                   onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
                   onDragLeave={() => setIsDragging(false)}
@@ -226,7 +316,7 @@ export default function AnalyzerCard() {
                   <input
                     ref={fileInputRef}
                     type="file"
-                    accept=".txt"
+                    accept=".txt,.pdf,.png,.jpg,.jpeg,.webp"
                     onChange={handleFileSelect}
                     className="hidden"
                   />
@@ -235,6 +325,11 @@ export default function AnalyzerCard() {
                     <div className="text-center">
                       <FileText size={48} className="text-[#f6f8ed]/60 mx-auto mb-4" />
                       <p className="text-[#f6f8ed] font-medium mb-2">{fileName}</p>
+                      {fileData && (
+                        <p className="text-[#f6f8ed]/40 text-xs mb-3">
+                          {fileData.type === 'pdf' ? 'PDF ready for Claude Vision' : 'Image ready for analysis'}
+                        </p>
+                      )}
                       <button
                         onClick={(e) => { e.stopPropagation(); clearFile(); }}
                         className="text-[#f6f8ed]/40 hover:text-[#f6f8ed] text-sm flex items-center gap-1 mx-auto"
@@ -246,10 +341,10 @@ export default function AnalyzerCard() {
                     <div className="text-center">
                       <Upload size={48} className="text-[#f6f8ed]/40 mx-auto mb-4" />
                       <p className="text-[#f6f8ed]/70 font-medium mb-2">
-                        Drop .txt file or click to upload
+                        Drop file or click to upload
                       </p>
                       <p className="text-[#f6f8ed]/40 text-sm">
-                        For Word/PDF, copy-paste text on the right
+                        PDF, images, or text files
                       </p>
                     </div>
                   )}
@@ -262,7 +357,14 @@ export default function AnalyzerCard() {
                   className="flex-1 min-h-[200px] lg:min-h-0 w-full bg-[#f6f8ed] border-0 rounded-2xl p-6 text-[#1a1c1e] text-base focus:outline-none focus:ring-2 focus:ring-[#f6f8ed]/50 resize-none"
                   placeholder="Or paste job description here..."
                   value={jobDescription}
-                  onChange={(e) => setJobDescription(e.target.value)}
+                  onChange={(e) => {
+                    setJobDescription(e.target.value);
+                    // Clear file data if user starts typing
+                    if (e.target.value && fileData) {
+                      setFileData(null);
+                      setFileName(null);
+                    }
+                  }}
                 />
               </div>
             </div>
@@ -274,10 +376,11 @@ export default function AnalyzerCard() {
             <div className="flex justify-between items-center mt-6">
               <span className="text-sm text-[#f6f8ed]/40">
                 {!envApiKey && "Demo Mode"}
+                {envApiKey && fileData && "Using Claude Vision"}
               </span>
               <button
                 onClick={analyzeFit}
-                disabled={loading || !jobDescription.trim()}
+                disabled={loading || !hasInput}
                 className="flex items-center gap-2 px-8 py-4 bg-[#f6f8ed] text-[#1a1c1e] rounded-xl font-medium text-base hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? <Loader className="animate-spin" size={20} /> : <Zap size={20} />}
@@ -298,7 +401,7 @@ export default function AnalyzerCard() {
               </div>
 
               <button
-                onClick={() => { setAnalysis(null); setJobDescription(''); setFileName(null); }}
+                onClick={() => { setAnalysis(null); setJobDescription(''); setFileName(null); setFileData(null); }}
                 className="w-full py-4 text-[#f6f8ed]/60 hover:text-[#f6f8ed] font-medium transition-colors border border-[#f6f8ed]/20 rounded-xl hover:bg-white/5"
               >
                 Analyze Another Role
