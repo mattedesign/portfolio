@@ -149,63 +149,55 @@ export default function ExperienceCard() {
   return (
     <div className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
       {/* Header */}
-      <div className="absolute flex items-center justify-between left-0 p-8 md:p-12 text-base md:text-xl text-white top-0 w-full z-10">
-        <p className="font-medium tracking-[-0.02em]">
+      <div className="flex items-center justify-between p-8 md:p-12">
+        <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
           Career Timeline
         </p>
-        <p className="font-normal text-right tracking-[-0.02em]">
+        <p className="text-[#f6f8ed]/50 text-base md:text-lg">
           03/06
         </p>
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col justify-start p-8 md:p-16 pt-28 md:pt-32 overflow-y-auto">
-        <div className="space-y-12 md:space-y-16">
+      <div className="flex-1 flex flex-col p-8 md:p-12 pt-0 overflow-y-auto">
+        <div className="space-y-10 md:space-y-12">
           {CAREER_TIMELINE.map((era, eraIndex) => (
             <div key={eraIndex}>
               {/* Era Label */}
               <p
-                className="text-sm md:text-base font-bold uppercase tracking-wider mb-6"
+                className="text-xs md:text-sm font-medium uppercase tracking-wider mb-4 md:mb-6"
                 style={{ color: era.color }}
               >
                 {era.eraLabel}
               </p>
 
               {/* Roles in this era */}
-              <div className="space-y-8 md:space-y-10">
+              <div className="space-y-6 md:space-y-8">
                 {era.roles.map((role, roleIndex) => (
                   <div
                     key={roleIndex}
-                    className="border-l-4 pl-6 md:pl-8"
+                    className="border-l-2 pl-5 md:pl-6"
                     style={{ borderColor: era.color }}
                   >
-                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 md:gap-4 mb-2">
-                      <h3 className="font-bold text-[clamp(20px,3vw,36px)] text-[#f6f8ed] leading-[1.2]">
+                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 md:gap-4 mb-1">
+                      <h3 className="font-bold text-lg md:text-xl text-[#f6f8ed] leading-[1.3]">
                         {role.role}
                       </h3>
-                      <span className="text-[#f6f8ed]/50 text-sm font-mono">
+                      <span className="text-[#f6f8ed]/40 text-xs md:text-sm shrink-0">
                         {role.dates}
                       </span>
                     </div>
-                    <p className="text-[clamp(14px,1.5vw,22px)] text-[#f6f8ed]/70 mb-3">
+                    <p className="text-sm md:text-base text-[#f6f8ed]/60 mb-2">
                       {role.company}
-                      {role.companyNote && <span className="text-[#f6f8ed]/40 ml-2">({role.companyNote})</span>}
+                      {role.companyNote && <span className="text-[#f6f8ed]/30 ml-1">({role.companyNote})</span>}
                     </p>
-                    <ul className="space-y-2 mb-4">
-                      {role.highlights.map((highlight, i) => (
-                        <li key={i} className="text-[clamp(13px,1.2vw,18px)] text-[#f6f8ed]/80 leading-[1.5] flex gap-2">
-                          <span className="text-[#f6f8ed]/40 mt-1">›</span>
+                    <ul className="space-y-1">
+                      {role.highlights.slice(0, 2).map((highlight, i) => (
+                        <li key={i} className="text-xs md:text-sm text-[#f6f8ed]/70 leading-[1.5]">
                           {highlight}
                         </li>
                       ))}
                     </ul>
-                    <div className="flex flex-wrap gap-2">
-                      {role.tags.map((tag, i) => (
-                        <span key={i} className="text-xs text-[#f6f8ed]/50 font-mono px-2 py-1 bg-white/5 rounded">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 ))}
               </div>

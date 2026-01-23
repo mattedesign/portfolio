@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Zap, Loader, AlertTriangle, CheckCircle, Search, FileText } from 'lucide-react';
+import { Zap, Loader, AlertTriangle, CheckCircle, Search } from 'lucide-react';
 
 const CANDIDATE_PROFILE = {
   email: "sparkingmatt@gmail.com",
@@ -124,138 +124,117 @@ export default function AnalyzerCard() {
   };
 
   return (
-    <div className="bg-[#f6f8ed] overflow-clip relative w-full h-full flex flex-col">
+    <div className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
       {/* Header */}
-      <div className="absolute flex items-center justify-between left-0 p-8 md:p-12 text-base md:text-xl text-[#1a1c1e] top-0 w-full z-10">
-        <div className="flex items-center gap-3">
-          <Sparkles size={20} className="text-emerald-600" />
-          <p className="font-medium tracking-[-0.02em]">
-            Role Fit Analyzer
-          </p>
-        </div>
-        <p className="font-normal text-right tracking-[-0.02em]">
+      <div className="flex items-center justify-between p-8 md:p-12">
+        <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
+          Role Fit Analyzer
+        </p>
+        <p className="text-[#f6f8ed]/50 text-base md:text-lg">
           05/06
         </p>
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col justify-center p-8 md:p-16 pt-32 md:pt-36">
-        <div className="max-w-[900px] mx-auto w-full">
+      <div className="flex-1 flex flex-col justify-center p-8 md:p-12 pt-0">
+        <div className="max-w-[800px] w-full">
           {!analysis ? (
             <div className="space-y-8">
               <div>
-                <h2 className="font-extrabold text-[clamp(40px,8vw,100px)] text-[#1a1c1e] leading-[1.1] tracking-[-0.04em] mb-6">
-                  Analyze
-                  <br />
-                  My Fit
+                <h2 className="font-extrabold text-[clamp(36px,6vw,72px)] text-[#f6f8ed] leading-[1.1] tracking-[-0.03em] mb-4">
+                  Analyze My Fit
                 </h2>
-                <p className="text-[clamp(16px,1.5vw,24px)] text-[#424437] leading-[1.6]">
-                  Paste any job description below. AI will analyze my profile against your requirements.
+                <p className="text-base md:text-lg text-[#f6f8ed]/60 leading-[1.6]">
+                  Paste any job description. AI analyzes my profile against your requirements.
                 </p>
               </div>
 
               <textarea
-                className="w-full h-48 bg-white border-2 border-[#1a1c1e]/10 rounded-2xl p-6 text-[#1a1c1e] text-lg focus:outline-none focus:border-emerald-500 resize-none"
+                className="w-full h-40 bg-[#f6f8ed] border-0 rounded-2xl p-5 text-[#1a1c1e] text-base focus:outline-none focus:ring-2 focus:ring-[#f6f8ed]/50 resize-none"
                 placeholder="Paste job description here..."
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
               />
 
               {error && (
-                <div className="text-amber-600 text-sm flex items-center gap-2">
+                <div className="text-amber-400 text-sm flex items-center gap-2">
                   <AlertTriangle size={16} />
                   {error}
                 </div>
               )}
 
               <div className="flex justify-between items-center">
-                <span className="text-sm text-[#424437]/60">
-                  {!envApiKey && "Demo Mode (intelligent mock analysis)"}
+                <span className="text-sm text-[#f6f8ed]/40">
+                  {!envApiKey && "Demo Mode"}
                 </span>
                 <button
                   onClick={analyzeFit}
                   disabled={loading || !jobDescription.trim()}
-                  className="flex items-center gap-2 px-8 py-4 bg-[#1a1c1e] text-[#f6f8ed] rounded-xl font-medium text-lg hover:bg-[#2a2c2e] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 px-6 py-3 bg-[#f6f8ed] text-[#1a1c1e] rounded-xl font-medium text-base hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {loading ? <Loader className="animate-spin" size={20} /> : <Zap size={20} />}
+                  {loading ? <Loader className="animate-spin" size={18} /> : <Zap size={18} />}
                   {loading ? 'Analyzing...' : 'Run Analysis'}
                 </button>
               </div>
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-5">
               {/* Fit Score */}
-              <div className="flex items-center gap-6 p-6 bg-emerald-500/10 rounded-2xl border border-emerald-500/20">
-                <div className="text-5xl font-bold text-emerald-600">
+              <div className="flex items-center gap-5 p-5 bg-emerald-500/10 rounded-xl">
+                <div className="text-4xl font-bold text-emerald-400">
                   {analysis.fit_score}%
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-emerald-700">Fit Score</div>
-                  <div className="text-sm text-emerald-600">{analysis.fit_summary}</div>
+                  <div className="text-xs font-medium text-emerald-400 mb-1">Fit Score</div>
+                  <div className="text-sm text-[#f6f8ed]/70">{analysis.fit_summary}</div>
                 </div>
               </div>
 
               {/* Strengths */}
-              <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl">
-                <h3 className="text-emerald-700 font-bold flex items-center gap-2 mb-4">
-                  <CheckCircle size={20} /> Core Strengths
+              <div className="p-5 bg-white/5 rounded-xl">
+                <h3 className="text-emerald-400 font-medium flex items-center gap-2 mb-3 text-sm">
+                  <CheckCircle size={16} /> Core Strengths
                 </h3>
                 <ul className="space-y-2">
                   {analysis.strengths.map((point, i) => (
-                    <li key={i} className="text-[#424437] text-sm flex gap-2">
-                      <span className="text-emerald-500 mt-0.5">›</span> {point}
+                    <li key={i} className="text-[#f6f8ed]/70 text-sm leading-relaxed">
+                      {point}
                     </li>
                   ))}
                 </ul>
               </div>
 
               {/* Hidden Value */}
-              <div className="p-6 bg-blue-50 border border-blue-200 rounded-2xl">
-                <h3 className="text-blue-700 font-bold flex items-center gap-2 mb-4">
-                  <Search size={20} /> Hidden Delta
+              <div className="p-5 bg-white/5 rounded-xl">
+                <h3 className="text-blue-400 font-medium flex items-center gap-2 mb-3 text-sm">
+                  <Search size={16} /> Hidden Delta
                 </h3>
                 <ul className="space-y-2">
                   {analysis.hidden_value.map((point, i) => (
-                    <li key={i} className="text-[#424437] text-sm flex gap-2">
-                      <span className="text-blue-500 mt-0.5">›</span> {point}
+                    <li key={i} className="text-[#f6f8ed]/70 text-sm leading-relaxed">
+                      {point}
                     </li>
                   ))}
                 </ul>
               </div>
 
               {/* Gaps */}
-              <div className="p-6 bg-amber-50 border border-amber-200 rounded-2xl">
-                <h3 className="text-amber-700 font-bold flex items-center gap-2 mb-4">
-                  <AlertTriangle size={20} /> Honest Gaps
+              <div className="p-5 bg-white/5 rounded-xl">
+                <h3 className="text-amber-400 font-medium flex items-center gap-2 mb-3 text-sm">
+                  <AlertTriangle size={16} /> Honest Gaps
                 </h3>
                 <ul className="space-y-2">
                   {analysis.gaps.map((point, i) => (
-                    <li key={i} className="text-[#424437] text-sm flex gap-2">
-                      <span className="text-amber-500 mt-0.5">›</span> {point}
+                    <li key={i} className="text-[#f6f8ed]/70 text-sm leading-relaxed">
+                      {point}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Talking Points */}
-              {analysis.talking_points && (
-                <div className="p-6 bg-purple-50 border border-purple-200 rounded-2xl">
-                  <h3 className="text-purple-700 font-bold flex items-center gap-2 mb-4">
-                    <FileText size={20} /> Interview Talking Points
-                  </h3>
-                  <ul className="space-y-2">
-                    {analysis.talking_points.map((point, i) => (
-                      <li key={i} className="text-[#424437] text-sm flex gap-2">
-                        <span className="text-purple-500 mt-0.5">›</span> {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
               <button
                 onClick={() => { setAnalysis(null); setJobDescription(''); }}
-                className="w-full py-4 text-[#424437] hover:text-[#1a1c1e] font-medium transition-colors border-2 border-[#1a1c1e]/10 rounded-xl hover:bg-white"
+                className="w-full py-3 text-[#f6f8ed]/60 hover:text-[#f6f8ed] font-medium transition-colors border border-[#f6f8ed]/20 rounded-xl hover:bg-white/5"
               >
                 Analyze Another Role
               </button>

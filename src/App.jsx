@@ -111,8 +111,8 @@ export default function App() {
       </motion.div>
 
       {/* Stacked cards section - edge to edge */}
-      <div className="px-4 pb-[100vh] relative">
-        <div className="space-y-[40px]">
+      <div className="px-4 pb-[50vh] relative">
+        <div>
           {cards.map((card, index) => (
             <StackedCard key={index} index={index} totalCards={cards.length}>
               {card}

@@ -3,60 +3,50 @@ import { useRef } from 'react';
 
 export default function StackedCard({ children, index, totalCards }) {
   const cardRef = useRef(null);
+  const isLastCard = index === totalCards - 1;
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "end start"]
   });
 
-  // Calculate when this card should start stacking
-  const stackProgress = useTransform(
-    scrollYProgress,
-    [0, 0.5, 0.8, 1],
-    [0, 0, 1, 1]
-  );
-
-  // Scale effect - cards scale down slightly as they stack
+  // Scale effect - cards scale down as they get scrolled past
   const scale = useTransform(
-    stackProgress,
-    [0, 1],
-    [1, 0.95 - (index * 0.02)]
+    scrollYProgress,
+    [0.4, 0.5, 0.6],
+    [1, 1, isLastCard ? 1 : 0.95]
   );
 
-  // Y position - cards stack with slight offset
-  const y = useTransform(
-    stackProgress,
-    [0, 1],
-    [0, -index * 60]
-  );
-
-  // Opacity for cards behind
+  // Opacity - fade slightly when stacked behind
   const opacity = useTransform(
-    stackProgress,
-    [0, 0.8, 1],
-    [1, 1, index === totalCards - 1 ? 1 : 0.6]
+    scrollYProgress,
+    [0.4, 0.5, 0.6],
+    [1, 1, isLastCard ? 1 : 0.7]
   );
-
-  // Not the last card - show peek of next card
-  const isLastCard = index === totalCards - 1;
 
   return (
-    <div ref={cardRef} className="relative" style={{ marginBottom: isLastCard ? 0 : '-120px' }}>
+    <div
+      ref={cardRef}
+      className="relative"
+      style={{
+        // Height includes space for the card plus peek area
+        height: isLastCard ? 'auto' : 'calc(100vh - 100px)',
+        marginBottom: isLastCard ? 0 : '20px',
+      }}
+    >
       <motion.div
         style={{
           scale,
-          y,
           opacity,
           transformOrigin: "top center",
         }}
-        className="sticky top-[40px] will-change-transform"
+        className="sticky top-[20px] will-change-transform"
       >
         <div
           className="shadow-2xl overflow-hidden"
           style={{
             borderRadius: '32px',
-            // Leave space at bottom for next card to peek
-            minHeight: isLastCard ? 'calc(100vh - 80px)' : 'calc(100vh - 160px)',
+            minHeight: isLastCard ? 'calc(100vh - 80px)' : 'calc(100vh - 120px)',
           }}
         >
           {children}

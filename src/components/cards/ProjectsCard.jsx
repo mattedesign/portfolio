@@ -59,76 +59,50 @@ const PROJECTS = [
 
 export default function ProjectsCard() {
   return (
-    <div className="bg-[#1a1c1e] overflow-clip relative w-full h-full flex flex-col">
+    <div className="bg-[#f6f8ed] overflow-clip relative w-full h-full flex flex-col">
       {/* Header */}
-      <div className="absolute flex items-center justify-between left-0 p-8 md:p-12 text-base md:text-xl text-white top-0 w-full z-10">
-        <p className="font-medium tracking-[-0.02em]">
+      <div className="flex items-center justify-between p-8 md:p-12">
+        <p className="text-[#1a1c1e] text-base md:text-lg font-normal">
           Selected Work
         </p>
-        <p className="font-normal text-right tracking-[-0.02em]">
+        <p className="text-[#1a1c1e]/60 text-base md:text-lg">
           04/06
         </p>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 flex flex-col justify-start p-8 md:p-16 pt-28 md:pt-32 overflow-y-auto">
-        <div className="mb-8 md:mb-12">
-          <h2 className="font-extrabold text-[clamp(40px,10vw,140px)] text-[#f6f8ed] leading-[1.1] tracking-[-0.04em]">
-            Impact
-            <br />
-            Stories
-          </h2>
-        </div>
+      {/* Main headline */}
+      <div className="px-8 md:px-12 mb-8 md:mb-12">
+        <h2 className="font-extrabold text-[clamp(48px,10vw,120px)] text-[#1a1c1e] leading-[1.05] tracking-[-0.03em]">
+          Impact Stories
+        </h2>
+      </div>
 
-        <div className="space-y-10 md:space-y-14 max-w-[1200px]">
+      {/* Projects list */}
+      <div className="flex-1 px-8 md:px-12 pb-8 md:pb-12 overflow-y-auto">
+        <div className="space-y-0">
           {PROJECTS.map((project, index) => (
-            <div key={index} className="border-t-2 border-[#f6f8ed]/20 pt-6 md:pt-8">
-              <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2 md:gap-8 mb-3">
-                <h3 className="font-bold text-[clamp(22px,3vw,42px)] text-[#f6f8ed] leading-[1.2]">
-                  {project.name}
-                </h3>
-                <span
-                  className="text-sm font-medium px-3 py-1 rounded-full w-fit"
-                  style={{
-                    backgroundColor: project.type === 'ai' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(59, 130, 246, 0.15)',
-                    color: project.type === 'ai' ? '#10b981' : '#3b82f6'
-                  }}
-                >
-                  {project.type === 'ai' ? 'AI/ML' : 'Enterprise'}
-                </span>
-              </div>
-
-              <p className="text-[#f6f8ed]/50 text-sm mb-4">{project.role}</p>
-
-              <div className="space-y-4 mb-4">
-                <div>
-                  <p className="text-[#f6f8ed]/40 text-xs uppercase tracking-wider mb-1">The Problem</p>
-                  <p className="text-[clamp(13px,1.3vw,20px)] text-[#f6f8ed]/80 leading-[1.5]">
-                    {project.problem}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[#f6f8ed]/40 text-xs uppercase tracking-wider mb-1">The Solution</p>
-                  <p className="text-[clamp(13px,1.3vw,20px)] text-[#f6f8ed]/80 leading-[1.5]">
+            <div key={index} className="border-t border-[#1a1c1e]/10 py-6 md:py-8">
+              <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 md:gap-12">
+                <div className="flex-1">
+                  <h3 className="font-bold text-[clamp(20px,2.5vw,32px)] text-[#1a1c1e] leading-[1.2] mb-2">
+                    {project.name}
+                  </h3>
+                  <p className="text-[#1a1c1e]/50 text-sm mb-3">{project.role}</p>
+                  <p className="text-[#1a1c1e]/70 text-sm md:text-base leading-[1.6] max-w-[600px]">
                     {project.solution}
                   </p>
                 </div>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.impact.map((item, i) => (
-                  <span key={i} className="text-xs text-emerald-400 font-medium flex items-center gap-1">
-                    <span className="text-emerald-500">✓</span> {item}
+                <div className="md:text-right md:min-w-[200px]">
+                  <span
+                    className="inline-block text-xs font-medium px-3 py-1 rounded-full"
+                    style={{
+                      backgroundColor: project.type === 'ai' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(59, 130, 246, 0.1)',
+                      color: project.type === 'ai' ? '#059669' : '#2563eb'
+                    }}
+                  >
+                    {project.type === 'ai' ? 'AI/ML' : 'Enterprise'}
                   </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tech, i) => (
-                  <span key={i} className="text-xs text-[#f6f8ed]/50 font-mono px-2 py-1 bg-white/5 rounded">
-                    {tech}
-                  </span>
-                ))}
+                </div>
               </div>
             </div>
           ))}
