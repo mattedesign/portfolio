@@ -1,0 +1,222 @@
+%-------------------------
+% Resume in LaTeX
+% Author: Matt Brown
+% License: MIT
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+\usepackage[sfdefault]{roboto}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Matt Brown} \\ \vspace{1pt}
+    \small Principal Product Architect \& AI Systems Designer \\ \vspace{8pt}
+    \small \raisebox{-0.1\height}\faPhone\ 214-893-0003 ~
+    \href{mailto:sparkingmatt@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{sparkingmatt@gmail.com}} ~
+    \href{https://linkedin.com/in/matte-design/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/matte-design}}  ~
+    \href{https://mattbrown.dev}{\raisebox{-0.2\height}\faGlobe\ \underline{mattbrown.dev}}
+    \vspace{-8pt}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+Principal Product Architect with 18+ years spanning Executive Creative Leadership, Enterprise Product Strategy, and Applied AI Architecture. Unique ability to bridge ``Vision'' and ``System''---led creative teams (Group Creative Director), modernized legacy ERPs (Epicor), and currently architect proprietary AI engines processing 100k+ docs/day. I speak the language of compliance/P\&L (Boardroom) and Agents/React (Engineering).
+
+%-----------AI VENTURES-----------
+\section{AI Architecture \& Ventures}
+    \resumeSubHeadingListStart
+      \resumeSubheading
+        {Co-Founder / Lead Architect}{2023 -- Present}
+        {Fr8 Document Engine}{Proprietary IP}
+        \resumeItemListStart
+            \resumeItem{Architected document processing engine handling 100,000+ logistics documents daily across multiple carrier formats}
+            \resumeItem{Defined compounding templates and ``bucket'' taxonomies allowing AI to orient without client-specific retraining}
+            \resumeItem{Designed Human-in-the-Loop workflows where the system learns from exceptions automatically}
+            \resumeItem{Runs primarily on hardware with tiered cloud fallback---saving tens of thousands daily with high accuracy}
+        \resumeItemListEnd
+
+      \resumeSubheading
+        {Founder}{2023 -- Present}
+        {Figmant}{AI-Powered Website Optimization}
+        \resumeItemListStart
+            \resumeItem{Engineered compound AI audit system analyzing accessibility (WCAG 2.1 AA), conversion optimization, and design quality through multi-modal input with 251+ API endpoints}
+            \resumeItem{Built enterprise analytics integration connecting GA4, Clarity, Hotjar, Mixpanel with 37 research-backed conversion patterns and ROI impact calculations}
+        \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------ENTERPRISE EXPERIENCE-----------
+\section{Enterprise Experience}
+    \resumeSubHeadingListStart
+      \resumeSubheading
+        {User Experience Design Lead}{Dec 2024 -- Present}
+        {TriumphPay}{FinTech / Cash Flow Management}
+        \resumeItemListStart
+            \resumeItem{Translating complex financial goals (cash flow visibility) into centralized Broker Dashboards}
+            \resumeItem{Solving the ``Black Box'' problem in factoring by visualizing the why behind approval decisions}
+        \resumeItemListEnd
+
+      \resumeSubheading
+        {Sr. Principal, UX Designer}{Oct 2022 -- Jan 2025}
+        {Epicor Software}{Enterprise ERP Systems}
+        \resumeItemListStart
+            \resumeItem{Led strategy for modernizing massive ERP modules without breaking critical business logic}
+            \resumeItem{Architected scalable design system for data-dense enterprise environments}
+        \resumeItemListEnd
+
+      \resumeSubheading
+        {Senior UX Designer $\rightarrow$ Lead UX Designer}{Jul 2020 -- Dec 2022}
+        {First American}{Title Insurance / Regulatory Compliance}
+        \resumeItemListStart
+            \resumeItem{Enterprise Software UX Design for title insurance industry}
+            \resumeItem{Streamlined internal tools in heavily regulated environment}
+        \resumeItemListEnd
+
+      \resumeSubheading
+        {Director of User Experience}{Apr 2018 -- Feb 2020}
+        {American First Finance}{Consumer FinTech}
+        \resumeItemListStart
+            \resumeItem{Implemented SDLC and reduced time-to-market by 268\%; empowered transition from waterfall to Agile}
+            \resumeItem{Grew customer portal utilization from 2\% to 65\% by overhauling UX and reducing load times by 800\%}
+            \resumeItem{Architected web services saving close to \$1.2M in hardware/vendor purchases}
+            \resumeItem{Developed and shipped four new-to-market products across WordPress, Magento, Shopify, Vue, Angular, React}
+        \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------LEADERSHIP FOUNDATION-----------
+\section{Leadership Foundation}
+    \resumeSubHeadingListStart
+      \resumeSubheading
+        {Director \& Founder}{Dec 2014 -- Jan 2017}
+        {Aloha Travel Ltd.}{Travel Tech / Acquired by FareHarbor}
+        \resumeItemListStart
+            \resumeItem{Built FareHarbor into the travel industry's top booking software, leading to acquisition}
+            \resumeItem{Delivered 800\% sales increase across client portfolio by streamlining UX with mobile-first design}
+            \resumeItem{Built a \$20.1M revenue channel by designing and launching three mobile apps for Expedia partnership}
+            \resumeItem{Won Webby Award, HOW Award, and two Awwwards.com Awards}
+        \resumeItemListEnd
+
+      \resumeSubheading
+        {Group Creative Director}{Jan 2012 -- Dec 2014}
+        {WorldVentures Holdings}{\$600M Global Company}
+        \resumeItemListStart
+            \resumeItem{Led conception, development and launch of B2B and B2C digital products}
+            \resumeItem{Built and developed a six-member team into an organization of 40+ designers, art directors, and UX professionals}
+        \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{AI/ML}{: Model Schema Definition, RAG, Context Injection, Vector Databases, Agentic Workflows, Prompt Engineering, OpenAI API, Anthropic API} \\
+     \textbf{Frontend}{: React, Next.js, Vue, Angular, Tailwind CSS, Design Systems, Figma} \\
+     \textbf{Backend}{: Node.js, Python, BullMQ, OAuth, REST APIs} \\
+     \textbf{Process}{: SDLC, Agile, Enterprise Architecture, WCAG 2.1 AA Compliance}
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+%-----------FOOTER-----------
+\begin{center}
+    \vspace{12pt}
+    \small \textit{Interactive portfolio with AI-powered role fit analyzer:} \textbf{\href{https://mattbrown.dev}{\underline{mattbrown.dev}}}
+\end{center}
+
+\end{document}
