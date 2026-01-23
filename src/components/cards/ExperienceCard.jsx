@@ -36,7 +36,7 @@ const CAREER_TIMELINE = [
     roles: [
       {
         role: "User Experience Design Lead",
-        company: "TriumphPay (Triumph Financial)",
+        company: "TriumphPay",
         dates: "Dec 2024 — Present",
         highlights: [
           "Translating complex financial goals (cash flow visibility) into centralized Broker Dashboards.",
@@ -46,24 +46,47 @@ const CAREER_TIMELINE = [
       },
       {
         role: "Sr. Principal, UX Designer",
-        company: "Epicor Software",
+        company: "Epicor",
         dates: "Oct 2022 — Jan 2025",
         highlights: [
           "Led strategy for modernizing massive ERP modules without breaking critical business logic.",
           "Architected scalable design system for data-dense enterprise environments."
         ],
-        tags: ["ERP", "SaaS", "Design Systems", "System Migration"]
+        tags: ["SaaS", "Design Systems", "User Experience Design", "Enterprise Design Patterns"]
+      },
+      {
+        role: "Lead UX Designer → Senior UX Designer",
+        company: "First American",
+        dates: "Jul 2020 — Dec 2022",
+        highlights: [
+          "Enterprise Software UX Design for title insurance industry.",
+          "Streamlined internal tools in heavily regulated environment."
+        ],
+        tags: ["SaaS", "Design Systems", "Point of Sale Systems", "Enterprise Design Patterns"]
       },
       {
         role: "Director of User Experience",
         company: "American First Finance",
         dates: "Apr 2018 — Feb 2020",
         highlights: [
-          "Founded technology and frontend leadership roles as a customer champion.",
-          "Reduced time-to-market by 268% implementing SDLC; empowered transition from waterfall to Agile.",
-          "Grew customer portal utilization from 2% to 65% by overhauling experience and reducing load times by 800%."
+          "Founded technology and frontend leadership roles, transforming intangible UX into feasible, quantifiable processes.",
+          "Implemented SDLC and reduced time-to-market by 268%; empowered transition from waterfall to Agile.",
+          "Grew customer portal utilization from 2% to 65% by overhauling UX and reducing load times by 800%.",
+          "Architected web services saving close to $1.2M in hardware/vendor purchases.",
+          "Developed and shipped four new-to-market products and 25 product features across WordPress, Magento, Shopify, VUE, Angular, React."
         ],
-        tags: ["FinTech", "SDLC", "Agile Transformation", "Team Leadership"]
+        tags: ["FinTech", "SDLC", "Agile Transformation", "Team Leadership", "SaaS"]
+      },
+      {
+        role: "User Experience Manager",
+        company: "ACE Cash Express",
+        dates: "Feb 2017 — Apr 2018",
+        highlights: [
+          "Transformed ecommerce channels to be an agile shop developing innovative and releasable products.",
+          "Created common standards and formats for release playbooks.",
+          "Leveraged psychology and user behavior insights to develop conditional and contextual ecommerce experiences."
+        ],
+        tags: ["SaaS", "Design Systems", "Ecommerce", "Agile"]
       }
     ]
   },
@@ -73,15 +96,50 @@ const CAREER_TIMELINE = [
     color: "#8b5cf6",
     roles: [
       {
+        role: "Director & Founder",
+        company: "Aloha Travel Ltd.",
+        dates: "Dec 2014 — Jan 2017",
+        highlights: [
+          "Built FareHarbor into the travel and tourism industry's top booking software, leading to acquisition by FareHarbor.",
+          "Delivered 800% sales increase across client portfolio by streamlining UX with mobile-first design.",
+          "Built a $20.1M revenue channel by designing and launching three mobile apps for partnership with Expedia and other OTAs.",
+          "Won a Webby Award, HOW Award, and two Awwwards.com Awards."
+        ],
+        tags: ["Startup", "Product Design", "Mobile Apps", "Travel Tech", "Acquisition"]
+      },
+      {
         role: "Group Creative Director",
         company: "WorldVentures Holdings",
         dates: "Jan 2012 — Dec 2014",
         highlights: [
           "Led conception, development and launch of B2B and B2C digital products for $600M global company.",
           "Built and developed a six-member team into an organization of 40+ designers, art directors, media and UX professionals.",
-          "Won two HOW Awards, one Webby Award, and four Awwwards Awards."
+          "Won two HOW Awards, one Webby Award, and four Awwwards.com Awards."
         ],
         tags: ["Team Leadership", "Digital Products", "Brand Strategy", "P&L"]
+      },
+      {
+        role: "Creative Director",
+        company: "Vitamin Research Products, LLC",
+        dates: "Jan 2010 — Dec 2012",
+        highlights: [
+          "Expanded company's digital footprint by spearheading products from concept to launch.",
+          "Managed eight-member team and $1.5M budget to deliver three organic campaigns, six sites, five micro-sites and 35 landing pages.",
+          "Grew revenue 20% through multi-channel web and direct marketing campaigns.",
+          "Increased conversions by 160% as the designer of the site visitor funnel."
+        ],
+        tags: ["Creative Direction", "Digital Marketing", "Budget Management", "Revenue Growth"]
+      },
+      {
+        role: "Senior Creative Director",
+        company: "Sparking Creativity Ltd.",
+        dates: "Jan 2003 — Dec 2010",
+        highlights: [
+          "Advancing through progressively senior roles, rose to Senior Creative Director leading a 15-member creative and marketing team.",
+          "Led pitches and negotiations to close accounts valued at $100k to $1.5M.",
+          "Defined customer KPIs to meet performance goals, driving customer satisfaction and retention."
+        ],
+        tags: ["Creative Direction", "Team Leadership", "Client Management", "Sales"]
       }
     ]
   }
