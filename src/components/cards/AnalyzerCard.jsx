@@ -289,7 +289,7 @@ export default function AnalyzerCard() {
   const hasInput = jobDescription.trim() || fileData;
 
   return (
-    <div id="analyzer" className="bg-[#1a1c1e] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1">
+    <div id="analyzer" className="bg-[#1a1c1e] rounded-[32px] relative w-full min-h-full flex flex-col flex-1">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12 pb-0">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">

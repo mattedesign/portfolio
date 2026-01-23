@@ -19,7 +19,7 @@ const WORK = [
 
 export default function ProjectsCard() {
   return (
-    <div className="bg-[#f6f8ed] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1">
+    <div className="bg-[#f6f8ed] rounded-[32px] relative w-full min-h-full flex flex-col flex-1">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#1a1c1e] text-base md:text-lg font-normal">
