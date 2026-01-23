@@ -18,22 +18,58 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0b0c] relative">
-      {/* Hero section - scroll indicator */}
+    <div className="min-h-screen bg-[#0a0b0c] relative overflow-x-hidden">
+      {/* Hero section with glowing orb */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="h-screen flex items-center justify-center px-4"
+        className="h-screen flex items-center justify-center px-4 relative"
       >
-        <div className="text-center">
+        {/* Animated glowing orb */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.1) 40%, transparent 70%)',
+              filter: 'blur(60px)',
+            }}
+          />
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(16, 185, 129, 0.1) 50%, transparent 70%)',
+              filter: 'blur(40px)',
+            }}
+          />
+        </div>
+
+        <div className="text-center relative z-10">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-[clamp(12px,1.2vw,18px)] text-white/60 mb-4 tracking-wide uppercase"
           >
-            Portfolio 2025
+            Portfolio 2026
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -41,15 +77,15 @@ export default function App() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="font-extrabold text-[clamp(36px,10vw,120px)] text-white leading-[1.1] tracking-[-0.04em] mb-6"
           >
-            Scroll to Explore
+            Matt Brown
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-[clamp(14px,1.5vw,24px)] text-white/80 max-w-[600px] mx-auto leading-[1.6]"
+            className="text-[clamp(14px,1.5vw,24px)] text-white/70 max-w-[700px] mx-auto leading-[1.6]"
           >
-            Experience the story through interactive stacked cards
+            Principal Product Architect bridging boardroom strategy and engineering reality. 18+ years shipping products across AI, FinTech, and Enterprise.
           </motion.p>
 
           {/* Scroll indicator */}
@@ -74,9 +110,9 @@ export default function App() {
         </div>
       </motion.div>
 
-      {/* Stacked cards section */}
+      {/* Stacked cards section - edge to edge */}
       <div className="px-4 pb-[100vh] relative">
-        <div className="max-w-[1600px] mx-auto space-y-[40px]">
+        <div className="space-y-[40px]">
           {cards.map((card, index) => (
             <StackedCard key={index} index={index} totalCards={cards.length}>
               {card}
