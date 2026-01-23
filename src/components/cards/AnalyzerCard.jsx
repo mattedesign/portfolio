@@ -316,7 +316,7 @@ export default function AnalyzerCard() {
                   <input
                     ref={fileInputRef}
                     type="file"
-                    accept=".txt,.pdf,.png,.jpg,.jpeg,.webp"
+                    accept=".txt,.pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"
                     onChange={handleFileSelect}
                     className="hidden"
                   />
