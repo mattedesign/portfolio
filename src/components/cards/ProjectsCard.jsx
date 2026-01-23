@@ -1,19 +1,19 @@
 const WORK = [
   {
     type: "ai",
-    summary: "Built a document processing engine handling 100,000+ logistics documents daily. Defined generalizable taxonomies allowing AI to orient without client-specific retraining. Self-healing workflows reduce manual intervention by 80%."
+    summary: "Built a three-tier AI document engine processing 100,000+ logistics documents daily. Uses compounding templates, local LLMs (Ollama), and cloud escalation (Claude/GPT-4o). Operator corrections feed into template discovery and rule learning for self-improvement without model retraining."
   },
   {
     type: "ai",
-    summary: "Engineered compound AI audit system analyzing accessibility (WCAG 2.1 AA), conversion optimization, and design quality through multi-modal input. 251+ API endpoints with enterprise analytics integration and 37 research-backed conversion patterns."
+    summary: "Built an AI-powered operational coaching platform analyzing freight broker data—loads, exceptions, AR, carrier performance—to deliver visual-first dashboard intelligence with quantified cost impact (labor, aging capital, late fees) and prioritized recommendations."
   },
   {
-    type: "enterprise",
-    summary: "Designed centralized FinTech dashboards translating complex financial metrics into actionable insights. Created 'Trust Design' patterns that visualize the reasoning behind approval decisions."
+    type: "ai",
+    summary: "Built an automated trading system detecting price dislocations between Kalshi prediction markets and sportsbooks. Priority-cascade rule engine with AND/OR gate conditions, lot-based position tracking, and multi-tier profit targets accounting for 7% fees."
   },
   {
-    type: "enterprise",
-    summary: "Led incremental ERP modernization strategy without breaking critical business logic. Built scalable design systems adopted across multiple product lines in data-dense enterprise environments."
+    type: "ai",
+    summary: "Engineered compound AI audit system analyzing accessibility (WCAG 2.1 AA), conversion optimization, and design quality through multi-modal input. 251+ API endpoints with enterprise analytics integration (GA4, Clarity, Hotjar, Mixpanel) and 37 research-backed conversion patterns."
   }
 ];
 
