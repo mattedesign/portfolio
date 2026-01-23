@@ -5,7 +5,7 @@ export default function ContactCard() {
   const phone = "214-893-0003";
 
   return (
-    <div className="bg-[#f6f8ed] overflow-clip relative w-full h-full flex flex-col">
+    <div className="bg-[#f6f8ed] overflow-clip relative w-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#1a1c1e] text-base md:text-lg font-normal">
@@ -17,7 +17,7 @@ export default function ContactCard() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col justify-center p-8 md:p-12 pt-0">
+      <div className="flex flex-col p-8 md:p-12 pt-0">
         <h2 className="font-extrabold text-[clamp(40px,8vw,100px)] text-[#1a1c1e] leading-[1.05] tracking-[-0.03em] mb-6 md:mb-8">
           Let's Talk
         </h2>
