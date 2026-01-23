@@ -22,8 +22,8 @@ export default function StackedCard({ children, index, totalCards }) {
       ref={cardRef}
       className="relative"
       style={{
-        // Each card needs scroll height except the last
-        height: isLastCard ? 'auto' : '100vh',
+        // Each card needs scroll height - use minHeight so taller cards can expand
+        minHeight: isLastCard ? undefined : '100vh',
         // z-index ensures cards stack properly - higher index = on top
         zIndex: index + 1,
       }}
@@ -39,7 +39,6 @@ export default function StackedCard({ children, index, totalCards }) {
           className="shadow-2xl flex flex-col"
           style={{
             borderRadius: '32px',
-            height: isLastCard ? 'auto' : 'calc(100vh - 40px)',
             minHeight: isLastCard ? undefined : 'calc(100vh - 40px)',
             marginTop: '20px',
             marginBottom: isLastCard ? '20px' : undefined,
