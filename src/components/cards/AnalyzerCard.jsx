@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { Zap, Loader, Upload, FileText, X } from 'lucide-react';
+import mammoth from 'mammoth';
 
 const CANDIDATE_PROFILE = {
   email: "sparkingmatt@gmail.com",
@@ -80,11 +81,26 @@ export default function AnalyzerCard() {
       }
     }
 
-    // Handle Word docs - convert to images for vision (or suggest PDF)
+    // Handle Word docs - extract text using mammoth.js
     if (file.name.endsWith('.docx') || file.name.endsWith('.doc')) {
-      setError("For best results, save your Word doc as PDF and upload that. Or copy/paste the text directly.");
-      setFileName(null);
-      return;
+      try {
+        setFileName(file.name);
+        const arrayBuffer = await file.arrayBuffer();
+        const result = await mammoth.extractRawText({ arrayBuffer });
+        if (result.value && result.value.trim().length > 50) {
+          setJobDescription(result.value);
+          return;
+        } else {
+          setError("Could not extract text from Word doc. Please try copy/paste instead.");
+          setFileName(null);
+          return;
+        }
+      } catch (err) {
+        console.error('Mammoth error:', err);
+        setError("Could not read Word doc. Please try saving as PDF or copy/paste.");
+        setFileName(null);
+        return;
+      }
     }
 
     // Handle images - use Claude's vision
