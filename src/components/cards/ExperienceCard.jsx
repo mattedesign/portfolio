@@ -2,7 +2,7 @@ const CAREER_TIMELINE = [
   {
     era: "ai",
     eraLabel: "AI ARCHITECTURE ERA",
-    color: "#10b981",
+    color: "#f6f8ed",
     roles: [
       {
         role: "Co-Founder / Lead Architect",
@@ -32,7 +32,7 @@ const CAREER_TIMELINE = [
   {
     era: "enterprise",
     eraLabel: "ENTERPRISE ERA",
-    color: "#3b82f6",
+    color: "rgba(246, 248, 237, 0.6)",
     roles: [
       {
         role: "User Experience Design Lead",
@@ -93,7 +93,7 @@ const CAREER_TIMELINE = [
   {
     era: "leadership",
     eraLabel: "LEADERSHIP ERA",
-    color: "#8b5cf6",
+    color: "rgba(246, 248, 237, 0.4)",
     roles: [
       {
         role: "Director & Founder",
@@ -159,7 +159,7 @@ export default function ExperienceCard() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col p-8 md:p-12 pt-0 overflow-y-auto">
+      <div className="flex-1 flex flex-col p-8 md:p-12 pt-0 overflow-hidden">
         <div className="space-y-10 md:space-y-12">
           {CAREER_TIMELINE.map((era, eraIndex) => (
             <div key={eraIndex}>
