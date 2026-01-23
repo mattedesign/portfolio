@@ -147,7 +147,7 @@ const CAREER_TIMELINE = [
 
 export default function ExperienceCard() {
   return (
-    <div className="bg-[#1a1c1e] rounded-[32px] relative w-full flex flex-col">
+    <div className="bg-[#1a1c1e] rounded-[32px] relative w-full min-h-full flex flex-col flex-1">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">

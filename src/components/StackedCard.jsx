@@ -36,9 +36,10 @@ export default function StackedCard({ children, index, totalCards }) {
         className={isLastCard ? "" : "sticky top-0 will-change-transform"}
       >
         <div
-          className="shadow-2xl"
+          className="shadow-2xl flex flex-col"
           style={{
             borderRadius: '32px',
+            height: isLastCard ? 'auto' : 'calc(100vh - 40px)',
             minHeight: isLastCard ? undefined : 'calc(100vh - 40px)',
             marginTop: '20px',
             marginBottom: isLastCard ? '20px' : undefined,
