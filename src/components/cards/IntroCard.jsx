@@ -1,14 +1,9 @@
 import { useState } from 'react';
-import { Zap } from 'lucide-react';
 import ParticleScanner from '../scanner/ParticleScanner';
 import TransformationStream from '../scanner/TransformationStream';
 
 export default function IntroCard() {
   const [isScanning, setIsScanning] = useState(false);
-
-  const scrollToAnalyzer = () => {
-    document.getElementById('analyzer')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <div className="bg-[#1a1c1e] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1">
@@ -53,19 +48,8 @@ export default function IntroCard() {
         </div>
       </div>
 
-      {/* CTA Button - bottom center */}
-      <div className="flex justify-center pb-8 md:pb-12">
-        <button
-          onClick={scrollToAnalyzer}
-          className="group flex items-center gap-3 bg-[#f6f8ed] text-[#1a1c1e] px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 hover:shadow-xl"
-          style={{
-            boxShadow: '0 4px 20px rgba(246, 248, 237, 0.2)'
-          }}
-        >
-          <Zap size={20} className="text-[#e07b5d]" />
-          <span>Analyze My Fit</span>
-        </button>
-      </div>
+      {/* Minimal footer spacing */}
+      <div className="p-4 sm:p-6 md:p-8" />
     </div>
   );
 }
