@@ -21,7 +21,8 @@ export default function DifferentiatorCard() {
       {/* Main content */}
       <div className="flex-1 flex flex-col px-8 md:px-12 pb-8 md:pb-12">
         <h2 className="font-extrabold text-[clamp(32px,7vw,80px)] text-[#f6f8ed] leading-[1.05] tracking-[-0.03em] mb-10 md:mb-14">
-          I build compound AI systems.
+          I build<br />
+          compounding intelligent systems.
         </h2>
 
         {/* Capabilities as a tight list */}
