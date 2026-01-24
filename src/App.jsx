@@ -16,19 +16,17 @@ export default function App() {
     document.getElementById('analyzer')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Card definitions with peek tab configuration
-  // Peek tabs appear on cards 5-7 (Systems, Enterprise, Operating Model) with increasing intensity
   const cards = [
-    { component: <IntroCard key="intro" />, showPeekTab: false },
-    { component: <ProblemCard key="problem" />, showPeekTab: false },
-    { component: <DifferentiatorCard key="differentiator" />, showPeekTab: false },
-    { component: <EvolutionCard key="evolution" />, showPeekTab: false },
-    { component: <SystemsCard key="systems" />, showPeekTab: true, intensity: 0.3 },
-    { component: <EnterpriseCard key="enterprise" />, showPeekTab: true, intensity: 0.6 },
-    { component: <OperatingModelCard key="operating-model" />, showPeekTab: true, intensity: 1 },
-    { component: <WhyCard key="why" />, showPeekTab: false },
-    { component: <AnalyzerCard key="analyzer" />, showPeekTab: false },
-    { component: <ContactCard key="contact" />, showPeekTab: false },
+    <IntroCard key="intro" />,
+    <ProblemCard key="problem" />,
+    <DifferentiatorCard key="differentiator" />,
+    <EvolutionCard key="evolution" />,
+    <SystemsCard key="systems" />,
+    <EnterpriseCard key="enterprise" />,
+    <OperatingModelCard key="operating-model" />,
+    <WhyCard key="why" />,
+    <AnalyzerCard key="analyzer" />,
+    <ContactCard key="contact" />,
   ];
 
   return (
@@ -52,11 +50,11 @@ export default function App() {
             key={index}
             index={index}
             totalCards={cards.length}
-            showPeekTab={card.showPeekTab}
-            peekTabIntensity={card.intensity || 0.5}
+            showPeekTab={true}
+            peekTabIntensity={0.5}
             onPeekTabClick={scrollToAnalyzer}
           >
-            {card.component}
+            {card}
           </StackedCard>
         ))}
       </div>
