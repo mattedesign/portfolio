@@ -7,14 +7,16 @@ export default function StackedCard({ children, index, totalCards }) {
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start start", "end start"]
+    // Start tracking earlier - when card is 20% into viewport from bottom
+    offset: ["start end", "end start"]
   });
 
   // Scale down slightly as the next card covers this one
+  // Start scaling sooner (at 0.3 instead of 0.5)
   const scale = useTransform(
     scrollYProgress,
-    [0, 0.5, 1],
-    [1, 1, isLastCard ? 1 : 0.92]
+    [0, 0.3, 0.7, 1],
+    [1, 1, isLastCard ? 1 : 0.95, isLastCard ? 1 : 0.92]
   );
 
   return (
@@ -23,7 +25,8 @@ export default function StackedCard({ children, index, totalCards }) {
       className="relative"
       style={{
         // Each card needs scroll height - use minHeight so taller cards can expand
-        minHeight: isLastCard ? undefined : '100vh',
+        // Reduced height creates overlap, making next card appear sooner
+        minHeight: isLastCard ? undefined : '85vh',
         // z-index ensures cards stack properly - higher index = on top
         zIndex: index + 1,
       }}

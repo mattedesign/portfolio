@@ -2,10 +2,13 @@ import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
 import StackedCard from './components/StackedCard';
 import IntroCard from './components/cards/IntroCard';
-import AppliedIntelligenceCard from './components/cards/AppliedIntelligenceCard';
+import ProblemCard from './components/cards/ProblemCard';
+import DifferentiatorCard from './components/cards/DifferentiatorCard';
+import EvolutionCard from './components/cards/EvolutionCard';
+import SystemsCard from './components/cards/SystemsCard';
+import EnterpriseCard from './components/cards/EnterpriseCard';
 import OperatingModelCard from './components/cards/OperatingModelCard';
-import ExperienceCard from './components/cards/ExperienceCard';
-import ProjectsCard from './components/cards/ProjectsCard';
+import WhyCard from './components/cards/WhyCard';
 import AnalyzerCard from './components/cards/AnalyzerCard';
 import ContactCard from './components/cards/ContactCard';
 
@@ -16,10 +19,13 @@ export default function App() {
 
   const cards = [
     <IntroCard key="intro" />,
-    <AppliedIntelligenceCard key="intelligence" />,
+    <ProblemCard key="problem" />,
+    <DifferentiatorCard key="differentiator" />,
+    <EvolutionCard key="evolution" />,
+    <SystemsCard key="systems" />,
+    <EnterpriseCard key="enterprise" />,
     <OperatingModelCard key="operating-model" />,
-    <ExperienceCard key="experience" />,
-    <ProjectsCard key="projects" />,
+    <WhyCard key="why" />,
     <AnalyzerCard key="analyzer" />,
     <ContactCard key="contact" />,
   ];
