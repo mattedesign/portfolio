@@ -7,7 +7,7 @@ export default function StackedCard({
   index,
   totalCards,
   showPeekTab = false,
-  peekTabIntensity = 0.5,
+  peekTabVariant = 'dark',
   onPeekTabClick
 }) {
   const cardRef = useRef(null);
@@ -57,10 +57,10 @@ export default function StackedCard({
         >
           {children}
 
-          {/* Peek Tab - positioned at bottom center, peeking out */}
+          {/* Peek Tab - positioned at bottom center, partially overlapping */}
           {showPeekTab && (
-            <div className="absolute -bottom-[1px] left-1/2 -translate-x-1/2 translate-y-full z-10">
-              <PeekTab onClick={onPeekTabClick} intensity={peekTabIntensity} />
+            <div className="absolute -bottom-[1px] left-1/2 -translate-x-1/2 translate-y-[70%] z-10">
+              <PeekTab onClick={onPeekTabClick} variant={peekTabVariant} />
             </div>
           )}
         </div>

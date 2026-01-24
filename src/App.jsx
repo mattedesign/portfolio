@@ -16,17 +16,19 @@ export default function App() {
     document.getElementById('analyzer')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Cards with their peek tab variants
+  // 'light' tab for dark cards, 'dark' tab for light cards
   const cards = [
-    <IntroCard key="intro" />,
-    <ProblemCard key="problem" />,
-    <DifferentiatorCard key="differentiator" />,
-    <EvolutionCard key="evolution" />,
-    <SystemsCard key="systems" />,
-    <EnterpriseCard key="enterprise" />,
-    <OperatingModelCard key="operating-model" />,
-    <WhyCard key="why" />,
-    <AnalyzerCard key="analyzer" />,
-    <ContactCard key="contact" />,
+    { component: <IntroCard key="intro" />, tabVariant: 'light' },           // dark card
+    { component: <ProblemCard key="problem" />, tabVariant: 'dark' },        // light card
+    { component: <DifferentiatorCard key="differentiator" />, tabVariant: 'light' }, // dark green card
+    { component: <EvolutionCard key="evolution" />, tabVariant: 'light' },   // dark card
+    { component: <SystemsCard key="systems" />, tabVariant: 'dark' },        // light card
+    { component: <EnterpriseCard key="enterprise" />, tabVariant: 'light' }, // dark card
+    { component: <OperatingModelCard key="operating-model" />, tabVariant: 'dark' }, // light card
+    { component: <WhyCard key="why" />, tabVariant: 'light' },               // coral card (dark text area)
+    { component: <AnalyzerCard key="analyzer" />, tabVariant: null },        // no tab - it's the destination
+    { component: <ContactCard key="contact" />, tabVariant: null },          // no tab - last card
   ];
 
   return (
@@ -50,11 +52,11 @@ export default function App() {
             key={index}
             index={index}
             totalCards={cards.length}
-            showPeekTab={true}
-            peekTabIntensity={0.5}
+            showPeekTab={card.tabVariant !== null}
+            peekTabVariant={card.tabVariant || 'dark'}
             onPeekTabClick={scrollToAnalyzer}
           >
-            {card}
+            {card.component}
           </StackedCard>
         ))}
       </div>

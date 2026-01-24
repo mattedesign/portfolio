@@ -195,13 +195,7 @@
 
 /* ===== Peek Tab Variant ===== */
 .shiny-cta-tab {
-  --shiny-cta-bg: #1a1c1e;
-  --shiny-cta-bg-subtle: #2a2c2e;
-  --shiny-cta-fg: #f6f8ed;
   --shiny-cta-highlight: #e07b5d;
-  --shiny-cta-highlight-subtle: #f09070;
-  --glow-opacity: 0.2;
-
   --animation: gradient-angle linear infinite;
   --duration: 4s;
 
@@ -210,11 +204,44 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0 1.5rem;
+  padding: 0.75rem 1.5rem;
   font-family: inherit;
+  height: 44px;
   border: 1px solid transparent;
   border-radius: 0 0 16px 16px;
-  border-top: none;
+  transition: all 0.3s ease;
+}
+
+/* Top stroke - creates the "bleeding into card" effect */
+.shiny-cta-tab::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--shiny-cta-highlight), transparent);
+  opacity: 0.6;
+}
+
+.shiny-cta-tab span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.shiny-cta-tab svg {
+  color: var(--shiny-cta-highlight);
+}
+
+/* Dark variant - for light colored cards */
+.shiny-cta-tab--dark {
+  --shiny-cta-bg: #1a1c1e;
+  --shiny-cta-fg: #f6f8ed;
+
   color: var(--shiny-cta-fg);
   background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg)) padding-box,
     conic-gradient(
@@ -227,17 +254,29 @@
       )
       border-box;
   box-shadow:
-    0 4px 20px rgba(224, 123, 93, var(--glow-opacity)),
+    0 4px 20px rgba(224, 123, 93, 0.25),
     0 2px 8px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
 }
 
-.shiny-cta-tab span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-  z-index: 1;
+/* Light variant - for dark colored cards */
+.shiny-cta-tab--light {
+  --shiny-cta-bg: #f6f8ed;
+  --shiny-cta-fg: #1a1c1e;
+
+  color: var(--shiny-cta-fg);
+  background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg)) padding-box,
+    conic-gradient(
+        from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+        transparent,
+        var(--shiny-cta-highlight) var(--gradient-percent),
+        var(--gradient-shine) calc(var(--gradient-percent) * 2),
+        var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
+        transparent calc(var(--gradient-percent) * 4)
+      )
+      border-box;
+  box-shadow:
+    0 4px 20px rgba(224, 123, 93, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .shiny-cta-tab,
@@ -263,13 +302,27 @@
   --gradient-percent: 15%;
   --gradient-angle-offset: 60deg;
   transform: translateY(2px);
+}
+
+.shiny-cta-tab--dark:hover {
   box-shadow:
-    0 6px 30px rgba(224, 123, 93, calc(var(--glow-opacity) + 0.15)),
+    0 6px 30px rgba(224, 123, 93, 0.4),
     0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+.shiny-cta-tab--light:hover {
+  box-shadow:
+    0 6px 30px rgba(224, 123, 93, 0.45),
+    0 3px 12px rgba(0, 0, 0, 0.2);
 }
 
 .shiny-cta-tab:hover::before {
   opacity: 1;
+}
+
+.shiny-cta-tab:hover::after {
+  opacity: 1;
+  width: 80%;
 }
 
 .shiny-cta-tab:active {

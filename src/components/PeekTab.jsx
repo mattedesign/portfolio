@@ -1,23 +1,17 @@
 import { Zap } from 'lucide-react';
 import './ui/ShinyButton.css';
 
-export default function PeekTab({ onClick, intensity = 1 }) {
-  // Intensity controls how prominent the tab is (0-1)
-  // Higher intensity = larger tab, more glow
-  const tabHeight = 28 + (intensity * 12); // 28-40px
-  const glowOpacity = 0.15 + (intensity * 0.25); // 0.15-0.4
+export default function PeekTab({ onClick, variant = 'dark' }) {
+  // variant: 'dark' = dark tab (for light cards), 'light' = light tab (for dark cards)
+  const isDark = variant === 'dark';
 
   return (
     <button
       onClick={onClick}
-      className="shiny-cta-tab group"
-      style={{
-        '--glow-opacity': glowOpacity,
-        height: `${tabHeight}px`,
-      }}
+      className={`shiny-cta-tab ${isDark ? 'shiny-cta-tab--dark' : 'shiny-cta-tab--light'}`}
     >
       <span className="flex items-center gap-2">
-        <Zap size={14} className="text-[#e07b5d]" />
+        <Zap size={14} />
         <span className="text-sm font-medium">Analyze Fit</span>
       </span>
     </button>
