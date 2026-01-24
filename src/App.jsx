@@ -9,7 +9,6 @@ import OperatingModelCard from './components/cards/OperatingModelCard';
 import WhyCard from './components/cards/WhyCard';
 import AnalyzerCard from './components/cards/AnalyzerCard';
 import ContactCard from './components/cards/ContactCard';
-import CTAFooter from './components/CTAFooter';
 
 export default function App() {
   const scrollToAnalyzer = () => {
@@ -46,7 +45,7 @@ export default function App() {
       </button>
 
       {/* Stacked cards section */}
-      <div className="px-4 pt-4 relative">
+      <div className="px-4 pt-4 pb-4 relative">
         {cards.map((card, index) => (
           <StackedCard
             key={index}
@@ -60,9 +59,6 @@ export default function App() {
           </StackedCard>
         ))}
       </div>
-
-      {/* Footer CTA section - the destination */}
-      <CTAFooter onAnalyzeClick={scrollToAnalyzer} />
     </div>
   );
 }

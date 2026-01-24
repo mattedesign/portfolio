@@ -30,15 +30,16 @@ export default function EnterpriseCard() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    // Start tracking when card is 70% into viewport, end when it exits
+    offset: ["start 0.7", "end start"]
   });
 
   // Horizontal scroll: 0% = first item, 100% = last item centered
-  // We want to scroll through ~200% of the container width (3 items)
-  const horizontalScroll = useTransform(scrollYProgress, [0.1, 0.7], [0, -200]);
+  // Delayed start so timeline only scrolls when card is fully visible
+  const horizontalScroll = useTransform(scrollYProgress, [0.2, 0.8], [0, -200]);
 
   // Active index based on scroll (0, 1, or 2)
-  const activeIndex = useTransform(scrollYProgress, [0.1, 0.35, 0.55, 0.7], [0, 0.5, 1.5, 2]);
+  const activeIndex = useTransform(scrollYProgress, [0.2, 0.45, 0.65, 0.8], [0, 0.5, 1.5, 2]);
 
   return (
     <div

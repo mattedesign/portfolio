@@ -296,7 +296,7 @@ export default function AnalyzerCard() {
           Role Fit Analyzer
         </p>
         <p className="text-[#f6f8ed]/50 text-base md:text-lg">
-          06/07
+          09/10
         </p>
       </div>
 
