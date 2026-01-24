@@ -57,9 +57,9 @@ export default function StackedCard({
         >
           {children}
 
-          {/* Peek Tab - positioned at bottom center, partially overlapping */}
+          {/* Peek Tab - integrated with card bottom edge */}
           {showPeekTab && (
-            <div className="absolute -bottom-[1px] left-1/2 -translate-x-1/2 translate-y-[70%] z-10">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[50%] z-10">
               <PeekTab onClick={onPeekTabClick} variant={peekTabVariant} />
             </div>
           )}
