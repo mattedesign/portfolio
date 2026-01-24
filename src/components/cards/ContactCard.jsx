@@ -12,7 +12,7 @@ export default function ContactCard() {
           Contact
         </p>
         <p className="text-[#1a1c1e]/60 text-base md:text-lg">
-          06/06
+          07/07
         </p>
       </div>
 

@@ -154,7 +154,7 @@ export default function ExperienceCard() {
           Career Timeline
         </p>
         <p className="text-[#f6f8ed]/50 text-base md:text-lg">
-          03/06
+          04/07
         </p>
       </div>
 

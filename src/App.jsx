@@ -3,6 +3,7 @@ import { Zap } from 'lucide-react';
 import StackedCard from './components/StackedCard';
 import IntroCard from './components/cards/IntroCard';
 import AppliedIntelligenceCard from './components/cards/AppliedIntelligenceCard';
+import OperatingModelCard from './components/cards/OperatingModelCard';
 import ExperienceCard from './components/cards/ExperienceCard';
 import ProjectsCard from './components/cards/ProjectsCard';
 import AnalyzerCard from './components/cards/AnalyzerCard';
@@ -16,6 +17,7 @@ export default function App() {
   const cards = [
     <IntroCard key="intro" />,
     <AppliedIntelligenceCard key="intelligence" />,
+    <OperatingModelCard key="operating-model" />,
     <ExperienceCard key="experience" />,
     <ProjectsCard key="projects" />,
     <AnalyzerCard key="analyzer" />,

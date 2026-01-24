@@ -26,7 +26,7 @@ export default function ProjectsCard() {
           Selected Work
         </p>
         <p className="text-[#1a1c1e]/60 text-base md:text-lg">
-          04/06
+          05/07
         </p>
       </div>
 

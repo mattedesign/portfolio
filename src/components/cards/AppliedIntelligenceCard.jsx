@@ -30,7 +30,7 @@ export default function AppliedIntelligenceCard() {
           Design Process
         </p>
         <p className="text-[#1a1c1e]/60 text-base md:text-lg">
-          02/06
+          02/07
         </p>
       </div>
 
