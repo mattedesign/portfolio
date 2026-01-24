@@ -30,23 +30,15 @@ export default function EnterpriseCard() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "center center"]
+    offset: ["start end", "end start"]
   });
 
-  // Timeline line progress (0 to 100%)
-  const lineProgress = useTransform(scrollYProgress, [0, 0.8], [0, 100]);
+  // Horizontal scroll: 0% = first item, 100% = last item centered
+  // We want to scroll through ~200% of the container width (3 items)
+  const horizontalScroll = useTransform(scrollYProgress, [0.1, 0.7], [0, -200]);
 
-  // Node reveal thresholds
-  const node1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
-  const node2Opacity = useTransform(scrollYProgress, [0.3, 0.45], [0, 1]);
-  const node3Opacity = useTransform(scrollYProgress, [0.5, 0.65], [0, 1]);
-
-  const node1Scale = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
-  const node2Scale = useTransform(scrollYProgress, [0.3, 0.45], [0, 1]);
-  const node3Scale = useTransform(scrollYProgress, [0.5, 0.65], [0, 1]);
-
-  const nodeOpacities = [node1Opacity, node2Opacity, node3Opacity];
-  const nodeScales = [node1Scale, node2Scale, node3Scale];
+  // Active index based on scroll (0, 1, or 2)
+  const activeIndex = useTransform(scrollYProgress, [0.1, 0.35, 0.55, 0.7], [0, 0.5, 1.5, 2]);
 
   return (
     <div
@@ -69,68 +61,83 @@ export default function EnterpriseCard() {
           Shipped at scale.
         </h2>
 
-        {/* Timeline */}
-        <div className="relative flex-1 flex flex-col justify-center">
-          {/* Timeline line container */}
-          <div className="relative h-[2px] bg-[#f6f8ed]/10 mb-8">
-            {/* Animated fill */}
-            <motion.div
-              className="absolute inset-y-0 left-0 bg-[#e07b5d]"
-              style={{ width: useTransform(lineProgress, v => `${v}%`) }}
-            />
-
-            {/* Nodes */}
+        {/* Timeline horizontal scroll container */}
+        <div className="relative flex-1 flex flex-col justify-center overflow-hidden">
+          <motion.div
+            className="flex"
+            style={{ x: useTransform(horizontalScroll, v => `${v}%`) }}
+          >
             {TIMELINE_NODES.map((node, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="absolute top-1/2 -translate-y-1/2"
-                style={{
-                  left: `${index * 50}%`,
-                  opacity: nodeOpacities[index],
-                  scale: nodeScales[index]
-                }}
+                className="flex-shrink-0 w-full md:w-[50%] pr-8 md:pr-16"
               >
-                {/* Node circle */}
-                <div className="w-4 h-4 rounded-full bg-[#e07b5d] -ml-2 relative">
-                  {/* Pulse ring */}
+                {/* Timeline segment */}
+                <div className="relative flex items-center mb-8">
+                  {/* Year label */}
+                  <span className="text-[#f6f8ed]/50 text-sm font-mono mr-4 w-12">
+                    {node.year}
+                  </span>
+
+                  {/* Dot - centered on line */}
                   <motion.div
-                    className="absolute inset-0 rounded-full bg-[#e07b5d]"
-                    animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.3 }}
+                    className="relative z-10"
+                    style={{
+                      scale: useTransform(activeIndex, v => v >= index ? 1 : 0.5),
+                      opacity: useTransform(activeIndex, v => v >= index ? 1 : 0.3)
+                    }}
+                  >
+                    <div
+                      className="w-4 h-4 rounded-full"
+                      style={{
+                        backgroundColor: '#e07b5d'
+                      }}
+                    >
+                      {/* Pulse ring for active */}
+                      <motion.div
+                        className="absolute inset-0 rounded-full bg-[#e07b5d]"
+                        animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.3 }}
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Line segment after dot */}
+                  <motion.div
+                    className="flex-1 h-[2px] ml-2"
+                    style={{
+                      backgroundColor: useTransform(activeIndex, v =>
+                        v > index ? '#e07b5d' : '#f6f8ed1a'
+                      )
+                    }}
                   />
                 </div>
 
-                {/* Year label above */}
-                <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[#f6f8ed]/50 text-sm font-mono">
-                  {node.year}
-                </span>
-              </motion.div>
+                {/* Content */}
+                <motion.div
+                  style={{
+                    opacity: useTransform(activeIndex, v => {
+                      const diff = Math.abs(v - index);
+                      return diff < 0.5 ? 1 : diff < 1 ? 0.6 : 0.3;
+                    })
+                  }}
+                >
+                  <h3 className="text-[#f6f8ed] text-2xl md:text-3xl font-bold mb-1">
+                    {node.company}
+                  </h3>
+                  <p className="text-[#e07b5d] text-base md:text-lg font-medium mb-3">
+                    {node.role}
+                  </p>
+                  <p className="text-[#f6f8ed]/90 text-xl md:text-2xl font-bold mb-2">
+                    {node.theme}
+                  </p>
+                  <p className="text-[#f6f8ed]/40 text-sm md:text-base leading-relaxed max-w-[300px]">
+                    {node.detail}
+                  </p>
+                </motion.div>
+              </div>
             ))}
-          </div>
-
-          {/* Content cards below timeline */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
-            {TIMELINE_NODES.map((node, index) => (
-              <motion.div
-                key={index}
-                style={{ opacity: nodeOpacities[index] }}
-                className="md:text-center"
-              >
-                <h3 className="text-[#f6f8ed] text-xl md:text-2xl font-bold mb-1">
-                  {node.company}
-                </h3>
-                <p className="text-[#e07b5d] text-sm md:text-base font-medium mb-2">
-                  {node.role}
-                </p>
-                <p className="text-[#f6f8ed]/90 text-base md:text-lg font-bold mb-1">
-                  {node.theme}
-                </p>
-                <p className="text-[#f6f8ed]/40 text-sm leading-relaxed">
-                  {node.detail}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Closing */}
