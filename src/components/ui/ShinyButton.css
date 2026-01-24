@@ -192,3 +192,86 @@
     scale: 1.2;
   }
 }
+
+/* ===== Peek Tab Variant ===== */
+.shiny-cta-tab {
+  --shiny-cta-bg: #1a1c1e;
+  --shiny-cta-bg-subtle: #2a2c2e;
+  --shiny-cta-fg: #f6f8ed;
+  --shiny-cta-highlight: #e07b5d;
+  --shiny-cta-highlight-subtle: #f09070;
+  --glow-opacity: 0.2;
+
+  --animation: gradient-angle linear infinite;
+  --duration: 4s;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 1.5rem;
+  font-family: inherit;
+  border: 1px solid transparent;
+  border-radius: 0 0 16px 16px;
+  border-top: none;
+  color: var(--shiny-cta-fg);
+  background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg)) padding-box,
+    conic-gradient(
+        from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+        transparent,
+        var(--shiny-cta-highlight) var(--gradient-percent),
+        var(--gradient-shine) calc(var(--gradient-percent) * 2),
+        var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
+        transparent calc(var(--gradient-percent) * 4)
+      )
+      border-box;
+  box-shadow:
+    0 4px 20px rgba(224, 123, 93, var(--glow-opacity)),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.shiny-cta-tab span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.shiny-cta-tab,
+.shiny-cta-tab::before {
+  animation: var(--animation) var(--duration);
+}
+
+.shiny-cta-tab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at center bottom,
+    rgba(224, 123, 93, 0.15) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.shiny-cta-tab:hover {
+  --gradient-percent: 15%;
+  --gradient-angle-offset: 60deg;
+  transform: translateY(2px);
+  box-shadow:
+    0 6px 30px rgba(224, 123, 93, calc(var(--glow-opacity) + 0.15)),
+    0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+.shiny-cta-tab:hover::before {
+  opacity: 1;
+}
+
+.shiny-cta-tab:active {
+  transform: translateY(4px);
+}

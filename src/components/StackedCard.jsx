@@ -1,7 +1,15 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import PeekTab from './PeekTab';
 
-export default function StackedCard({ children, index, totalCards }) {
+export default function StackedCard({
+  children,
+  index,
+  totalCards,
+  showPeekTab = false,
+  peekTabIntensity = 0.5,
+  onPeekTabClick
+}) {
   const cardRef = useRef(null);
   const isLastCard = index === totalCards - 1;
 
@@ -39,7 +47,7 @@ export default function StackedCard({ children, index, totalCards }) {
         className={isLastCard ? "" : "sticky top-0 will-change-transform"}
       >
         <div
-          className="shadow-2xl flex flex-col"
+          className="shadow-2xl flex flex-col relative"
           style={{
             borderRadius: '32px',
             minHeight: isLastCard ? undefined : 'calc(100vh - 40px)',
@@ -48,6 +56,13 @@ export default function StackedCard({ children, index, totalCards }) {
           }}
         >
           {children}
+
+          {/* Peek Tab - positioned at bottom center, peeking out */}
+          {showPeekTab && (
+            <div className="absolute -bottom-[1px] left-1/2 -translate-x-1/2 translate-y-full z-10">
+              <PeekTab onClick={onPeekTabClick} intensity={peekTabIntensity} />
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
