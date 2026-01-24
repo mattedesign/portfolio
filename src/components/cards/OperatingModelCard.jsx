@@ -1,28 +1,23 @@
 const OPERATING_STEPS = [
   {
     number: "01",
-    title: "Identify",
-    description: "the real decision (not the proxy metric)"
+    text: "Identify the real decision (not the proxy metric)"
   },
   {
     number: "02",
-    title: "Map",
-    description: "ambiguity into structured signal"
+    text: "Map ambiguity into structured signal"
   },
   {
     number: "03",
-    title: "Design",
-    description: "the system, not just the model"
+    text: "Design the system, not just the model"
   },
   {
     number: "04",
-    title: "Embed",
-    description: "trust, explainability, and feedback loops"
+    text: "Embed trust, explainability, and feedback loops"
   },
   {
     number: "05",
-    title: "Ship",
-    description: "observe, refine"
+    text: "Ship, observe, refine"
   }
 ];
 
@@ -41,27 +36,33 @@ export default function OperatingModelCard() {
 
       {/* Main headline */}
       <div className="px-8 md:px-12 mb-12 md:mb-16">
-        <h2 className="font-extrabold text-[clamp(32px,6vw,72px)] text-[#f6f8ed] leading-[1.15] tracking-[-0.03em] max-w-[900px]">
-          This is how AI becomes infrastructure, not experiments.
+        <h2 className="font-extrabold text-[clamp(40px,8vw,100px)] text-[#f6f8ed] leading-[1.05] tracking-[-0.03em]">
+          My operating model
         </h2>
       </div>
 
-      {/* Operating steps grid */}
-      <div className="p-8 md:p-12 pt-0 flex-1">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {OPERATING_STEPS.map((step, index) => (
-            <div key={index} className={index >= 3 ? "md:col-span-1" : ""}>
-              <p className="text-[#f6f8ed]/30 text-[clamp(48px,8vw,80px)] font-extrabold leading-none tracking-[-0.03em] mb-2">
-                {step.number}
-              </p>
-              <p className="text-[#f6f8ed] text-lg md:text-xl font-bold mb-1">
-                {step.title}
-              </p>
-              <p className="text-[#f6f8ed]/70 text-sm md:text-base leading-[1.6]">
-                {step.description}
-              </p>
-            </div>
-          ))}
+      {/* Operating steps - horizontal scroll on mobile, grid on desktop */}
+      <div className="flex-1 flex flex-col">
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex md:grid md:grid-cols-5 gap-6 md:gap-8 px-8 md:px-12 pb-8 md:pb-12 min-w-max md:min-w-0">
+            {OPERATING_STEPS.map((step, index) => (
+              <div key={index} className="w-[200px] md:w-auto shrink-0 md:shrink">
+                <p className="text-[#f6f8ed]/30 text-[64px] md:text-[72px] font-extrabold leading-none tracking-[-0.03em] mb-3">
+                  {step.number}
+                </p>
+                <p className="text-[#f6f8ed] text-base md:text-lg leading-[1.5]">
+                  {step.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Closing statement */}
+        <div className="px-8 md:px-12 pb-8 md:pb-12 mt-auto">
+          <p className="text-[#f6f8ed]/60 text-lg md:text-xl leading-[1.5] max-w-[600px]">
+            This is how AI becomes infrastructure, not experiments.
+          </p>
         </div>
       </div>
     </div>

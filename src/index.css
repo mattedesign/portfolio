@@ -37,6 +37,16 @@ button, a, input, textarea {
   background: #444;
 }
 
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Selection styling */
 ::selection {
   background: rgba(246, 248, 237, 0.2);
