@@ -92,20 +92,20 @@ export default function EnterpriseCard() {
   };
 
   return (
-    <div className="bg-[#1a1c1e] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1">
+    <div className="bg-[#4998AE] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
-        <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
+        <p className="text-white/80 text-base md:text-lg font-normal">
           My Experience
         </p>
-        <p className="text-[#f6f8ed]/50 text-base md:text-lg">
+        <p className="text-white/60 text-base md:text-lg">
           06/10
         </p>
       </div>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col px-8 md:px-12 pb-8 md:pb-12">
-        <h2 className="font-extrabold text-[clamp(32px,7vw,80px)] text-[#f6f8ed] leading-[1.05] tracking-[-0.03em] mb-8 md:mb-12">
+        <h2 className="font-extrabold text-[clamp(32px,7vw,80px)] text-white leading-[1.05] tracking-[-0.03em] mb-8 md:mb-12">
           Where & What I've Learned.
         </h2>
 
@@ -131,7 +131,7 @@ export default function EnterpriseCard() {
                 {/* Timeline segment */}
                 <div className="relative flex items-center mb-4">
                   {/* Year label */}
-                  <span className="text-[#f6f8ed]/50 text-xs md:text-sm font-mono mr-3 whitespace-nowrap">
+                  <span className="text-white/70 text-xs md:text-sm font-mono mr-3 whitespace-nowrap">
                     {node.year}
                   </span>
 
@@ -141,11 +141,11 @@ export default function EnterpriseCard() {
                       className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
                         index <= activeIndex ? 'scale-100 opacity-100' : 'scale-50 opacity-30'
                       }`}
-                      style={{ backgroundColor: '#e07b5d' }}
+                      style={{ backgroundColor: '#1a2e35' }}
                     >
                       {index === activeIndex && (
                         <motion.div
-                          className="absolute inset-0 rounded-full bg-[#e07b5d]"
+                          className="absolute inset-0 rounded-full bg-[#1a2e35]"
                           animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
                           transition={{ duration: 1.5, repeat: Infinity }}
                         />
@@ -156,7 +156,7 @@ export default function EnterpriseCard() {
                   {/* Line segment after dot */}
                   <div
                     className={`flex-1 h-[2px] ml-2 transition-colors duration-300 ${
-                      index < activeIndex ? 'bg-[#e07b5d]' : 'bg-[#f6f8ed]/10'
+                      index < activeIndex ? 'bg-[#1a2e35]' : 'bg-white/20'
                     }`}
                   />
                 </div>
@@ -167,18 +167,18 @@ export default function EnterpriseCard() {
                     index === activeIndex ? 'opacity-100' : 'opacity-40'
                   }`}
                 >
-                  <h3 className="text-[#f6f8ed] text-xl md:text-2xl font-bold mb-1">
+                  <h3 className="text-white text-xl md:text-2xl font-bold mb-1">
                     {node.company}
                   </h3>
                   {node.companyNote && (
-                    <p className="text-[#f6f8ed]/40 text-xs md:text-sm mb-2">
+                    <p className="text-white/50 text-xs md:text-sm mb-2">
                       ({node.companyNote})
                     </p>
                   )}
-                  <p className="text-[#e07b5d] text-lg md:text-xl font-bold mb-2">
+                  <p className="text-[#1a2e35] text-lg md:text-xl font-bold mb-2">
                     {node.theme}
                   </p>
-                  <p className="text-[#f6f8ed]/50 text-sm md:text-base leading-relaxed">
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
                     {node.detail}
                   </p>
                 </div>
@@ -194,8 +194,8 @@ export default function EnterpriseCard() {
                 onClick={() => goToSlide(index)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   index === activeIndex
-                    ? 'bg-[#e07b5d] w-4'
-                    : 'bg-[#f6f8ed]/20 hover:bg-[#f6f8ed]/40 w-1.5'
+                    ? 'bg-[#1a2e35] w-4'
+                    : 'bg-white/30 hover:bg-white/50 w-1.5'
                 }`}
                 aria-label={`Go to ${TIMELINE_NODES[index].company}`}
               />
@@ -205,25 +205,25 @@ export default function EnterpriseCard() {
 
         {/* Closing */}
         <div className="mt-auto pt-6">
-          <p className="text-[#f6f8ed] text-xl md:text-2xl font-bold mb-6">
+          <p className="text-white text-xl md:text-2xl font-bold mb-6">
             Designed across regulated finance, enterprise platforms, and AI-driven infrastructure.
           </p>
 
           {/* Resume download links */}
           <div className="flex items-center gap-4 pt-2">
-            <span className="text-[#f6f8ed]/40 text-sm">Download resume:</span>
+            <span className="text-white/50 text-sm">Download resume:</span>
             <a
               href="/MattBrown.pdf"
               download="Matt-Brown-Resume.pdf"
-              className="text-[#e07b5d] text-sm font-medium hover:text-[#f6f8ed] transition-colors"
+              className="text-[#1a2e35] text-sm font-medium hover:text-white transition-colors"
             >
               PDF
             </a>
-            <span className="text-[#f6f8ed]/20">|</span>
+            <span className="text-white/30">|</span>
             <a
               href="/matt-brown-resume.tex"
               download="Matt-Brown-Resume.tex"
-              className="text-[#f6f8ed]/50 text-sm font-mono hover:text-[#f6f8ed] transition-colors"
+              className="text-white/70 text-sm font-mono hover:text-white transition-colors"
             >
               .tex
             </a>
