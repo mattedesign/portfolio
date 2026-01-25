@@ -3,23 +3,23 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const TIMELINE_NODES = [
   {
-    year: "2016",
+    year: "2020",
     company: "First American",
-    role: "Senior UX Manager",
+    role: "Lead UX Designer",
     theme: "Scale",
     detail: "Document workflows processing billions in transactions"
   },
   {
-    year: "2019",
+    year: "2022",
     company: "Epicor",
-    role: "Director of UX",
+    role: "Sr. Principal, UX Designer",
     theme: "Unify",
     detail: "Design system architecture across 50+ enterprise products"
   },
   {
-    year: "2022",
-    company: "Triumph Financial",
-    role: "Principal Product Architect",
+    year: "2024",
+    company: "TriumphPay",
+    role: "User Experience Design Lead",
     theme: "Intelligence",
     detail: "Compound AI systems processing 100k+ documents daily"
   }
