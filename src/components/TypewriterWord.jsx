@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-const WORDS = ['systems', 'products', 'decisions', 'revenue', 'intelligence'];
+const WORDS = [
+  { text: 'systems', color: '#e07b5d' },      // coral
+  { text: 'products', color: '#f6f8ed' },     // cream
+  { text: 'decisions', color: '#2d4a3e' },    // green
+  { text: 'revenue', color: '#e07b5d' },      // coral
+  { text: 'intelligence', color: '#f6f8ed' }, // cream
+];
 
 const TIMING = {
   typeSpeed: 120,       // ms per character (deliberate, human-like)
@@ -16,7 +22,8 @@ export default function TypewriterWord() {
   const [cursorVisible, setCursorVisible] = useState(true);
   const timeoutRef = useRef(null);
 
-  const currentWord = WORDS[wordIndex];
+  const currentWord = WORDS[wordIndex].text;
+  const currentColor = WORDS[wordIndex].color;
 
   // Cursor breathing animation
   useEffect(() => {
@@ -75,17 +82,17 @@ export default function TypewriterWord() {
   return (
     <span className="relative inline-flex items-baseline">
       <span
-        className="text-[#e07b5d]"
         style={{
+          color: currentColor,
           opacity: phase === 'deleting' ? 0.85 : 1,
           transform: isNewWord ? 'translateY(2px)' : 'translateY(0)',
-          transition: 'opacity 120ms linear, transform 200ms cubic-bezier(0.22, 1, 0.36, 1)',
+          transition: 'color 300ms ease-out, opacity 120ms linear, transform 200ms cubic-bezier(0.22, 1, 0.36, 1)',
         }}
       >
         {displayText}
       </span>
       <span
-        className="text-[#e07b5d] ml-[2px] font-light"
+        className="text-[#f6f8ed] ml-[2px] font-light"
         style={{
           opacity: cursorVisible ? 0.8 : 0,
           transition: 'opacity 400ms ease-in-out',
