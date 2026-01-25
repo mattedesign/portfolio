@@ -103,8 +103,14 @@ export default function AnalyzerCard() {
       }
     }
 
-    // Handle images - use Claude's vision
+    // Handle images - only allow common image formats that Claude can read
+    const validImageTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/gif'];
     if (file.type.startsWith('image/')) {
+      if (!validImageTypes.includes(file.type)) {
+        setError(`Unsupported image format. Please use PNG, JPEG, WebP, or GIF.`);
+        setFileName(null);
+        return;
+      }
       try {
         setFileName(file.name);
         const base64 = await fileToBase64(file);
@@ -118,6 +124,16 @@ export default function AnalyzerCard() {
       }
     }
 
+    // Unsupported file type
+    const ext = file.name.split('.').pop()?.toLowerCase();
+    const supportedExts = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'doc', 'docx'];
+
+    if (!supportedExts.includes(ext)) {
+      setError(`Unsupported file type (.${ext}). Please use PDF, image (PNG/JPEG/WebP), Word doc, or text file.`);
+      setFileName(null);
+      return;
+    }
+
     // Try to read other files as text
     try {
       const text = await file.text();
@@ -125,7 +141,7 @@ export default function AnalyzerCard() {
         setFileName(file.name);
         setJobDescription(text);
       } else {
-        setError("Could not read this file format. Please paste the job description below.");
+        setError("Could not read this file. Please paste the job description below.");
         setFileName(null);
       }
     } catch {
@@ -235,6 +251,17 @@ export default function AnalyzerCard() {
 
       const data = await response.json();
       const text = data.content[0].text;
+
+      // Check if Claude couldn't read the file
+      if (text.toLowerCase().includes("can't read") ||
+          text.toLowerCase().includes("cannot read") ||
+          text.toLowerCase().includes("unable to") ||
+          text.toLowerCase().includes("i don't see") ||
+          text.toLowerCase().includes("no text") ||
+          text.toLowerCase().includes("not a valid")) {
+        throw new Error('Could not process file content');
+      }
+
       const jsonMatch = text.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         setAnalysis(JSON.parse(jsonMatch[0]));
@@ -243,11 +270,19 @@ export default function AnalyzerCard() {
       }
     } catch (err) {
       console.error('Analysis error:', err);
-      setError("Analysis failed. Using demo mode.");
-      setTimeout(() => {
-        setAnalysis(generateMockAnalysis(jobDescription || 'document'));
-        setLoading(false);
-      }, 1000);
+      const errorMsg = err.message || '';
+
+      // Check if it's a file/content issue
+      if (errorMsg.includes('Could not process') || errorMsg.includes('invalid') || fileData) {
+        setError("Could not read the uploaded file. Please try a different file or paste the job description as text.");
+        clearFile();
+      } else {
+        // Only use mock for non-file-related errors (like network issues)
+        setError("Analysis failed. Using demo mode.");
+        setTimeout(() => {
+          setAnalysis(generateMockAnalysis(jobDescription || 'document'));
+        }, 1000);
+      }
     } finally {
       setLoading(false);
     }
