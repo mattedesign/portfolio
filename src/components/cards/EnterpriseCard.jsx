@@ -3,25 +3,41 @@ import { motion, animate, useMotionValue } from 'framer-motion';
 
 const TIMELINE_NODES = [
   {
-    year: "2020",
-    company: "First American",
-    role: "Lead UX Designer",
-    theme: "Scale",
-    detail: "Document workflows processing billions in transactions"
-  },
-  {
-    year: "2022",
-    company: "Epicor",
-    role: "Sr. Principal, UX Designer",
-    theme: "Unify",
-    detail: "Design system architecture across 50+ enterprise products"
-  },
-  {
-    year: "2024",
+    year: "2024–Present",
     company: "TriumphPay",
-    role: "User Experience Design Lead",
     theme: "Intelligence",
-    detail: "Compound AI systems processing 100k+ documents daily"
+    detail: "Architected AI-driven financial systems that translate opaque decision logic into explainable, operational workflows—processing high-volume document and cash-flow signals at scale."
+  },
+  {
+    year: "2022–2025",
+    company: "Epicor",
+    theme: "Architecture",
+    detail: "Modernized legacy ERP platforms by designing scalable system and design architectures that preserved critical business logic while enabling enterprise-wide transformation."
+  },
+  {
+    year: "2020–2022",
+    company: "First American",
+    theme: "Scale",
+    detail: "Designed enterprise document and workflow systems operating inside heavily regulated environments and high-volume transaction pipelines."
+  },
+  {
+    year: "2018–2020",
+    company: "American First Finance",
+    theme: "Acceleration",
+    detail: "Re-architected product and delivery systems to reduce time-to-market, increase platform adoption, and modernize customer-facing financial experiences across multiple channels."
+  },
+  {
+    year: "2014–2017",
+    company: "Aloha Travel",
+    companyNote: "acquired by FareHarbor",
+    theme: "Growth",
+    detail: "Built and scaled digital product ecosystems that drove exponential revenue growth, mobile adoption, and acquisition-ready platform maturity."
+  },
+  {
+    year: "2012–2014",
+    company: "WorldVentures",
+    theme: "Expansion",
+    detail: "Led the design and evolution of global digital platforms while scaling creative and UX systems across a rapidly growing enterprise organization."
   }
 ];
 
@@ -32,10 +48,13 @@ export default function EnterpriseCard() {
   const x = useMotionValue(0);
 
   // Measure container width on mount and resize
+  // Mobile: 90% width (small peek), Desktop: 70% width (more peek)
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
-        setSlideWidth(containerRef.current.offsetWidth);
+        const isMobile = window.innerWidth < 768;
+        const peekRatio = isMobile ? 0.92 : 0.65;
+        setSlideWidth(containerRef.current.offsetWidth * peekRatio);
       }
     };
 
@@ -51,7 +70,6 @@ export default function EnterpriseCard() {
     const currentX = x.get();
     const velocity = info.velocity.x;
 
-    // Factor in velocity for more natural feel
     let targetIndex = Math.round(-currentX / slideWidth);
 
     // If swiping fast, go to next/prev regardless of position
@@ -59,9 +77,7 @@ export default function EnterpriseCard() {
       targetIndex = velocity > 0 ? activeIndex - 1 : activeIndex + 1;
     }
 
-    // Clamp to valid range
     targetIndex = Math.max(0, Math.min(targetIndex, totalSlides - 1));
-
     goToSlide(targetIndex);
   };
 
@@ -80,7 +96,7 @@ export default function EnterpriseCard() {
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
-          Track Record
+          Experience
         </p>
         <p className="text-[#f6f8ed]/50 text-base md:text-lg">
           06/10
@@ -89,8 +105,8 @@ export default function EnterpriseCard() {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col px-8 md:px-12 pb-8 md:pb-12">
-        <h2 className="font-extrabold text-[clamp(40px,9vw,110px)] text-[#f6f8ed] leading-[1] tracking-[-0.03em] mb-10 md:mb-16">
-          Shipped at scale.
+        <h2 className="font-extrabold text-[clamp(32px,7vw,80px)] text-[#f6f8ed] leading-[1.05] tracking-[-0.03em] mb-8 md:mb-12">
+          Designing systems where failure isn't an option.
         </h2>
 
         {/* Timeline draggable carousel */}
@@ -109,20 +125,20 @@ export default function EnterpriseCard() {
             {TIMELINE_NODES.map((node, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 pr-8"
+                className="flex-shrink-0 pr-6 md:pr-8"
                 style={{ width: slideWidth }}
               >
                 {/* Timeline segment */}
-                <div className="relative flex items-center mb-6">
+                <div className="relative flex items-center mb-4">
                   {/* Year label */}
-                  <span className="text-[#f6f8ed]/50 text-sm font-mono mr-4 w-12">
+                  <span className="text-[#f6f8ed]/50 text-xs md:text-sm font-mono mr-3 whitespace-nowrap">
                     {node.year}
                   </span>
 
                   {/* Dot */}
                   <div className="relative z-10">
                     <div
-                      className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                      className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
                         index <= activeIndex ? 'scale-100 opacity-100' : 'scale-50 opacity-30'
                       }`}
                       style={{ backgroundColor: '#e07b5d' }}
@@ -151,16 +167,18 @@ export default function EnterpriseCard() {
                     index === activeIndex ? 'opacity-100' : 'opacity-40'
                   }`}
                 >
-                  <h3 className="text-[#f6f8ed] text-2xl md:text-3xl font-bold mb-1">
+                  <h3 className="text-[#f6f8ed] text-xl md:text-2xl font-bold mb-1">
                     {node.company}
                   </h3>
-                  <p className="text-[#e07b5d] text-base md:text-lg font-medium mb-3">
-                    {node.role}
-                  </p>
-                  <p className="text-[#f6f8ed]/90 text-xl md:text-2xl font-bold mb-2">
+                  {node.companyNote && (
+                    <p className="text-[#f6f8ed]/40 text-xs md:text-sm mb-2">
+                      ({node.companyNote})
+                    </p>
+                  )}
+                  <p className="text-[#e07b5d] text-lg md:text-xl font-bold mb-2">
                     {node.theme}
                   </p>
-                  <p className="text-[#f6f8ed]/40 text-sm md:text-base leading-relaxed">
+                  <p className="text-[#f6f8ed]/50 text-sm md:text-base leading-relaxed">
                     {node.detail}
                   </p>
                 </div>
@@ -169,15 +187,15 @@ export default function EnterpriseCard() {
           </motion.div>
 
           {/* Dot indicators */}
-          <div className="flex gap-2 mt-6">
+          <div className="flex gap-1.5 mt-6">
             {TIMELINE_NODES.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-1.5 rounded-full transition-all duration-300 ${
                   index === activeIndex
-                    ? 'bg-[#e07b5d] w-6'
-                    : 'bg-[#f6f8ed]/20 hover:bg-[#f6f8ed]/40 w-2'
+                    ? 'bg-[#e07b5d] w-4'
+                    : 'bg-[#f6f8ed]/20 hover:bg-[#f6f8ed]/40 w-1.5'
                 }`}
                 aria-label={`Go to ${TIMELINE_NODES[index].company}`}
               />
@@ -187,8 +205,8 @@ export default function EnterpriseCard() {
 
         {/* Closing */}
         <div className="mt-auto pt-6">
-          <p className="text-[#f6f8ed]/50 text-base md:text-lg">
-            $600M+ companies. Regulated industries. Systems that can't fail.
+          <p className="text-[#f6f8ed]/50 text-sm md:text-base">
+            Designed across regulated finance, enterprise platforms, and AI-driven infrastructure.
           </p>
         </div>
       </div>
