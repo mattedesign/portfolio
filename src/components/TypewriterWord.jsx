@@ -1,17 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-const WORDS = [
-  { text: 'systems', color: '#e07b5d' },      // coral
-  { text: 'products', color: '#f6f8ed' },     // cream
-  { text: 'decisions', color: '#2d4a3e' },    // green
-  { text: 'revenue', color: '#e07b5d' },      // coral
-  { text: 'intelligence', color: '#f6f8ed' }, // cream
-];
+const WORDS = ['systems', 'products', 'decisions', 'revenue', 'intelligence'];
+const WORD_COLOR = '#8a8f98'; // muted gray
 
 const TIMING = {
   typeSpeed: 120,       // ms per character (deliberate, human-like)
   deleteSpeed: 40,      // ms per character (noticeably faster than typing)
-  wordPause: 2500,      // pause after word complete (let it breathe)
+  wordPause: 3500,      // pause after word complete (let it breathe)
   transitionPause: 400, // pause between words
 };
 
@@ -22,8 +17,7 @@ export default function TypewriterWord() {
   const [cursorVisible, setCursorVisible] = useState(true);
   const timeoutRef = useRef(null);
 
-  const currentWord = WORDS[wordIndex].text;
-  const currentColor = WORDS[wordIndex].color;
+  const currentWord = WORDS[wordIndex];
 
   // Cursor breathing animation
   useEffect(() => {
@@ -83,7 +77,7 @@ export default function TypewriterWord() {
     <span className="relative inline-flex items-baseline">
       <span
         style={{
-          color: currentColor,
+          color: WORD_COLOR,
           opacity: phase === 'deleting' ? 0.85 : 1,
           transform: isNewWord ? 'translateY(2px)' : 'translateY(0)',
           transition: 'color 300ms ease-out, opacity 120ms linear, transform 200ms cubic-bezier(0.22, 1, 0.36, 1)',
