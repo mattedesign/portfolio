@@ -23,7 +23,7 @@ export default function ContactCard() {
           <span className="text-[#e07b5d]">intelligent systems?</span>
         </h2>
 
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
           <div className="space-y-3">
             <a
               href={`mailto:${email}`}
@@ -50,14 +50,14 @@ export default function ContactCard() {
             </a>
           </div>
 
-          <div className="flex flex-col gap-3 pt-6 border-t border-[#1a1c1e]/10 md:pt-0 md:border-t-0 md:border-l md:pl-16">
+          <div className="flex flex-col gap-3 items-start md:items-end">
             <a
               href={`mailto:${email}?subject=Demo%20Request`}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1c1e] text-[#f6f8ed] rounded-full font-medium text-base hover:bg-[#e07b5d] transition-colors w-fit"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1c1e] text-[#f6f8ed] rounded-full font-medium text-base hover:bg-[#e07b5d] transition-colors"
             >
               Request a Demo
             </a>
-            <p className="text-sm text-[#1a1c1e]/50 max-w-[280px]">
+            <p className="text-sm text-[#1a1c1e]/50 max-w-[280px] md:text-right">
               Fr8 Engine, Figmant, or architecture deep-dives.
             </p>
           </div>

@@ -1,16 +1,22 @@
 const SYSTEMS = [
   {
-    name: "Fr8 Document Engine",
-    metric: "100k+ documents/day in production",
+    problem: "Unstructured chaos",
+    solution: "Automated extraction",
+    product: "Fr8 Document Engine",
+    metric: "100k+ documents/day",
     tech: "Self-healing extraction, human feedback loops, adaptive model architectures"
   },
   {
-    name: "Figmant",
+    problem: "Manual audits",
+    solution: "Quantified decisions",
+    product: "Figmant",
     metric: "250+ endpoints in production",
     tech: "Spatial analysis, behavioral heuristics, quantified UX impact"
   },
   {
-    name: "Operational Intelligence",
+    problem: "Gut-feel operations",
+    solution: "Evidence-based guidance",
+    product: "Operational Intelligence",
     metric: "ROI on 30/60/90-day cycles",
     tech: "Pattern detection, impact modeling, automated decision guidance"
   }
@@ -40,13 +46,18 @@ export default function SystemsCard() {
           {SYSTEMS.map((system, index) => (
             <div key={index} className="border-t border-[#1a1c1e]/10 py-5 md:py-6">
               <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 md:gap-8">
-                <div className="flex items-baseline gap-3">
+                <div className="flex flex-col gap-1">
                   <h3 className="text-[#1a1c1e] text-xl md:text-2xl font-bold">
-                    {system.name}
+                    {system.problem} → {system.solution}
                   </h3>
-                  <span className="text-[#e07b5d] text-sm md:text-base font-medium">
-                    {system.metric}
-                  </span>
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-[#1a1c1e]/60 text-sm md:text-base">
+                      {system.product}
+                    </span>
+                    <span className="text-[#e07b5d] text-sm md:text-base font-medium">
+                      {system.metric}
+                    </span>
+                  </div>
                 </div>
                 <p className="text-[#1a1c1e]/50 text-sm md:text-base md:text-right max-w-[400px]">
                   {system.tech}

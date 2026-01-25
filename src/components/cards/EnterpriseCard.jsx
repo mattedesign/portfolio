@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 
 const TIMELINE_NODES = [
   {
@@ -26,26 +26,43 @@ const TIMELINE_NODES = [
 ];
 
 export default function EnterpriseCard() {
-  const containerRef = useRef(null);
+  const constraintsRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    // Start tracking when card is 70% into viewport, end when it exits
-    offset: ["start 0.7", "end start"]
-  });
+  // Motion value for drag position
+  const x = useMotionValue(0);
 
-  // Horizontal scroll: 0% = first item, 100% = last item centered
-  // Delayed start so timeline only scrolls when card is fully visible
-  const horizontalScroll = useTransform(scrollYProgress, [0.2, 0.8], [0, -200]);
+  // Card width for snap calculations (approximate)
+  const cardWidth = 320;
+  const totalWidth = cardWidth * (TIMELINE_NODES.length - 1);
 
-  // Active index based on scroll (0, 1, or 2)
-  const activeIndex = useTransform(scrollYProgress, [0.2, 0.45, 0.65, 0.8], [0, 0.5, 1.5, 2]);
+  const handleDragEnd = (event, info) => {
+    const currentX = x.get();
+    // Calculate which card we're closest to
+    const targetIndex = Math.round(Math.abs(currentX) / cardWidth);
+    const clampedIndex = Math.max(0, Math.min(targetIndex, TIMELINE_NODES.length - 1));
+
+    // Snap to the nearest card
+    animate(x, -clampedIndex * cardWidth, {
+      type: "spring",
+      stiffness: 300,
+      damping: 30
+    });
+
+    setActiveIndex(clampedIndex);
+  };
+
+  const goToSlide = (index) => {
+    animate(x, -index * cardWidth, {
+      type: "spring",
+      stiffness: 300,
+      damping: 30
+    });
+    setActiveIndex(index);
+  };
 
   return (
-    <div
-      ref={containerRef}
-      className="bg-[#1a1c1e] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1"
-    >
+    <div className="bg-[#1a1c1e] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1">
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
@@ -62,16 +79,23 @@ export default function EnterpriseCard() {
           Shipped at scale.
         </h2>
 
-        {/* Timeline horizontal scroll container */}
-        <div className="relative flex-1 flex flex-col justify-center overflow-hidden">
+        {/* Timeline draggable carousel */}
+        <div
+          ref={constraintsRef}
+          className="relative flex-1 flex flex-col justify-center overflow-hidden cursor-grab active:cursor-grabbing"
+        >
           <motion.div
             className="flex"
-            style={{ x: useTransform(horizontalScroll, v => `${v}%`) }}
+            drag="x"
+            dragConstraints={{ left: -totalWidth, right: 0 }}
+            dragElastic={0.1}
+            onDragEnd={handleDragEnd}
+            style={{ x }}
           >
             {TIMELINE_NODES.map((node, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-full md:w-[50%] pr-8 md:pr-16"
+                className="flex-shrink-0 w-[280px] md:w-[320px] pr-8 md:pr-12"
               >
                 {/* Timeline segment */}
                 <div className="relative flex items-center mb-8">
@@ -80,48 +104,38 @@ export default function EnterpriseCard() {
                     {node.year}
                   </span>
 
-                  {/* Dot - centered on line */}
-                  <motion.div
-                    className="relative z-10"
-                    style={{
-                      scale: useTransform(activeIndex, v => v >= index ? 1 : 0.5),
-                      opacity: useTransform(activeIndex, v => v >= index ? 1 : 0.3)
-                    }}
-                  >
+                  {/* Dot */}
+                  <div className="relative z-10">
                     <div
-                      className="w-4 h-4 rounded-full"
-                      style={{
-                        backgroundColor: '#e07b5d'
-                      }}
+                      className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                        index <= activeIndex ? 'scale-100 opacity-100' : 'scale-50 opacity-30'
+                      }`}
+                      style={{ backgroundColor: '#e07b5d' }}
                     >
                       {/* Pulse ring for active */}
-                      <motion.div
-                        className="absolute inset-0 rounded-full bg-[#e07b5d]"
-                        animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.3 }}
-                      />
+                      {index === activeIndex && (
+                        <motion.div
+                          className="absolute inset-0 rounded-full bg-[#e07b5d]"
+                          animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        />
+                      )}
                     </div>
-                  </motion.div>
+                  </div>
 
                   {/* Line segment after dot */}
-                  <motion.div
-                    className="flex-1 h-[2px] ml-2"
-                    style={{
-                      backgroundColor: useTransform(activeIndex, v =>
-                        v > index ? '#e07b5d' : '#f6f8ed1a'
-                      )
-                    }}
+                  <div
+                    className={`flex-1 h-[2px] ml-2 transition-colors duration-300 ${
+                      index < activeIndex ? 'bg-[#e07b5d]' : 'bg-[#f6f8ed]/10'
+                    }`}
                   />
                 </div>
 
                 {/* Content */}
-                <motion.div
-                  style={{
-                    opacity: useTransform(activeIndex, v => {
-                      const diff = Math.abs(v - index);
-                      return diff < 0.5 ? 1 : diff < 1 ? 0.6 : 0.3;
-                    })
-                  }}
+                <div
+                  className={`transition-opacity duration-300 ${
+                    index === activeIndex ? 'opacity-100' : 'opacity-40'
+                  }`}
                 >
                   <h3 className="text-[#f6f8ed] text-2xl md:text-3xl font-bold mb-1">
                     {node.company}
@@ -132,13 +146,29 @@ export default function EnterpriseCard() {
                   <p className="text-[#f6f8ed]/90 text-xl md:text-2xl font-bold mb-2">
                     {node.theme}
                   </p>
-                  <p className="text-[#f6f8ed]/40 text-sm md:text-base leading-relaxed max-w-[300px]">
+                  <p className="text-[#f6f8ed]/40 text-sm md:text-base leading-relaxed max-w-[280px]">
                     {node.detail}
                   </p>
-                </motion.div>
+                </div>
               </div>
             ))}
           </motion.div>
+
+          {/* Dot indicators */}
+          <div className="flex gap-2 mt-8">
+            {TIMELINE_NODES.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === activeIndex
+                    ? 'bg-[#e07b5d] w-6'
+                    : 'bg-[#f6f8ed]/20 hover:bg-[#f6f8ed]/40'
+                }`}
+                aria-label={`Go to ${TIMELINE_NODES[index].company}`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Closing */}

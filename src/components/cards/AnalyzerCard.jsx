@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Zap, Loader, Upload, FileText, X } from 'lucide-react';
+import { Zap, Loader, Upload, FileText, X, AlertCircle } from 'lucide-react';
 import mammoth from 'mammoth';
 
 const CANDIDATE_PROFILE = {
@@ -197,13 +197,15 @@ A VALID job description must contain MOST of these elements:
 
 REJECT and return an error for ANY of the following:
 - Photos of people, selfies, headshots, or portraits
-- Screenshots of websites, apps, or software interfaces
-- Resumes, CVs, or LinkedIn profiles
+- Screenshots of websites/apps that are NOT job postings (e.g., portfolio sites, dashboards, landing pages)
+- Resumes, CVs, or LinkedIn profiles (NOT job postings)
 - Random images, memes, artwork, or photos
 - Articles, blog posts, or news content
 - Receipts, invoices, or financial documents
 - Personal documents or correspondence
 - Anything that is clearly NOT a job posting
+
+ACCEPT screenshots of job postings from LinkedIn, Indeed, Greenhouse, Lever, or other job boards - these ARE valid job descriptions.
 
 If the content is NOT a valid job description, you MUST return ONLY this JSON (nothing else):
 { "is_valid_job_description": false, "error": "Please upload a job description or job posting. The uploaded content appears to be [describe specifically what it is, e.g., 'a photo of a person', 'a website screenshot', 'a resume']." }
@@ -453,7 +455,18 @@ Only if it IS a valid job description with clear job requirements, proceed with 
             </div>
 
             {error && (
-              <p className="text-[#f6f8ed]/60 text-sm mt-4">{error}</p>
+              <div className="mt-6 p-4 bg-[#e07b5d]/10 border border-[#e07b5d]/30 rounded-xl flex items-start gap-3">
+                <AlertCircle size={20} className="text-[#e07b5d] flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-[#f6f8ed]/90 text-sm leading-relaxed">{error}</p>
+                </div>
+                <button
+                  onClick={() => setError(null)}
+                  className="text-[#f6f8ed]/40 hover:text-[#f6f8ed] transition-colors flex-shrink-0"
+                >
+                  <X size={18} />
+                </button>
+              </div>
             )}
 
             <div className="flex justify-between items-center mt-6">
