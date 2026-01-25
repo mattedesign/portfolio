@@ -32,7 +32,8 @@ export default function SystemsCard() {
       {/* Main content */}
       <div className="flex-1 flex flex-col px-8 md:px-12">
         <h2 className="font-extrabold text-[clamp(36px,8vw,90px)] text-[#1a1c1e] leading-[1.05] tracking-[-0.03em] mb-12 md:mb-16">
-          Turning Not Possible Into Deliverable.
+          Implied &<br />
+          Applied Intelligence.
         </h2>
 
         {/* Systems list - cleaner layout */}

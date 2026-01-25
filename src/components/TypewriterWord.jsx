@@ -5,7 +5,7 @@ const WORD_COLOR = '#8a8f98'; // muted gray
 
 const TIMING = {
   typeSpeed: 120,       // ms per character (deliberate, human-like)
-  deleteSpeed: 40,      // ms per character (noticeably faster than typing)
+  deleteSpeed: 25,      // ms per character (noticeably faster than typing)
   wordPause: 3500,      // pause after word complete (let it breathe)
   transitionPause: 400, // pause between words
 };

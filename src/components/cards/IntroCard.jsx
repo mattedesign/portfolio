@@ -9,19 +9,19 @@ export default function IntroCard() {
   return (
     <div className="bg-[#1a1c1e] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 p-6 sm:p-8 md:p-12">
-        <p className="text-[#f6f8ed]/50 text-sm sm:text-base md:text-lg font-normal">
-          Principal Product Architect
-        </p>
+      <div className="p-6 sm:p-8 md:p-12">
         <p className="text-[#f6f8ed] text-sm sm:text-base md:text-lg font-medium">
           Matt Brown
+        </p>
+        <p className="text-[#f6f8ed]/50 text-sm sm:text-base md:text-lg font-normal">
+          Principal Product Architect
         </p>
       </div>
 
       {/* Main content - text left, scanner right */}
       <div className="flex-1 flex flex-col lg:flex-row relative min-h-0">
         {/* Text content - left side */}
-        <div className="flex-1 flex flex-col justify-center px-6 sm:px-8 md:px-12 py-8 lg:py-0 lg:max-w-[50%]">
+        <div className="flex-1 flex flex-col justify-center px-6 sm:px-8 md:px-12 py-8 lg:py-0 lg:max-w-[55%]">
           <h1 className="font-extrabold leading-[1.05] text-[#f6f8ed] text-[clamp(36px,8vw,90px)] tracking-[-0.03em] mb-4">
             Turning ambiguity into{' '}
             <TypewriterWord />
