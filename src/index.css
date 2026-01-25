@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Override Tailwind's default border color */
+*, ::before, ::after {
+  border-color: transparent;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
