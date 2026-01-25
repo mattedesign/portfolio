@@ -205,9 +205,29 @@ export default function EnterpriseCard() {
 
         {/* Closing */}
         <div className="mt-auto pt-6">
-          <p className="text-[#f6f8ed] text-xl md:text-2xl font-bold">
+          <p className="text-[#f6f8ed] text-xl md:text-2xl font-bold mb-6">
             Designed across regulated finance, enterprise platforms, and AI-driven infrastructure.
           </p>
+
+          {/* Resume download links */}
+          <div className="flex items-center gap-4 pt-2">
+            <span className="text-[#f6f8ed]/40 text-sm">Download resume:</span>
+            <a
+              href="/MattBrown.pdf"
+              download="Matt-Brown-Resume.pdf"
+              className="text-[#e07b5d] text-sm font-medium hover:text-[#f6f8ed] transition-colors"
+            >
+              PDF
+            </a>
+            <span className="text-[#f6f8ed]/20">|</span>
+            <a
+              href="/matt-brown-resume.tex"
+              download="Matt-Brown-Resume.tex"
+              className="text-[#f6f8ed]/50 text-sm font-mono hover:text-[#f6f8ed] transition-colors"
+            >
+              .tex
+            </a>
+          </div>
         </div>
       </div>
     </div>
