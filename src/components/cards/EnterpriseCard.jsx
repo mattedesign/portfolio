@@ -96,7 +96,7 @@ export default function EnterpriseCard() {
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#f6f8ed]/70 text-base md:text-lg font-normal">
-          Experience
+          My Experience
         </p>
         <p className="text-[#f6f8ed]/50 text-base md:text-lg">
           06/10
@@ -106,7 +106,7 @@ export default function EnterpriseCard() {
       {/* Main content */}
       <div className="flex-1 flex flex-col px-8 md:px-12 pb-8 md:pb-12">
         <h2 className="font-extrabold text-[clamp(32px,7vw,80px)] text-[#f6f8ed] leading-[1.05] tracking-[-0.03em] mb-8 md:mb-12">
-          Designing systems where failure isn't an option.
+          Where & What I've Learned.
         </h2>
 
         {/* Timeline draggable carousel */}

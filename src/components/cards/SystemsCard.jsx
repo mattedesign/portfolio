@@ -22,7 +22,7 @@ export default function SystemsCard() {
       {/* Header */}
       <div className="flex items-center justify-between p-8 md:p-12">
         <p className="text-[#1a1c1e]/70 text-base md:text-lg font-normal">
-          What I Build
+          My Recent Work
         </p>
         <p className="text-[#1a1c1e]/50 text-base md:text-lg">
           05/10
@@ -32,7 +32,7 @@ export default function SystemsCard() {
       {/* Main content */}
       <div className="flex-1 flex flex-col px-8 md:px-12">
         <h2 className="font-extrabold text-[clamp(36px,8vw,90px)] text-[#1a1c1e] leading-[1.05] tracking-[-0.03em] mb-12 md:mb-16">
-          Systems that compound.
+          Turning Not Possible Into Deliverable.
         </h2>
 
         {/* Systems list - cleaner layout */}
