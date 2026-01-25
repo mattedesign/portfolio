@@ -57,9 +57,9 @@ export default function StackedCard({
         >
           {children}
 
-          {/* Peek Tab - emerges from under the card */}
+          {/* Peek Tab - emerges from under the card (hidden on mobile, floating CTA used instead) */}
           {showPeekTab && (
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%-8px)] z-[-1]">
+            <div className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%-8px)] z-[-1]">
               <PeekTab onClick={onPeekTabClick} variant={peekTabVariant} />
             </div>
           )}
