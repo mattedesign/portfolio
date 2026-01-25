@@ -185,7 +185,18 @@ export default function AnalyzerCard() {
       return;
     }
 
-    const systemPrompt = `You are an expert Executive Talent Strategist. Analyze the fit between a candidate profile and a job description. Be honest but persuasive.`;
+    const systemPrompt = `You are an expert Executive Talent Strategist. Your job is to analyze the fit between a candidate profile and a job description.
+
+IMPORTANT: First, you MUST validate that the provided content is actually a job description or job posting. A valid job description typically contains:
+- A job title or role name
+- Responsibilities or duties
+- Requirements, qualifications, or skills needed
+- Sometimes: company info, benefits, salary, location
+
+If the content is NOT a job description (e.g., a screenshot of a website, a random image, a resume, an article, or anything else), you MUST return:
+{ "is_valid_job_description": false, "error": "Please upload a job description or job posting. The uploaded content appears to be [describe what it is]." }
+
+Only if it IS a valid job description, analyze the fit and be honest but persuasive.`;
 
     try {
       let userContent;
@@ -204,7 +215,7 @@ export default function AnalyzerCard() {
             },
             {
               type: 'text',
-              text: `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nThe document above contains a job description. Extract the key requirements and analyze the fit between this candidate and the role.\n\nReturn JSON: { "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`
+              text: `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nThe document above should contain a job description. First, validate it IS a job description (has job title, responsibilities, requirements). If NOT a job description, return: { "is_valid_job_description": false, "error": "Please upload a job description. This appears to be [what it is]." }\n\nIf it IS a valid job description, extract key requirements and analyze fit. Return JSON: { "is_valid_job_description": true, "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`
             }
           ];
         } else if (fileData.type === 'image') {
@@ -219,13 +230,13 @@ export default function AnalyzerCard() {
             },
             {
               type: 'text',
-              text: `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nThe image above contains a job description. Extract the key requirements and analyze the fit between this candidate and the role.\n\nReturn JSON: { "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`
+              text: `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nThe image above should contain a job description. First, validate it IS a job description (has job title, responsibilities, requirements). If NOT a job description, return: { "is_valid_job_description": false, "error": "Please upload a job description. This appears to be [what it is]." }\n\nIf it IS a valid job description, extract key requirements and analyze fit. Return JSON: { "is_valid_job_description": true, "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`
             }
           ];
         }
       } else {
         // Plain text job description
-        userContent = `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nJOB DESCRIPTION:\n${jobDescription}\n\nAnalyze fit. Return JSON: { "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`;
+        userContent = `CANDIDATE PROFILE:\n${CANDIDATE_PROFILE.profileText}\n\nPROVIDED TEXT:\n${jobDescription}\n\nFirst, validate this IS a job description (has job title, responsibilities, requirements). If NOT a job description, return: { "is_valid_job_description": false, "error": "Please provide a job description. This appears to be [what it is]." }\n\nIf it IS a valid job description, analyze fit. Return JSON: { "is_valid_job_description": true, "fit_score": <1-100>, "fit_summary": "<one sentence>", "strengths": ["<3-4 specific strengths>"], "hidden_value": ["<2-3 value-adds>"], "gaps": ["<1-3 honest gaps>"], "talking_points": ["<2-3 interview angles>"] }`;
       }
 
       const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -264,7 +275,16 @@ export default function AnalyzerCard() {
 
       const jsonMatch = text.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
-        setAnalysis(JSON.parse(jsonMatch[0]));
+        const result = JSON.parse(jsonMatch[0]);
+
+        // Check if the content was validated as a job description
+        if (result.is_valid_job_description === false) {
+          setError(result.error || "This doesn't appear to be a job description. Please upload or paste a job posting.");
+          clearFile();
+          return;
+        }
+
+        setAnalysis(result);
       } else {
         throw new Error('Could not parse response');
       }
