@@ -23,7 +23,7 @@ export default function IntroCard() {
         {/* Text content - left side */}
         <div className="flex-1 flex flex-col justify-center px-6 sm:px-8 md:px-12 py-8 lg:py-0 lg:max-w-[55%]">
           <h1 className="font-extrabold leading-[1.05] text-[#f6f8ed] text-[clamp(36px,8vw,90px)] tracking-[-0.03em] mb-4">
-            Turning ambiguity into{' '}
+            Turning ambiguity into<br className="hidden lg:block" />
             <TypewriterWord />
             <span className="text-[#e07b5d]">.</span>
           </h1>
