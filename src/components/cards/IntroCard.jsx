@@ -48,8 +48,8 @@ export default function IntroCard() {
         </div>
       </div>
 
-      {/* Minimal footer spacing */}
-      <div className="p-4 sm:p-6 md:p-8" />
+      {/* Footer spacing - match header padding */}
+      <div className="p-6 sm:p-8 md:p-12" />
     </div>
   );
 }
