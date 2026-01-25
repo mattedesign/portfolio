@@ -34,7 +34,7 @@ export default function StackedCard({
       style={{
         // Each card needs scroll height - use minHeight so taller cards can expand
         // Height set to prevent next card from peeking on initial load
-        minHeight: isLastCard ? undefined : '95vh',
+        minHeight: isLastCard ? undefined : '90vh',
         // z-index ensures cards stack properly - higher index = on top
         zIndex: index + 1,
       }}
@@ -51,7 +51,7 @@ export default function StackedCard({
           style={{
             borderRadius: '32px',
             // Leave space for floating button: 20px top margin, card fills viewport minus button area
-            minHeight: isLastCard ? undefined : 'calc(100vh - 130px)',
+            minHeight: isLastCard ? undefined : 'calc(100vh - 110px)',
             marginTop: '20px',
             marginBottom: isLastCard ? '20px' : undefined,
           }}
