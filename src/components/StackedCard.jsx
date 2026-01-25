@@ -33,8 +33,8 @@ export default function StackedCard({
       className="relative"
       style={{
         // Each card needs scroll height - use minHeight so taller cards can expand
-        // Reduced height creates overlap, making next card appear sooner
-        minHeight: isLastCard ? undefined : '85vh',
+        // Height set to prevent next card from peeking on initial load
+        minHeight: isLastCard ? undefined : '95vh',
         // z-index ensures cards stack properly - higher index = on top
         zIndex: index + 1,
       }}
@@ -50,8 +50,8 @@ export default function StackedCard({
           className="shadow-2xl flex flex-col relative"
           style={{
             borderRadius: '32px',
-            // Leave space for floating button: 20px top margin, card height leaves ~60px at bottom
-            minHeight: isLastCard ? undefined : 'calc(100vh - 100px)',
+            // Leave space for floating button: 20px top margin, card fills viewport minus button area
+            minHeight: isLastCard ? undefined : 'calc(100vh - 130px)',
             marginTop: '20px',
             marginBottom: isLastCard ? '20px' : undefined,
           }}

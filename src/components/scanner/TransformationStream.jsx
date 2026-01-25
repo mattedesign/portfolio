@@ -32,19 +32,20 @@ export default function TransformationStream({ onScanningChange, height = 140 })
       const itemWidthPx = rect.width;
       const index = item.getAttribute('data-item-index');
 
-      // Items move RIGHT → LEFT
+      // Items move LEFT → RIGHT (enter from left, exit right)
       // clipPercent = how much has passed through scanner (0-100)
-      // scannedAmount = portion to the LEFT of scanner center
-      if (itemLeft >= scannerCenter) {
-        // Card is fully to the RIGHT of scanner - not yet scanned
+      // As item moves right, its RIGHT edge crosses scanner first for clip calculation
+      if (itemRight <= scannerCenter) {
+        // Item fully LEFT of scanner - approaching, not yet scanned
         newClips[index] = 0;
-      } else if (itemRight <= scannerCenter) {
-        // Card is fully to the LEFT of scanner - fully scanned
+      } else if (itemLeft >= scannerCenter) {
+        // Item fully RIGHT of scanner - passed through, fully scanned
         newClips[index] = 100;
       } else {
-        // Card is crossing the scanner - calculate progressive clip
+        // Item crossing scanner - calculate progressive clip
         anyScanningActive = true;
-        const scannedAmount = scannerCenter - itemLeft;
+        // Portion that has passed through = from scanner line to item's right edge
+        const scannedAmount = itemRight - scannerCenter;
         const clipPercent = Math.max(0, Math.min(100, (scannedAmount / itemWidthPx) * 100));
         newClips[index] = clipPercent;
       }
@@ -69,7 +70,7 @@ export default function TransformationStream({ onScanningChange, height = 140 })
     const deltaTime = lastTimeRef.current ? (timestamp - lastTimeRef.current) / 1000 : 0.016;
     lastTimeRef.current = timestamp;
 
-    // Move position - items scroll RIGHT to LEFT (enter from right, exit left)
+    // Move position - items scroll LEFT to RIGHT (enter from left, exit right)
     positionRef.current += speed * deltaTime;
 
     // Seamless loop
@@ -78,8 +79,8 @@ export default function TransformationStream({ onScanningChange, height = 140 })
       positionRef.current = positionRef.current % oneSetWidth;
     }
 
-    // Items move left - use negative translateX so items enter from right side
-    stream.style.transform = `translateX(${-positionRef.current}px)`;
+    // Items move right - offset by oneSetWidth so items enter from left side
+    stream.style.transform = `translateX(${positionRef.current - oneSetWidth}px)`;
 
     // Update clip percentages
     updateClipPercents();

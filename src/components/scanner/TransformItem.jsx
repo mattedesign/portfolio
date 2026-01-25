@@ -98,35 +98,30 @@ const TRANSFORM_ITEMS = [
   }
 ];
 
-// Generate character positions that emanate from the scan line
-// Characters start near the scan line (left edge) and spread left as they're revealed
-function getCharacterPosition(charIndex, totalChars, clipPercent, seed) {
-  // Each character has a reveal threshold based on its index
-  const charThreshold = (charIndex / totalChars) * 100;
-  const isRevealed = clipPercent > charThreshold;
-
-  if (!isRevealed) {
-    return null; // Not yet revealed
-  }
-
-  // How long has this character been revealed (0 to 100)
-  const revealProgress = Math.min(100, (clipPercent - charThreshold) * 2);
-
+// Generate character positions for chaos layer
+// Characters are spread across the card and converge toward scan line as scanning progresses
+function getCharacterPosition(charIndex, clipPercent, seed) {
   // Consistent random offset based on seed
   const hash = (seed * 31 + charIndex * 17) % 100;
   const hash2 = (seed * 13 + charIndex * 29) % 100;
 
-  // Start position: near the scan line (left edge of card = 0%)
-  // End position: spread outward to the LEFT (beyond card bounds, negative values)
-  const startX = 0; // Start at scan line (left edge)
-  const endX = -20 - (hash % 80); // Spread 20-100% beyond left edge
-  const x = startX + (endX - startX) * (revealProgress / 100);
-
-  // Vertical spread
+  // Base position spread across the card (will be clipped by chaos layer)
+  const baseX = 10 + (hash % 80); // 10-90% across card
   const y = 10 + (hash2 % 80);
 
-  // Opacity: fade in as revealed, then stay visible
-  const opacity = Math.min(0.8, revealProgress / 50);
+  // As scanning progresses, characters converge toward the scan line
+  // Scan line is at (100 - clipPercent)% from the left (right edge of visible chaos)
+  const scanLineX = 100 - clipPercent;
+  const convergeFactor = Math.min(1, clipPercent / 100);
+
+  // Characters move toward scan line as it approaches them
+  const x = baseX + (scanLineX - baseX) * convergeFactor * 0.5;
+
+  // Characters that would be past the clip line are about to be "absorbed"
+  // Make them more intense as they approach the line
+  const distanceToLine = Math.abs(x - scanLineX);
+  const nearLineBoost = distanceToLine < 20 ? (1 - distanceToLine / 20) * 0.3 : 0;
+  const opacity = 0.6 + nearLineBoost;
 
   return {
     x,
@@ -184,15 +179,9 @@ export function TransformItem({ itemIndex, clipPercent = 0 }) {
 
   return (
     <div className="relative w-[160px] h-[120px] md:w-[200px] md:h-[140px] flex-shrink-0" style={{ overflow: 'visible' }}>
-      {/* Before layer (ambiguous) - clips from LEFT as card passes through scanner */}
-      <div
-        className="absolute inset-0 bg-[#2a2c2e] rounded-xl overflow-hidden"
-        style={{
-          // Clip from the LEFT side - showing unscanned portion (right)
-          clipPath: `inset(0 0 0 ${clipPercent}%)`
-        }}
-      >
-        {/* Abstract shapes */}
+      {/* BASE LAYER: Structure (shapes card) - revealed on the RIGHT as scanning progresses */}
+      <div className="absolute inset-0 bg-[#2a2c2e] rounded-xl overflow-hidden">
+        {/* Abstract shapes representing structured output */}
         <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
           {item.before.shapes.map((shape, i) => (
             <BeforeShape key={i} shape={shape} />
@@ -216,12 +205,18 @@ export function TransformItem({ itemIndex, clipPercent = 0 }) {
         ))}
       </div>
 
-      {/* After layer - characters progressively revealed and scattered */}
-      {clipPercent > 0 && (
-        <div className="absolute inset-0 overflow-visible">
+      {/* TOP LAYER: Chaos (scattered characters) - clips from RIGHT as scanning progresses */}
+      {/* Visible on LEFT (unscanned portion), clipped away on RIGHT (scanned portion) */}
+      <div
+        className="absolute inset-0 rounded-xl overflow-hidden"
+        style={{
+          // Clip from the RIGHT side - hiding scanned portion, showing unscanned chaos on left
+          clipPath: `inset(0 ${clipPercent}% 0 0)`
+        }}
+      >
+        <div className="absolute inset-0 bg-[#1a1c1e]">
           {item.after.chars.map((char, i) => {
-            const pos = getCharacterPosition(i, item.after.chars.length, clipPercent, itemIndex);
-            if (!pos) return null; // Not yet revealed
+            const pos = getCharacterPosition(i, clipPercent, itemIndex);
             return (
               <span
                 key={i}
@@ -239,7 +234,7 @@ export function TransformItem({ itemIndex, clipPercent = 0 }) {
             );
           })}
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -35,7 +35,7 @@ export default function App() {
       {/* Mobile CTA - fixed at bottom with coral accent */}
       <button
         onClick={scrollToAnalyzer}
-        className="md:hidden fixed bottom-10 left-1/2 -translate-x-1/2 z-50 bg-[#1a1c1e] border border-[#e07b5d]/40 text-[#f6f8ed] px-5 py-3 rounded-full shadow-xl flex items-center gap-2 font-medium text-sm"
+        className="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-[#1a1c1e] border border-[#e07b5d]/40 text-[#f6f8ed] px-5 py-3 rounded-full shadow-xl flex items-center gap-2 font-medium text-sm"
         style={{
           boxShadow: '0 0 30px rgba(224, 123, 93, 0.2), 0 4px 15px rgba(0,0,0,0.4)'
         }}

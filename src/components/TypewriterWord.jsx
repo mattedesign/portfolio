@@ -3,10 +3,10 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 const WORDS = ['systems', 'products', 'decisions', 'revenue', 'intelligence'];
 
 const TIMING = {
-  typeSpeed: 50,        // ms per character (40-65 range)
-  deleteSpeed: 25,      // ms per character (faster than typing)
-  wordPause: 1000,      // pause after word complete
-  transitionPause: 350, // pause between words
+  typeSpeed: 90,        // ms per character (slower, more deliberate)
+  deleteSpeed: 45,      // ms per character (faster than typing)
+  wordPause: 1800,      // pause after word complete
+  transitionPause: 450, // pause between words
 };
 
 export default function TypewriterWord() {
