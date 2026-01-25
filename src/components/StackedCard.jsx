@@ -50,7 +50,8 @@ export default function StackedCard({
           className="shadow-2xl flex flex-col relative"
           style={{
             borderRadius: '32px',
-            minHeight: isLastCard ? undefined : 'calc(100vh - 40px)',
+            // Leave space for floating button: 20px top margin, card height leaves ~60px at bottom
+            minHeight: isLastCard ? undefined : 'calc(100vh - 100px)',
             marginTop: '20px',
             marginBottom: isLastCard ? '20px' : undefined,
           }}
