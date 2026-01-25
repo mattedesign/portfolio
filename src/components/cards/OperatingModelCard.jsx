@@ -47,7 +47,7 @@ export default function OperatingModelCard() {
         </h2>
 
         {/* Subtitle flow */}
-        <p className="text-[#e07b5d] text-lg md:text-xl font-medium mb-6 md:mb-8">
+        <p className="text-[#2d4a3e] text-lg md:text-xl font-medium mb-6 md:mb-8">
           From decision → signal → system → trust → compounding intelligence.
         </p>
 
@@ -56,24 +56,26 @@ export default function OperatingModelCard() {
           I identify the real decision, translate ambiguity into signal, and architect systems that embed intelligence directly into workflows. By designing for explainability and feedback, trust emerges through use—designing AI as infrastructure, not experiments.
         </p>
 
-        {/* Operating steps */}
-        <div className="overflow-x-auto scrollbar-hide -mx-8 md:mx-0 px-8 md:px-0">
-          <div className="flex md:grid md:grid-cols-5 gap-6 md:gap-6 min-w-max md:min-w-0 pb-4 md:pb-0">
-            {OPERATING_STEPS.map((step, index) => (
-              <div key={index} className="w-[180px] md:w-auto shrink-0 md:shrink">
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-[#1a1c1e]/30 text-sm font-mono">
-                    {step.number}
-                  </span>
-                  <span className="text-[#1a1c1e] text-base md:text-lg font-bold">
-                    {step.title}
-                  </span>
+        {/* Operating steps - centered vertically */}
+        <div className="flex-1 flex items-center">
+          <div className="overflow-x-auto scrollbar-hide -mx-8 md:mx-0 px-8 md:px-0 w-full">
+            <div className="flex md:grid md:grid-cols-5 gap-6 md:gap-6 min-w-max md:min-w-0 pb-4 md:pb-0">
+              {OPERATING_STEPS.map((step, index) => (
+                <div key={index} className="w-[180px] md:w-auto shrink-0 md:shrink">
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <span className="text-[#1a1c1e]/30 text-sm font-mono">
+                      {step.number}
+                    </span>
+                    <span className="text-[#1a1c1e] text-base md:text-lg font-bold">
+                      {step.title}
+                    </span>
+                  </div>
+                  <p className="text-[#1a1c1e]/60 text-sm md:text-base leading-relaxed">
+                    {step.text}
+                  </p>
                 </div>
-                <p className="text-[#1a1c1e]/60 text-sm md:text-base leading-relaxed">
-                  {step.text}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
