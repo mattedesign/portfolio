@@ -99,7 +99,7 @@ const TRANSFORM_ITEMS = [
 ];
 
 // Generate character positions that emanate from the scan line
-// Characters start near the left edge (scan line) and spread right as they're revealed
+// Characters start near the scan line (left edge) and spread left as they're revealed
 function getCharacterPosition(charIndex, totalChars, clipPercent, seed) {
   // Each character has a reveal threshold based on its index
   const charThreshold = (charIndex / totalChars) * 100;
@@ -116,10 +116,10 @@ function getCharacterPosition(charIndex, totalChars, clipPercent, seed) {
   const hash = (seed * 31 + charIndex * 17) % 100;
   const hash2 = (seed * 13 + charIndex * 29) % 100;
 
-  // Start position: near the scan line (right edge of card = 100%)
-  // End position: spread outward to the right (beyond card bounds)
-  const startX = 100; // Start at scan line (right edge)
-  const endX = 100 + 20 + (hash % 80); // Spread 20-100% beyond right edge
+  // Start position: near the scan line (left edge of card = 0%)
+  // End position: spread outward to the LEFT (beyond card bounds, negative values)
+  const startX = 0; // Start at scan line (left edge)
+  const endX = -20 - (hash % 80); // Spread 20-100% beyond left edge
   const x = startX + (endX - startX) * (revealProgress / 100);
 
   // Vertical spread
@@ -184,12 +184,12 @@ export function TransformItem({ itemIndex, clipPercent = 0 }) {
 
   return (
     <div className="relative w-[160px] h-[120px] md:w-[200px] md:h-[140px] flex-shrink-0" style={{ overflow: 'visible' }}>
-      {/* Before layer (ambiguous) - clips from RIGHT as card passes through scanner */}
+      {/* Before layer (ambiguous) - clips from LEFT as card passes through scanner */}
       <div
         className="absolute inset-0 bg-[#2a2c2e] rounded-xl overflow-hidden"
         style={{
-          // Clip from the RIGHT side - showing unscanned portion (left)
-          clipPath: `inset(0 ${clipPercent}% 0 0)`
+          // Clip from the LEFT side - showing unscanned portion (right)
+          clipPath: `inset(0 0 0 ${clipPercent}%)`
         }}
       >
         {/* Abstract shapes */}

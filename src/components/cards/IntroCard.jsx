@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ParticleScanner from '../scanner/ParticleScanner';
 import TransformationStream from '../scanner/TransformationStream';
+import TypewriterWord from '../TypewriterWord';
 
 export default function IntroCard() {
   const [isScanning, setIsScanning] = useState(false);
@@ -23,11 +24,12 @@ export default function IntroCard() {
         <div className="flex-1 flex flex-col justify-center px-6 sm:px-8 md:px-12 py-8 lg:py-0 lg:max-w-[50%]">
           <h1 className="font-extrabold leading-[1.05] text-[#f6f8ed] text-[clamp(32px,5vw,64px)] tracking-[-0.03em] mb-4">
             Turning ambiguity into{' '}
-            <span className="text-[#e07b5d]">operational intelligence.</span>
+            <TypewriterWord />
+            <span className="text-[#e07b5d]">.</span>
           </h1>
 
           <p className="text-[#f6f8ed]/50 text-base md:text-lg max-w-[400px]">
-            Compound AI systems that reason at scale.
+            I operate where reality is unclear, constraints are real, and outcomes matter.
           </p>
         </div>
 
