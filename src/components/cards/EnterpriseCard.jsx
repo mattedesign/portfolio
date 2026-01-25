@@ -205,7 +205,7 @@ export default function EnterpriseCard() {
 
         {/* Closing */}
         <div className="mt-auto pt-6">
-          <p className="text-[#f6f8ed]/50 text-sm md:text-base">
+          <p className="text-[#f6f8ed] text-xl md:text-2xl font-bold">
             Designed across regulated finance, enterprise platforms, and AI-driven infrastructure.
           </p>
         </div>

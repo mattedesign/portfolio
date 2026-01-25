@@ -61,7 +61,7 @@ export default function EvolutionCard() {
 
         {/* Closing */}
         <div className="mt-auto">
-          <p className="text-[#f6f8ed]/60 text-base md:text-lg">
+          <p className="text-[#f6f8ed] text-xl md:text-2xl font-bold">
             Each phase built the intuition for the next.
           </p>
         </div>

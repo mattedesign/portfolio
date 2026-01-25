@@ -39,7 +39,7 @@ export default function DifferentiatorCard() {
 
         {/* Closing */}
         <div className="mt-auto">
-          <p className="text-[#f6f8ed]/60 text-base md:text-lg max-w-[500px]">
+          <p className="text-[#f6f8ed] text-xl md:text-2xl font-bold">
             Models succeed in notebooks. I build the systems that make them succeed in organizations.
           </p>
         </div>

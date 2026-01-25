@@ -80,7 +80,7 @@ export default function OperatingModelCard() {
 
       {/* Closing statement */}
       <div className="px-8 md:px-12 pb-8 md:pb-12 mt-auto pt-8">
-        <p className="text-[#1a1c1e]/50 text-base md:text-lg leading-relaxed max-w-[700px]">
+        <p className="text-[#1a1c1e] text-xl md:text-2xl font-bold">
           I design intelligence as a system, not a feature—so it can scale, explain itself, and improve over time.
         </p>
       </div>

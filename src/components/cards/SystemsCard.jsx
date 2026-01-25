@@ -69,7 +69,7 @@ export default function SystemsCard() {
 
         {/* Closing */}
         <div className="mt-auto">
-          <p className="text-[#1a1c1e]/60 text-base md:text-lg">
+          <p className="text-[#1a1c1e] text-xl md:text-2xl font-bold">
             They don't just ship. They evolve.
           </p>
         </div>
