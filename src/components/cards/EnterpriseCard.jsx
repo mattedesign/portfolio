@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const TIMELINE_NODES = [
   {
     year: "2024–Present",
@@ -51,6 +53,8 @@ const TIMELINE_NODES = [
 ];
 
 export default function EnterpriseCard() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <div className="bg-[#4998AE] overflow-hidden rounded-[32px] relative w-full h-full min-h-full flex flex-col flex-1">
       {/* Header */}
@@ -65,63 +69,87 @@ export default function EnterpriseCard() {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col px-8 md:px-12 pb-8 md:pb-12">
-        <h2 className="font-extrabold text-[clamp(32px,7vw,72px)] text-white leading-[1.05] tracking-[-0.03em] mb-8 md:mb-12">
+        <h2 className="font-extrabold text-[clamp(32px,7vw,72px)] text-white leading-[1.05] tracking-[-0.03em] mb-6 md:mb-10">
           Career Timeline
         </h2>
 
         {/* Timeline and Cards Container */}
         <div className="flex-1 flex flex-col">
-          {/* Horizontal Timeline Line - Desktop only */}
-          <div className="hidden md:block relative mb-8">
+          {/* Horizontal Timeline Line */}
+          <div className="relative mb-6 md:mb-8">
             {/* Main line */}
-            <div className="absolute top-[6px] left-0 right-0 h-[2px] bg-white/30" />
+            <div className="absolute top-[6px] left-4 right-4 h-[2px] bg-white/30" />
 
-            {/* Nodes with year labels */}
-            <div className="relative flex justify-between">
-              {TIMELINE_NODES.map((node, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <div className="w-3 h-3 rounded-full bg-white relative z-10" />
-                  <div className="mt-3 px-3 py-1 rounded-full bg-white/10 border border-white/20">
-                    <span className="text-white text-xs font-mono whitespace-nowrap">
-                      {node.year}
-                    </span>
-                  </div>
-                </div>
-              ))}
+            {/* Nodes with year labels - scrollable */}
+            <div className="overflow-x-auto scrollbar-hide -mx-8 px-8 md:mx-0 md:px-0">
+              <div className="relative flex gap-8 md:gap-0 md:justify-between min-w-max md:min-w-0 px-4 md:px-0">
+                {TIMELINE_NODES.map((node, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className="flex flex-col items-center group cursor-pointer"
+                  >
+                    <div
+                      className={`w-3 h-3 rounded-full relative z-10 transition-all duration-300 ${
+                        activeIndex === index
+                          ? 'bg-white scale-125'
+                          : 'bg-white/60 group-hover:bg-white group-hover:scale-110'
+                      }`}
+                    />
+                    <div
+                      className={`mt-3 px-3 py-1 rounded-full border transition-all duration-300 ${
+                        activeIndex === index
+                          ? 'bg-white/20 border-white/40'
+                          : 'bg-white/10 border-white/20 group-hover:bg-white/15 group-hover:border-white/30'
+                      }`}
+                    >
+                      <span className="text-white text-xs font-mono whitespace-nowrap">
+                        {node.year}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Cards - Horizontal scroll on mobile, grid on desktop */}
-          <div className="overflow-x-auto md:overflow-visible scrollbar-hide -mx-8 px-8 md:mx-0 md:px-0">
-            <div className="flex md:grid md:grid-cols-6 gap-4 min-w-max md:min-w-0">
+          {/* Cards - Horizontal scroll */}
+          <div className="overflow-x-auto scrollbar-hide -mx-8 px-8 md:-mx-12 md:px-12 flex-1">
+            <div className="flex gap-4 md:gap-5 min-w-max pb-4">
               {TIMELINE_NODES.map((node, index) => (
                 <div
                   key={index}
-                  className={`w-[260px] md:w-auto rounded-2xl p-5 flex flex-col ${
-                    index === 0
-                      ? 'bg-[#3a7a8a]'
-                      : 'bg-white/10'
+                  onClick={() => setActiveIndex(index)}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  className={`w-[280px] md:w-[300px] rounded-2xl p-6 flex flex-col cursor-pointer transition-all duration-300 ${
+                    activeIndex === index
+                      ? 'bg-[#3a7a8a] scale-[1.02] shadow-lg shadow-black/20'
+                      : 'bg-white/10 hover:bg-white/15 hover:scale-[1.01]'
                   }`}
                 >
-                  {/* Mobile year label */}
-                  <div className="md:hidden mb-3">
-                    <span className="text-white/60 text-xs font-mono">
+                  {/* Year label */}
+                  <div className="mb-3">
+                    <span className={`text-xs font-mono transition-colors duration-300 ${
+                      activeIndex === index ? 'text-white/80' : 'text-white/50'
+                    }`}>
                       {node.year}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-white text-base md:text-lg font-bold mb-1">
+                  <h3 className="text-white text-lg font-bold mb-1">
                     {node.title}
                   </h3>
 
                   {/* Domain */}
-                  <p className="text-white/60 text-sm mb-1">
+                  <p className={`text-sm mb-1 transition-colors duration-300 ${
+                    activeIndex === index ? 'text-white/70' : 'text-white/50'
+                  }`}>
                     {node.domain}
                   </p>
 
                   {/* Company */}
-                  <p className="text-white text-sm font-medium mb-3">
+                  <p className="text-white text-sm font-medium mb-4">
                     {node.company}
                     {node.companyNote && (
                       <span className="text-white/50 font-normal text-xs ml-1">
@@ -131,7 +159,9 @@ export default function EnterpriseCard() {
                   </p>
 
                   {/* Detail */}
-                  <p className="text-white/70 text-xs leading-relaxed mb-4 flex-1">
+                  <p className={`text-sm leading-relaxed mb-5 flex-1 transition-colors duration-300 ${
+                    activeIndex === index ? 'text-white/80' : 'text-white/60'
+                  }`}>
                     {node.detail}
                   </p>
 
@@ -140,7 +170,11 @@ export default function EnterpriseCard() {
                     {node.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 text-xs rounded-full border border-white/30 text-white/80"
+                        className={`px-3 py-1.5 text-xs rounded-full border transition-all duration-300 ${
+                          activeIndex === index
+                            ? 'border-white/40 text-white/90 bg-white/10'
+                            : 'border-white/20 text-white/70 hover:border-white/30'
+                        }`}
                       >
                         {tag}
                       </span>
