@@ -50,9 +50,9 @@ export default function StackedCard({
           className="shadow-2xl flex flex-col relative"
           style={{
             borderRadius: '32px',
-            minHeight: isLastCard ? undefined : 'calc(100vh - 40px)',
-            marginTop: '20px',
-            marginBottom: isLastCard ? '20px' : undefined,
+            minHeight: isLastCard ? undefined : 'calc(100vh - 80px)',
+            marginTop: '40px',
+            marginBottom: isLastCard ? '40px' : undefined,
           }}
         >
           {children}
