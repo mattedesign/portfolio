@@ -36,16 +36,22 @@ export default function SystemsCard() {
           Applied Intelligence.
         </h2>
 
-        {/* Systems list - cleaner layout */}
+        {/* Systems list - horizontal layout */}
         <div className="flex-1 flex flex-col justify-center">
-          <div className="space-y-8 md:space-y-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
             {SYSTEMS.map((system, index) => (
               <div key={index}>
-                <h3 className="text-[#1a1c1e] text-lg md:text-xl font-semibold mb-2">
-                  {system.transformation}
+                <p className="text-[#1a1c1e]/40 text-sm font-mono mb-2">
+                  {String(index + 1).padStart(2, '0')}
+                </p>
+                <h3 className="text-[#1a1c1e] text-lg md:text-xl font-bold mb-2">
+                  {system.context}
                 </h3>
-                <p className="text-[#1a1c1e]/50 text-sm md:text-base">
-                  {system.context} <span className="text-[#e07b5d] font-medium">· {system.metric}</span>
+                <p className="text-[#1a1c1e]/50 text-sm md:text-base leading-relaxed">
+                  {system.transformation}
+                </p>
+                <p className="text-[#e07b5d] text-sm font-medium mt-2">
+                  {system.metric}
                 </p>
               </div>
             ))}
