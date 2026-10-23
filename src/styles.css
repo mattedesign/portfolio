@@ -6,7 +6,11 @@ a:hover{color:#0F1712;text-decoration-thickness:2px}
 
 /* Analyze fit status line: kept in the accessibility tree while empty so updates are announced */
 .fit-err:empty{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-[data-fit-submit][aria-disabled="true"]{cursor:progress;opacity:.7}
+[data-fit-submit][aria-disabled="true"]{cursor:progress}
+
+/* Primary buttons (#273858 fill set inline): matching focus ring and pressed state */
+.btn:focus-visible{outline-color:#273858}
+.btn:active{background:#0F1712 !important;color:#FFFFFF !important}
 
 /* Case rails fade in with scroll; keep them visible while a rail button has keyboard focus */
 [data-c-rail]:focus-within,[data-grail]:focus-within{opacity:1 !important}
