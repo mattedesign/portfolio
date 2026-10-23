@@ -1,8 +1,10 @@
+/* Static highlight colour on the light surfaces. Version A: green #1D6E4A. Version B: navy #273858. */
+:root{--hl:#1D6E4A}
 html,body{margin:0;padding:0;background:#EEF2EF;-webkit-font-smoothing:antialiased}
 *,*::before,*::after{box-sizing:border-box}
-a{color:#2E5BC9;text-underline-offset:3px}
+a{color:var(--hl);text-underline-offset:3px}
 a:hover{color:#0F1712;text-decoration-thickness:2px}
-:focus-visible{outline:3px solid #2E5BC9;outline-offset:3px;border-radius:8px}
+:focus-visible{outline:3px solid var(--hl);outline-offset:3px;border-radius:8px}
 
 /* Analyze fit status line: kept in the accessibility tree while empty so updates are announced */
 .fit-err:empty{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}

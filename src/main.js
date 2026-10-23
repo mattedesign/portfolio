@@ -3,13 +3,15 @@ import { DEFAULT_JD, DEFAULT_RES } from './fit-data.js';
 
 // Motion engine ported from the Claude Design source (design_handoff_portfolio/reference/source).
 // Frame windows and easing are kept verbatim; only the React shell around them was removed.
-const BLUE_L = '#7FB0FF', BLUE = '#2E5BC9', INK = '#0F1712', BG = '#EEF2EF';
+// Foresera coral marks everything that moves (and highlights on dark surfaces); static highlights on the
+// light surfaces use the --hl colour from styles.css.
+const CORAL = '#FF6F61', INK = '#0F1712', BG = '#EEF2EF';
 // The hero stage starts transparent (no dark card on first load) and darkens to ink as it expands
-// over frames 6-46. Objects shift with it from ink-2/accent (on the light page) to the original
-// light/light-accent colors (on the dark stage).
+// over frames 6-46. Objects shift with it from coral (on the light page) to the original light grey
+// (on the dark stage); highlights stay coral.
 const RGB = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
 const mix = (a, b, t) => 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',') + ')';
-const DOT_RGB = RGB('#3D4A42'), LIGHT_RGB = RGB('#E6EDE8'), BLUE_RGB = RGB(BLUE), BLUE_L_RGB = RGB(BLUE_L);
+const CORAL_RGB = RGB(CORAL), LIGHT_RGB = RGB('#E6EDE8');
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -279,7 +281,7 @@ class Portfolio {
     const lbl = idx === 0 ? 'Case 0' + c.n : 'Case 0' + c.n + ' · ' + CASE_LABELS[idx];
     if (c.label.textContent !== lbl) c.label.textContent = lbl;
     c.label.style.color = dark ? '#A9B8AE' : '#56645B';
-    c.segs.forEach((sg, i) => { sg.style.transform = 'scaleX(' + I(f, [(i + 1) * w - 18, (i + 2) * w - 2]) + ')'; sg.style.background = dark ? BLUE_L : BLUE; });
+    c.segs.forEach((sg, i) => { sg.style.transform = 'scaleX(' + I(f, [(i + 1) * w - 18, (i + 2) * w - 2]) + ')'; sg.style.background = CORAL; });
     c.tracks.forEach(t => { t.style.background = dark ? '#2E3F35' : '#C9D4CD'; });
   }
 
@@ -334,7 +336,7 @@ class Portfolio {
     const sz = w => cell * (0.24 + 0.6 * w);
     const still = this.still;
     const kc = clamp((ease(I(f, [6, 46])) - 0.4) / 0.2);
-    const base = mix(DOT_RGB, LIGHT_RGB, kc), hi = mix(BLUE_RGB, BLUE_L_RGB, kc);
+    const base = mix(CORAL_RGB, LIGHT_RGB, kc), hi = CORAL;
     this.hi = hi;
 
     for (const p of this.ps) {
@@ -396,8 +398,8 @@ class Portfolio {
     this.nodes.forEach((n, k) => {
       const reached = u >= k || loop;
       const on = k === active;
-      n.setAttribute('fill', reached ? (on ? BLUE : INK) : BG);
-      n.setAttribute('stroke', on ? BLUE : INK);
+      n.setAttribute('fill', reached ? (on ? CORAL : INK) : BG);
+      n.setAttribute('stroke', on ? CORAL : INK);
       n.setAttribute('r', on ? 19 : 13);
     });
     const num = loop ? '↺' : String(active + 1).padStart(2, '0');
@@ -423,7 +425,7 @@ class Portfolio {
     this.cTiles.forEach((el, k) => this.rise(el, I(f, [498 + k * 12, 530 + k * 12]), 60, 0.08));
     this.cCards.forEach((el, k) => this.rise(el, I(f, [748 + k * 10, 778 + k * 10]), 50, 0.06));
     const gd = I(f, [655, 680]) > 0.5;
-    if (gd !== this._gd) { this._gd = gd; this.cGrades.forEach(el => { el.style.background = gd ? BLUE : '#FFFFFF'; el.style.color = gd ? '#FFFFFF' : INK; el.style.borderColor = gd ? BLUE : '#C9D4CD'; el.style.transform = `scale(${gd ? 1.06 : 1})`; el.style.transition = 'all .35s ease'; }); }
+    if (gd !== this._gd) { this._gd = gd; this.cGrades.forEach(el => { el.style.background = gd ? CORAL : '#FFFFFF'; el.style.color = INK; el.style.borderColor = gd ? CORAL : '#C9D4CD'; el.style.transform = `scale(${gd ? 1.06 : 1})`; el.style.transition = 'all .35s ease'; }); }
 
     const open = ease(I(f, [700, 745])) * (1 - ease(I(f, [838, 872])));
     const W = this.W, H = this.H, k = 1 - open;
@@ -439,16 +441,16 @@ class Portfolio {
     const lbl = idx === 0 ? 'Case 01' : 'Case 01 · ' + CASE_LABELS[idx];
     if (this.cLabel.textContent !== lbl) this.cLabel.textContent = lbl;
     this.cLabel.style.color = dark ? '#A9B8AE' : '#56645B';
-    this.cSegs.forEach((s, i) => { s.style.transform = `scaleX(${I(f, SEG[i])})`; s.style.background = dark ? BLUE_L : BLUE; });
+    this.cSegs.forEach((s, i) => { s.style.transform = `scaleX(${I(f, SEG[i])})`; s.style.background = CORAL; });
     this.cTracks.forEach(t => { t.style.background = dark ? '#2E3F35' : '#C9D4CD'; });
 
     const cq = I(f, [895, 975]);
     this.cellEls.forEach(el => {
       if (el.dataset.pattern !== '1') return;
       const at = this.cellRes[+el.dataset.cell], done = cq >= at;
-      el.style.background = done ? BLUE : 'transparent';
-      el.style.borderColor = done ? BLUE : INK;
-      el.style.boxShadow = done && cq < at + 0.1 ? '0 0 0 6px rgba(46,91,201,0.25)' : 'none';
+      el.style.background = done ? CORAL : 'transparent';
+      el.style.borderColor = done ? CORAL : INK;
+      el.style.boxShadow = done && cq < at + 0.1 ? '0 0 0 6px rgba(255,111,97,0.3)' : 'none';
     });
   }
 }
@@ -511,7 +513,7 @@ class FitForm {
       req.textContent = r.req;
       const pill = document.createElement('span');
       if (r.level === 'strong') {
-        pill.style.cssText = 'flex:none;padding:4px 12px;border-radius:999px;background:#2E5BC9;color:#FFFFFF;font-size:13px;font-weight:500';
+        pill.style.cssText = 'flex:none;padding:4px 12px;border-radius:999px;background:var(--hl);color:#FFFFFF;font-size:13px;font-weight:500';
         pill.textContent = 'Strong evidence';
       } else {
         pill.style.cssText = 'flex:none;padding:4px 12px;border-radius:999px;border:1px solid #0F1712;font-size:13px;font-weight:500';
