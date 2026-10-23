@@ -1,5 +1,5 @@
 /* Static highlight colour on the light surfaces. Version A: green #1D6E4A. Version B: navy #273858. */
-:root{--hl:#1D6E4A}
+:root{--hl:#273858}
 html,body{margin:0;padding:0;background:#EEF2EF;-webkit-font-smoothing:antialiased}
 *,*::before,*::after{box-sizing:border-box}
 a{color:var(--hl);text-underline-offset:3px}
