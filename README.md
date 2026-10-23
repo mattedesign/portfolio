@@ -1,93 +1,52 @@
-# Matthew Sparks - Interactive Portfolio
+# matthewbrown.design
 
-A modern, AI-powered portfolio website showcasing 18+ years of experience bridging Executive Strategy and AI Architecture.
+Portfolio site for Matthew Brown: design strategy and applied AI. One long-scroll page with
+pinned, scroll-scrubbed scenes (hero, method, four case studies), then experience, an
+Analyze fit tool and contact.
 
-## Features
+## Stack
 
-- **Dark/Light Theme Toggle** - Adaptive design that works in both modes
-- **Claude-Powered Role Fit Analyzer** - Paste any job description to get AI-powered fit analysis
-- **Interactive Career Timeline** - Three-era progression from Leadership → Enterprise → AI Architecture
-- **Project Case Studies** - Expandable narratives for key projects (Fr8, Figmant, Triumph, Epicor)
-- **Responsive Design** - Works beautifully on mobile, tablet, and desktop
+- Static page built with Vite: `index.html` holds all markup and copy, `src/main.js` holds the
+  scroll motion engine and the Analyze fit form, `src/styles.css` the base and state styles.
+- `api/fit.js`: Vercel Function for Analyze fit. Calls Claude (`claude-sonnet-5-5`) with the
+  pasted job description and returns `{ verdict, summary, rows, gap }`. Validates length
+  (40 to 12,000 characters) and rate-limits per IP.
+- Deployed on Vercel from `main` (project `portfolio`, team Figmant).
 
-## Quick Start
+## Run
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+npm run dev       # local dev server
+npm run build     # production build to dist/, then the copy check
+npm run preview   # serve dist/
 ```
 
-## Deployment
+`npm run build` fails if the built page contains an em dash (a content rule from the design handoff).
+`/api/fit` only runs on Vercel (or `vercel dev`); locally the page shows the precomputed example.
 
-### Vercel (Recommended)
-1. Push to GitHub
-2. Connect repo to [Vercel](https://vercel.com)
-3. Deploy automatically
+## Environment
 
-### Netlify
-1. Push to GitHub
-2. Connect repo to [Netlify](https://netlify.com)
-3. Build command: `npm run build`
-4. Publish directory: `dist`
+| Variable | Where | Purpose |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | Vercel project env, server side | Live Analyze fit. Without it the endpoint returns 503 and the page keeps the example result. |
 
-### Static Hosting
-The `dist/` folder contains static files that can be hosted anywhere:
-- GitHub Pages
-- AWS S3 + CloudFront
-- Any static file server
+Never prefix it with `VITE_`: Vite inlines `VITE_*` variables into the public JavaScript bundle.
 
-## Claude API Integration
+## Design source
 
-The Role Fit Analyzer supports two modes:
+`design_handoff_portfolio/` is the Claude Design handoff this site was built from. The
+readable source, `reference/source/Portfolio v2.dc.html`, is the source of truth for copy and
+motion; `src/main.js` ports its animation timelines verbatim. Differences from the prototype:
 
-1. **Demo Mode** (default) - Uses intelligent mock analysis based on job description keywords
-2. **Live Mode** - Connect your Anthropic API key for real Claude-powered analysis
+- Pinned chapter layers hide with opacity only, not `visibility: hidden`, so screen readers get
+  every chapter in reading order instead of only the one on screen.
+- Case rails stay visible while a rail button has keyboard focus.
+- The fit-to-viewport rule also applies to method steps (Step 04 overflowed at 924x540).
+- The hero canvas is the direct canvas port rather than a Remotion Player.
 
-To enable live analysis:
-1. Click "Add API Key" in the analyzer
-2. Enter your Anthropic API key (sk-ant-...)
-3. The analyzer will use Claude to provide personalized fit analysis
+## Migration notes (October 2026)
 
-**Note:** The API key is only used client-side and is never stored.
-
-## Customization
-
-### Update Your Information
-Edit the `CANDIDATE_PROFILE` and `CAREER_TIMELINE` objects in `src/App.jsx`:
-
-```javascript
-const CANDIDATE_PROFILE = {
-  name: "Your Name",
-  email: "your@email.com",
-  // ... other details
-};
-```
-
-### Update Projects
-Modify the `PROJECTS` array to showcase your own work.
-
-### Colors & Styling
-- Primary color: Emerald (`#10b981`)
-- Tailwind config: `tailwind.config.js`
-- Custom styles: `src/index.css`
-
-## Tech Stack
-
-- **React 18** - UI framework
-- **Vite** - Build tool
-- **Tailwind CSS** - Styling
-- **Lucide React** - Icons
-- **Anthropic API** - Claude integration for role analysis
-
-## License
-
-MIT - Feel free to use this as a template for your own portfolio!
+Replaced the previous React and Tailwind single-page site. It had no routes besides `/`, so no
+redirects are needed. `/MattBrown.pdf` and `/matt-brown-resume.tex` stay at the same URLs. The
+old site is in git history before the `redesign` merge.

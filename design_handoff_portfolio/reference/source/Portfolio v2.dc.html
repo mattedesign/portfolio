@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Matthew Brown | Design strategy and applied AI</title>
+<meta name="description" content="Matthew Brown leads design strategy from the first discovery workshop to the working system, and builds systems that get smarter with use.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#EEF2EF;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+a{color:#2E5BC9;text-underline-offset:3px}
+a:hover{color:#0F1712;text-decoration-thickness:2px}
+:focus-visible{outline:3px solid #2E5BC9;outline-offset:3px;border-radius:8px}
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0F1712"></rect><rect x="30" y="30" width="40" height="40" rx="10" fill="#7FB0FF"></rect></svg></template>
+<div ref="{{ rootRef }}" style="background:#EEF2EF;color:#0F1712;font-family:'Geist','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:18px;line-height:1.5">
+
+<a href="#main" style="position:absolute;left:-9999px;top:12px;z-index:100;background:#2E5BC9;color:#FFFFFF;padding:12px 18px;border-radius:999px;font-weight:600;text-decoration:none" style-focus="left:12px">Skip to content</a>
+
+<header style="position:fixed;top:12px;left:0;right:0;z-index:50;pointer-events:none">
+  <div style="max-width:1440px;margin:0 auto;padding:0 4%">
+    <div style="pointer-events:auto;height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 6px 0 20px;border-radius:999px;background:rgba(238,242,239,0.97);border:1px solid rgba(15,23,18,0.08);box-shadow:0 8px 30px rgba(15,23,18,0.08)">
+      <a href="#main" style="font-weight:600;font-size:16px;letter-spacing:-0.01em;text-decoration:none;color:#0F1712;white-space:nowrap">Matthew Brown</a>
+      <nav aria-label="Primary" style="overflow-x:auto">
+        <ul style="list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:clamp(4px,1.6vw,20px);font-size:15px;white-space:nowrap">
+          <li><a data-nav="method" href="#method" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:999px;color:#0F1712;text-decoration:none;transition:background .25s ease">Method</a></li>
+          <li><a data-nav="work" href="#work" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:999px;color:#0F1712;text-decoration:none;transition:background .25s ease">Work</a></li>
+          <li><a data-nav="experience" href="#experience" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:999px;color:#0F1712;text-decoration:none;transition:background .25s ease">Experience</a></li>
+          <li><a data-nav="fit" href="#fit" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:999px;color:#0F1712;text-decoration:none;transition:background .25s ease">Fit</a></li>
+          <li><a data-nav="contact" href="#contact" style="display:inline-flex;align-items:center;height:44px;padding:0 18px;border-radius:999px;border:1px solid #0F1712;background:transparent;color:#0F1712;text-decoration:none;font-weight:500;transition:background .25s ease,color .25s ease">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section id="thesis" data-scene="hero" aria-labelledby="hero-title" style="position:relative;height:600vh;background:#EEF2EF">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden">
+
+    <div data-hero-copy="1" style="position:absolute;left:6%;right:52%;top:88px;bottom:12%;z-index:1;display:flex;flex-direction:column;justify-content:safe flex-end;align-items:flex-start;gap:clamp(12px,2.6svh,24px);overflow:hidden;transform-origin:left bottom">
+      <p style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#56645B">Design strategy and applied AI</p>
+      <h1 id="hero-title" style="margin:0;font-size:min(clamp(32px,6vw,104px),7.6svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:15ch;text-wrap:balance">I help organizations decide from evidence, not opinion.</h1>
+      <p style="margin:0;font-size:clamp(17px,1.45vw,21px);line-height:1.45;max-width:42ch;color:#3D4A42;text-wrap:pretty">I lead design strategy from the first workshop to the working system, and I build systems that get smarter every time people use them.</p>
+      <a href="#method" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 26px;border-radius:999px;background:#2E5BC9;color:#FFFFFF;font-weight:500;font-size:17px;text-decoration:none" style-hover="background:#0F1712;color:#FFFFFF">See how I work <span aria-hidden="true">↓</span></a>
+    </div>
+
+    <p data-cue="1" aria-hidden="true" style="position:absolute;left:6%;bottom:4%;margin:0;z-index:1;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#56645B">Scroll to watch the system work</p>
+
+    <div data-stage="1" style="position:absolute;inset:0;z-index:2;background:#0F1712;clip-path:inset(96px 4% 5% 50% round 32px)">
+      <canvas data-hero-canvas="1" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+    </div>
+
+    <div data-hero-caps="1" style="position:absolute;left:6%;right:6%;bottom:9%;z-index:3;max-width:560px;pointer-events:none;color:#E6EDE8">
+      <h2 data-cap-label="1" style="margin:0 0 20px;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#7FB0FF;opacity:0">01 / The thesis</h2>
+      <div style="position:relative;min-height:240px">
+        <div data-cap="0" style="position:absolute;top:0;left:0;right:0;opacity:0">
+          <h3 style="margin:0 0 14px;font-size:clamp(30px,3.8vw,58px);line-height:1;letter-spacing:-0.035em;font-weight:600;text-wrap:balance">Information arrives messy.</h3>
+          <p style="margin:0;color:#A9B8AE;max-width:42ch;text-wrap:pretty">Interviews, documents, tickets, spreadsheets and policy, each in its own shape and none of it comparable.</p>
+        </div>
+        <div data-cap="1" style="position:absolute;top:0;left:0;right:0;opacity:0">
+          <h3 style="margin:0 0 14px;font-size:clamp(30px,3.8vw,58px);line-height:1;letter-spacing:-0.035em;font-weight:600;text-wrap:balance">First, give it one shape.</h3>
+          <p style="margin:0;color:#A9B8AE;max-width:42ch;text-wrap:pretty">Everything is normalized into one schema, so a finding from a workshop and a finding from a file can sit side by side.</p>
+        </div>
+        <div data-cap="2" style="position:absolute;top:0;left:0;right:0;opacity:0">
+          <h3 style="margin:0 0 14px;font-size:clamp(30px,3.8vw,58px);line-height:1;letter-spacing:-0.035em;font-weight:600;text-wrap:balance">Then weight it by what matters.</h3>
+          <p style="margin:0;color:#A9B8AE;max-width:42ch;text-wrap:pretty">Not every finding is equal. Each one is weighted by its impact on the decision being made, so the important things rise.</p>
+        </div>
+        <div data-cap="3" style="position:absolute;top:0;left:0;right:0;opacity:0">
+          <h3 style="margin:0 0 14px;font-size:clamp(30px,3.8vw,58px);line-height:1;letter-spacing:-0.035em;font-weight:600;text-wrap:balance">Check it against a source of truth.</h3>
+          <p style="margin:0;color:#A9B8AE;max-width:42ch;text-wrap:pretty">Every claim is traced to evidence. What holds up is confirmed. What does not is flagged for a person to review.</p>
+        </div>
+        <div data-cap="4" style="position:absolute;top:0;left:0;right:0;opacity:0">
+          <h3 style="margin:0 0 14px;font-size:clamp(30px,3.8vw,58px);line-height:1;letter-spacing:-0.035em;font-weight:600;text-wrap:balance">Every correction teaches the system.</h3>
+          <p style="margin:0;color:#A9B8AE;max-width:42ch;text-wrap:pretty">When a person fixes one flagged item, the fix becomes signal and resolves the same pattern everywhere it appears.</p>
+        </div>
+        <div data-cap="5" style="position:absolute;top:0;left:0;right:0;opacity:0">
+          <h3 style="margin:0 0 14px;font-size:clamp(30px,3.8vw,58px);line-height:1;letter-spacing:-0.035em;font-weight:600;text-wrap:balance">More information makes it better, not slower.</h3>
+          <p style="margin:0;color:#A9B8AE;max-width:42ch;text-wrap:pretty">That is the whole idea. Strategy and building are one practice, and the system keeps getting smarter with use.</p>
+        </div>
+      </div>
+      <div aria-hidden="true" data-cap-label="2" style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:20px;max-width:320px;opacity:0">
+        <span style="height:4px;border-radius:4px;background:#2E3F35;overflow:hidden"><span data-hseg="0" style="display:block;height:100%;border-radius:4px;background:#7FB0FF;transform:scaleX(0);transform-origin:left"></span></span>
+        <span style="height:4px;border-radius:4px;background:#2E3F35;overflow:hidden"><span data-hseg="1" style="display:block;height:100%;border-radius:4px;background:#7FB0FF;transform:scaleX(0);transform-origin:left"></span></span>
+        <span style="height:4px;border-radius:4px;background:#2E3F35;overflow:hidden"><span data-hseg="2" style="display:block;height:100%;border-radius:4px;background:#7FB0FF;transform:scaleX(0);transform-origin:left"></span></span>
+        <span style="height:4px;border-radius:4px;background:#2E3F35;overflow:hidden"><span data-hseg="3" style="display:block;height:100%;border-radius:4px;background:#7FB0FF;transform:scaleX(0);transform-origin:left"></span></span>
+        <span style="height:4px;border-radius:4px;background:#2E3F35;overflow:hidden"><span data-hseg="4" style="display:block;height:100%;border-radius:4px;background:#7FB0FF;transform:scaleX(0);transform-origin:left"></span></span>
+        <span style="height:4px;border-radius:4px;background:#2E3F35;overflow:hidden"><span data-hseg="5" style="display:block;height:100%;border-radius:4px;background:#7FB0FF;transform:scaleX(0);transform-origin:left"></span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="method" data-scene="method" aria-labelledby="method-title" style="position:relative;height:620vh;background:#EEF2EF;color:#0F1712">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden">
+    <p style="position:absolute;top:92px;left:6%;margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">02 / How I work</p>
+
+    <div data-m-intro="1" style="position:absolute;inset:0;padding:0 6%;display:flex;flex-direction:column;justify-content:center;gap:24px">
+      <h2 id="method-title" style="margin:0;font-size:min(clamp(40px,6.4vw,112px),11svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:17ch;text-wrap:balance">One practice, from the first question to the system that keeps answering it.</h2>
+      <p style="margin:0;font-size:clamp(18px,1.6vw,22px);max-width:46ch;color:#3D4A42;text-wrap:pretty">Five steps. Each one produces something people can see, argue with and act on. The last step feeds the first.</p>
+    </div>
+
+    <div data-m-body="1" style="position:absolute;left:6%;right:6%;top:132px;bottom:5%;display:flex;flex-direction:row;align-items:stretch;gap:clamp(20px,4vw,64px)">
+      <div style="position:relative;flex:1 1 0;min-width:0;min-height:0;padding-right:clamp(0px,2vw,32px)">
+        <ol style="list-style:none;margin:0;padding:0;position:absolute;inset:0">
+          <li data-mstep="0" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(12px,2.2svh,22px)">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#2E5BC9">Step 01</span>
+            <h3 style="margin:0;font-size:min(clamp(46px,6.4vw,150px),13svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:100%;overflow-wrap:break-word;text-wrap:balance">Discover</h3>
+            <p style="margin:0;font-size:clamp(17px,1.6vw,23px);max-width:34ch;color:#3D4A42;text-wrap:pretty">Interviews and workshops with the people who own the decision, and the people who live with it.</p>
+            <ul aria-label="Artifacts" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px">
+              <li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Stakeholder interviews</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Executive workshops</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Evidence inventory</li>
+            </ul>
+          </li>
+          <li data-mstep="1" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(12px,2.2svh,22px);opacity:0">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#2E5BC9">Step 02</span>
+            <h3 style="margin:0;font-size:min(clamp(46px,6.4vw,150px),13svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:100%;overflow-wrap:break-word;text-wrap:balance">Frame</h3>
+            <p style="margin:0;font-size:clamp(17px,1.6vw,23px);max-width:34ch;color:#3D4A42;text-wrap:pretty">Synthesize what we heard into a problem worth solving and the opportunities around it.</p>
+            <ul aria-label="Artifacts" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px">
+              <li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Problem statement</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Opportunity areas</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Decision criteria</li>
+            </ul>
+          </li>
+          <li data-mstep="2" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(12px,2.2svh,22px);opacity:0">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#2E5BC9">Step 03</span>
+            <h3 style="margin:0;font-size:min(clamp(46px,6.4vw,150px),13svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:100%;overflow-wrap:break-word;text-wrap:balance">Make it visible</h3>
+            <p style="margin:0;font-size:clamp(17px,1.6vw,23px);max-width:34ch;color:#3D4A42;text-wrap:pretty">Put the current and future state where everyone can see it, so the room argues about the same thing.</p>
+            <ul aria-label="Artifacts" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px">
+              <li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Journey maps</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Service blueprints</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Experience vision</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Roadmap</li>
+            </ul>
+          </li>
+          <li data-mstep="3" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(12px,2.2svh,22px);opacity:0">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#2E5BC9">Step 04</span>
+            <h3 style="margin:0;font-size:min(clamp(46px,6.4vw,150px),13svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:100%;overflow-wrap:break-word;text-wrap:balance">Build</h3>
+            <p style="margin:0;font-size:clamp(17px,1.6vw,23px);max-width:34ch;color:#3D4A42;text-wrap:pretty">Align design intent with technology and delivery teams, then ship the thinnest version that proves it.</p>
+            <ul aria-label="Artifacts" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px">
+              <li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Service concept</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Architecture brief</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Working system</li>
+            </ul>
+          </li>
+          <li data-mstep="4" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(12px,2.2svh,22px);opacity:0">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#2E5BC9">Step 05</span>
+            <h3 style="margin:0;font-size:min(clamp(46px,6.4vw,150px),13svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:100%;overflow-wrap:break-word;text-wrap:balance">Learn and compound</h3>
+            <p style="margin:0;font-size:clamp(17px,1.6vw,23px);max-width:34ch;color:#3D4A42;text-wrap:pretty">Validate with evidence. Every correction and outcome feeds back, so the system and the strategy improve with use.</p>
+            <ul aria-label="Artifacts" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px">
+              <li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Validation evidence</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">Human review loop</li><li style="padding:8px 16px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD">The next question</li>
+            </ul>
+          </li>
+        </ol>
+        <div data-mloop="1" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:safe center;gap:20px;opacity:0">
+          <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#2E5BC9">Then it loops</span>
+          <p style="margin:0;font-size:min(clamp(38px,5.4vw,96px),11svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:14ch;text-wrap:balance">Back to Discover, with better evidence than the last pass.</p>
+        </div>
+      </div>
+
+      <div data-ring-wrap="1" aria-hidden="true" style="flex:0 0 auto;align-self:center;width:min(46vw,76svh)">
+        <svg viewBox="-270 -220 540 440" style="display:block;width:100%;height:auto;overflow:visible">
+          <circle cx="0" cy="0" r="150" fill="none" stroke="#C9D4CD" stroke-width="3"></circle>
+          <circle data-ring-arc="1" cx="0" cy="0" r="150" fill="none" stroke="#2E5BC9" stroke-width="5" stroke-linecap="round" stroke-dasharray="942.48" stroke-dashoffset="942.48" transform="rotate(-90)"></circle>
+          <circle data-ring-dot="1" cx="0" cy="-150" r="7" fill="#2E5BC9"></circle>
+          <circle data-node="0" cx="0" cy="-150" r="13" fill="#EEF2EF" stroke="#0F1712" stroke-width="2.5"></circle>
+          <circle data-node="1" cx="142.7" cy="-46.4" r="13" fill="#EEF2EF" stroke="#0F1712" stroke-width="2.5"></circle>
+          <circle data-node="2" cx="88.2" cy="121.4" r="13" fill="#EEF2EF" stroke="#0F1712" stroke-width="2.5"></circle>
+          <circle data-node="3" cx="-88.2" cy="121.4" r="13" fill="#EEF2EF" stroke="#0F1712" stroke-width="2.5"></circle>
+          <circle data-node="4" cx="-142.7" cy="-46.4" r="13" fill="#EEF2EF" stroke="#0F1712" stroke-width="2.5"></circle>
+          <g data-ring-labels="1" style="font-family:'Geist',sans-serif;font-size:17px;font-weight:500" fill="#0F1712">
+            <text x="0" y="-178" text-anchor="middle">Discover</text>
+            <text x="166" y="-40" text-anchor="start">Frame</text>
+            <text x="108" y="150" text-anchor="start"><tspan x="108">Make it</tspan><tspan x="108" dy="20">visible</tspan></text>
+            <text x="-108" y="156" text-anchor="end">Build</text>
+            <text x="-166" y="-50" text-anchor="end"><tspan x="-166">Learn and</tspan><tspan x="-166" dy="20">compound</tspan></text>
+          </g>
+          <text data-ring-num="1" x="0" y="18" text-anchor="middle" style="font-family:'Geist',sans-serif;font-size:72px;font-weight:600;letter-spacing:-3px" fill="#0F1712">01</text>
+          <text data-ring-name="1" x="0" y="52" text-anchor="middle" style="font-family:'Geist Mono',monospace;font-size:15px;letter-spacing:1px" fill="#56645B">DISCOVER</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" aria-labelledby="work-title" style="background:#EEF2EF;color:#0F1712">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(120px,18svh,200px) 6% clamp(48px,8svh,96px);display:flex;flex-direction:column;gap:24px">
+    <p style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">03 / Selected work</p>
+    <h2 id="work-title" style="margin:0;font-size:clamp(44px,8vw,152px);line-height:0.9;letter-spacing:-0.05em;font-weight:600;max-width:12ch;text-wrap:balance">Same method, different rooms.</h2>
+  </div>
+
+  <article data-scene="case" aria-labelledby="case1-title" style="position:relative;height:1100vh">
+    <div style="position:sticky;top:0;height:100svh;overflow:hidden">
+      <span data-c-num="1" aria-hidden="true" style="position:absolute;right:-2%;bottom:-8svh;z-index:0;font-size:62svh;line-height:0.8;letter-spacing:-0.06em;font-weight:600;color:#E0E7E2">01</span>
+      <div data-c-stage="1" style="position:absolute;inset:0;z-index:1;background:#0F1712;visibility:hidden;clip-path:inset(32% 30% 32% 30% round 40px)"></div>
+
+      <div data-c-rail="1" style="position:absolute;top:84px;left:6%;right:6%;z-index:3;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;opacity:0">
+        <p data-c-label="1" style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.04em;color:#56645B">Case 01</p>
+        <ol aria-label="Jump to a part of this case study" style="list-style:none;margin:0;padding:0;display:flex;gap:4px">
+          <sc-for list="{{ chapters }}" as="ch" hint-placeholder-count="6">
+            <li><button type="button" onClick="{{ ch.go }}" aria-label="{{ ch.label }}" style="width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center"><span data-ctrack="1" style="display:block;width:100%;height:4px;border-radius:4px;background:#C9D4CD;overflow:hidden"><span data-cseg="1" style="display:block;height:100%;border-radius:4px;background:#2E5BC9;transform:scaleX(0);transform-origin:left"></span></span></button></li>
+          </sc-for>
+        </ol>
+      </div>
+
+      <div data-clayer="0" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px)">
+        <ul aria-label="About this case" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px">
+          <li style="padding:8px 16px;border-radius:999px;background:#0F1712;color:#EEF2EF">Case 01</li>
+          <li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Public sector</li>
+          <li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Document accessibility</li>
+          <li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Strategy through build</li>
+        </ul>
+        <h3 id="case1-title" style="margin:0;font-size:min(clamp(40px,7vw,136px),12svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:15ch;text-wrap:balance">A city asked for compliance. The real question was exposure.</h3>
+        <p style="margin:0;font-size:clamp(17px,1.5vw,22px);max-width:52ch;color:#3D4A42;text-wrap:pretty">A proof of concept on a major U.S. city's public document library, run end to end: discovery, an executive readout and a working system now live in production with human review.</p>
+      </div>
+
+      <div data-clayer="1" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden">
+        <h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">01 The problem as first stated</h4>
+        <blockquote style="margin:0;padding:0;font-size:min(clamp(34px,5.6vw,104px),10svh);line-height:0.98;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">"Our public documents need to pass an accessibility checker before the deadline."</blockquote>
+        <p data-c-sub="1" style="margin:0;font-size:clamp(17px,1.5vw,22px);max-width:46ch;color:#3D4A42;text-wrap:pretty">A reasonable ask. Most of the market answers it by auto-tagging files until the checker turns green.</p>
+      </div>
+
+      <div data-clayer="2" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden">
+        <h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">02 The real problem, after discovery</h4>
+        <p style="margin:0;font-size:min(clamp(36px,6vw,112px),10.5svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">Passing a checker is not the same as being usable.</p>
+        <p data-c-sub="2" style="margin:0;font-size:clamp(22px,2.6vw,40px);line-height:1.15;letter-spacing:-0.02em;font-weight:500;max-width:28ch;text-wrap:pretty">Leadership was not asking about tags. They were asking about <span style="color:#2E5BC9">legal exposure.</span></p>
+        <p data-c-sub="3" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">The decision the city actually faced was which documents put it at risk, and in what order to fix them.</p>
+      </div>
+
+      <div data-clayer="3" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden">
+        <h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">03 Who was in the room</h4>
+        <p style="margin:0;font-size:min(clamp(36px,6vw,112px),10.5svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">Five groups. One decision.</p>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;max-width:900px">
+          <li data-c-pill="1" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">City leadership</li>
+          <li data-c-pill="1" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Legal counsel</li>
+          <li data-c-pill="1" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Accessibility and compliance</li>
+          <li data-c-pill="1" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">IT and records</li>
+          <li data-c-pill="1" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Department content owners</li>
+        </ul>
+        <p style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">I ran discovery and the live proof of concept, then structured the readout for the people who had to sign off.</p>
+      </div>
+
+      <div data-clayer="4" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden">
+        <h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">04 The artifact that aligned them</h4>
+        <p style="margin:0;font-size:min(clamp(32px,4.8vw,88px),9svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">A five-question decision path for the executive readout.</p>
+        <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px">
+          <li data-c-tile="1" style="background:#FFFFFF;border-radius:24px;padding:clamp(14px,1.6vw,24px);display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 50px rgba(15,23,18,0.08)">
+            <span aria-hidden="true" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9">1</span>
+            <strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em">Liability</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.35;color:#3D4A42">Where are we exposed today?</span>
+          </li>
+          <li data-c-tile="1" style="background:#FFFFFF;border-radius:24px;padding:clamp(14px,1.6vw,24px);display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 50px rgba(15,23,18,0.08)">
+            <span aria-hidden="true" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9">2</span>
+            <strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em">Feasibility</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.35;color:#3D4A42">Can it be fixed in the files we already have?</span>
+          </li>
+          <li data-c-tile="1" style="background:#FFFFFF;border-radius:24px;padding:clamp(14px,1.6vw,24px);display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 50px rgba(15,23,18,0.08)">
+            <span aria-hidden="true" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9">3</span>
+            <strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em">Capability</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.35;color:#3D4A42">What does it take to keep it fixed?</span>
+          </li>
+          <li data-c-tile="1" style="background:#FFFFFF;border-radius:24px;padding:clamp(14px,1.6vw,24px);display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 50px rgba(15,23,18,0.08)">
+            <span aria-hidden="true" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9">4</span>
+            <strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em">Usability</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.35;color:#3D4A42">Can people using assistive technology use it?</span>
+          </li>
+          <li data-c-tile="1" style="background:#FFFFFF;border-radius:24px;padding:clamp(14px,1.6vw,24px);display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 50px rgba(15,23,18,0.08)">
+            <span aria-hidden="true" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9">5</span>
+            <strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em">Scale</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.35;color:#3D4A42">Does it hold across the whole library?</span>
+          </li>
+        </ol>
+      </div>
+
+      <div data-clayer="5" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(18px,3.4svh,36px);opacity:0;visibility:hidden">
+        <p style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">Underneath the path</p>
+        <p style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.98;letter-spacing:-0.045em;font-weight:600;max-width:20ch;text-wrap:balance">Thousands of technical violations become one grade a city manager can act on.</p>
+        <ul aria-label="Letter grades from A to F. D and F are flagged first." style="list-style:none;margin:0;padding:0;display:flex;gap:clamp(8px,1.2vw,16px)">
+          <li style="width:clamp(52px,8vw,128px);aspect-ratio:1;border-radius:clamp(14px,2vw,28px);display:grid;place-items:center;background:#FFFFFF;border:1px solid #C9D4CD;font-weight:600;font-size:clamp(24px,3.6vw,56px)">A</li>
+          <li style="width:clamp(52px,8vw,128px);aspect-ratio:1;border-radius:clamp(14px,2vw,28px);display:grid;place-items:center;background:#FFFFFF;border:1px solid #C9D4CD;font-weight:600;font-size:clamp(24px,3.6vw,56px)">B</li>
+          <li style="width:clamp(52px,8vw,128px);aspect-ratio:1;border-radius:clamp(14px,2vw,28px);display:grid;place-items:center;background:#FFFFFF;border:1px solid #C9D4CD;font-weight:600;font-size:clamp(24px,3.6vw,56px)">C</li>
+          <li data-c-grade="1" style="width:clamp(52px,8vw,128px);aspect-ratio:1;border-radius:clamp(14px,2vw,28px);display:grid;place-items:center;background:#FFFFFF;border:1px solid #C9D4CD;font-weight:600;font-size:clamp(24px,3.6vw,56px)">D</li>
+          <li data-c-grade="1" style="width:clamp(52px,8vw,128px);aspect-ratio:1;border-radius:clamp(14px,2vw,28px);display:grid;place-items:center;background:#FFFFFF;border:1px solid #C9D4CD;font-weight:600;font-size:clamp(24px,3.6vw,56px)">F</li>
+        </ul>
+        <p style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">A risk-scoring model weights every finding by disability impact and public exposure, so the riskiest documents surface first.</p>
+      </div>
+
+      <div data-clayer="6" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden;color:#E6EDE8">
+        <h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#7FB0FF">05 What got built</h4>
+        <p style="margin:0;font-size:min(clamp(32px,5vw,96px),9svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:17ch;text-wrap:balance">A working system, live in production with human review.</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+          <li data-c-card="1" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px">
+            <strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">A remediation engine</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">Repairs reading order, tables, alt text and forms in Word, PowerPoint and PDF, then verifies against PDF/UA.</span>
+          </li>
+          <li data-c-card="1" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px">
+            <strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">A defensible record</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">Fingerprinting removes duplicates first and keeps a tamper-evident chain of custody.</span>
+          </li>
+          <li data-c-card="1" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px">
+            <strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Proof of no harm</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">A regression suite and visual-fidelity gate prove nothing was damaged.</span>
+          </li>
+          <li data-c-card="1" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px">
+            <strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Room to grow</strong>
+            <span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">New document types, rules and domains plug in without a rebuild.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div data-clayer="7" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-wrap:wrap;align-content:safe center;align-items:center;gap:clamp(20px,4svh,48px) clamp(32px,5vw,80px);opacity:0;visibility:hidden">
+        <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:clamp(14px,2.6svh,28px)">
+          <h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">06 What got smarter over time</h4>
+          <p style="margin:0;font-size:min(clamp(32px,4.6vw,88px),9svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:14ch;text-wrap:balance">One correction fixes the pattern, not just the file.</p>
+          <p style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:44ch;color:#3D4A42;text-wrap:pretty">Every reviewer correction becomes signal. The same approach became the foundation of a company now selling to state, local and higher-education buyers.</p>
+        </div>
+        <figure style="flex:1 1 400px;min-width:0;margin:0;max-width:620px">
+          <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(4px,0.6vw,8px)">
+            <sc-for list="{{ cells }}" as="cell" hint-placeholder-count="60">
+              <span data-cell="{{ cell.i }}" data-pattern="{{ cell.p }}" style="aspect-ratio:1;border-radius:28%;background:#D6DFD9;border:2px solid #D6DFD9"></span>
+            </sc-for>
+          </div>
+          <figcaption style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:14px;color:#3D4A42">
+            <span style="display:flex;align-items:center;gap:10px"><span aria-hidden="true" style="width:14px;height:14px;border-radius:4px;border:2px solid #0F1712"></span>The same issue across the library</span>
+            <span style="display:flex;align-items:center;gap:10px"><span aria-hidden="true" style="width:14px;height:14px;border-radius:4px;background:#2E5BC9"></span>Resolved by one human correction</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
+
+  <article data-gcase="2" aria-labelledby="case2-title" style="position:relative;height:700vh">
+    <div style="position:sticky;top:0;height:100svh;overflow:hidden">
+      <span data-gnum="1" aria-hidden="true" style="position:absolute;right:-2%;bottom:-8svh;z-index:0;font-size:62svh;line-height:0.8;letter-spacing:-0.06em;font-weight:600;color:#E0E7E2">02</span>
+      <div data-gstage="1" style="position:absolute;inset:0;z-index:1;background:#0F1712;visibility:hidden;clip-path:inset(32% 30% 32% 30% round 40px)"></div>
+      <div data-grail="1" style="position:absolute;top:84px;left:6%;right:6%;z-index:3;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;opacity:0">
+        <p data-glabel="1" style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.04em;color:#56645B">Case 02</p>
+        <ol aria-label="Jump to a part of case 02" style="list-style:none;margin:0;padding:0;display:flex;gap:4px">
+          <sc-for list="{{ case2Ch }}" as="ch" hint-placeholder-count="6">
+            <li><button type="button" onClick="{{ ch.go }}" aria-label="{{ ch.label }}" style="width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center"><span data-gtrack="1" style="display:block;width:100%;height:4px;border-radius:4px;background:#C9D4CD;overflow:hidden"><span data-gseg="1" style="display:block;height:100%;border-radius:4px;background:#2E5BC9;transform:scaleX(0);transform-origin:left"></span></span></button></li>
+          </sc-for>
+        </ol>
+      </div>
+      <div data-glayer="0" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px)"><ul aria-label="About this case" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px"><li style="padding:8px 16px;border-radius:999px;background:#0F1712;color:#EEF2EF">Case 02</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Security services</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Service design</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Platform strategy</li></ul><h3 id="case2-title" style="margin:0;font-size:min(clamp(40px,7vw,136px),12svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:15ch;text-wrap:balance">A firm asked which tool to buy. It had three different problems.</h3><p style="margin:0;font-size:clamp(17px,1.5vw,22px);max-width:52ch;color:#3D4A42;text-wrap:pretty">Discovery with leadership, a weighted evaluation of the market and a recommendation to own the part of the business that matters most.</p></div>
+      <div data-glayer="1" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">01 The problem as first stated</h4><blockquote style="margin:0;padding:0;font-size:min(clamp(34px,5.6vw,104px),10svh);line-height:0.98;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">"We need a better booking platform."</blockquote><p data-gr="1" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">Every vendor demo looked like the answer. That was the first sign the question was too broad.</p></div>
+      <div data-glayer="2" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">02 The real problem, after discovery</h4><p style="margin:0;font-size:min(clamp(36px,6vw,112px),10.5svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">One word. Three different jobs.</p><ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px"><li data-gr="1" style="background:#FFFFFF;border-radius:24px;padding:clamp(16px,1.8vw,26px);display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 50px rgba(15,23,18,0.08)"><span aria-hidden="true" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9">Problem 1</span><strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em;line-height:1.2">Taking the request from the client</strong></li><li data-gr="2" style="background:#FFFFFF;border-radius:24px;padding:clamp(16px,1.8vw,26px);display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 50px rgba(15,23,18,0.08)"><span aria-hidden="true" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9">Problem 2</span><strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em;line-height:1.2">Matching the right people to the post</strong></li><li data-gr="3" style="background:#FFFFFF;border-radius:24px;padding:clamp(16px,1.8vw,26px);display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 50px rgba(15,23,18,0.08)"><span aria-hidden="true" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9">Problem 3</span><strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em;line-height:1.2">Keeping everyone coordinated once it starts</strong></li></ol><p data-gr="4" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">No single platform was built to do all three well, so every demo solved one and quietly broke another.</p></div>
+      <div data-glayer="3" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">03 Who was in the room</h4><p style="margin:0;font-size:min(clamp(36px,6vw,112px),10.5svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">Leadership first. Then the people doing the work.</p><ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;max-width:900px"><li data-gr="1" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Ownership and leadership</li><li data-gr="2" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Operations</li><li data-gr="3" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Scheduling</li><li data-gr="4" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Finance</li></ul><p data-gr="5" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">I led discovery with leadership and kept the conversation on the decision, not the vendor list.</p></div>
+      <div data-glayer="4" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">04 The artifact that aligned them</h4><p style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:20ch;text-wrap:balance">A weighted gating scorecard across 14 platforms.</p><ul aria-label="Illustrative scorecard. 14 platforms scored and weighted; 11 fail a must-have gate and 3 remain." style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-width:760px"><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 01</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.82" data-gj="0" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 02</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.64" data-gj="1" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 03</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.91" data-gj="2" style="display:block;height:100%;border-radius:8px;background:#2E5BC9;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 04</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.55" data-gj="3" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 05</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.71" data-gj="4" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 06</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.48" data-gj="5" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 07</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.77" data-gj="6" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 08</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.86" data-gj="7" style="display:block;height:100%;border-radius:8px;background:#2E5BC9;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 09</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.6" data-gj="8" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 10</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.42" data-gj="9" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 11</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.69" data-gj="10" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 12</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.88" data-gj="11" style="display:block;height:100%;border-radius:8px;background:#2E5BC9;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 13</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.52" data-gj="12" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li><li data-gon="0.62" data-oncss="opacity:0.32" style="display:flex;align-items:center;gap:12px;transition:opacity .4s ease"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3D4A42;flex:0 0 84px">Platform 14</span><span style="flex:1;height:8px;border-radius:8px;background:#D6DFD9;overflow:hidden;display:block"><span data-gbar="0.74" data-gj="13" style="display:block;height:100%;border-radius:8px;background:#0F1712;transform:scaleX(0);transform-origin:left"></span></span></li></ul><p style="margin:0;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;color:#3D4A42"><span style="display:flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:14px;height:8px;border-radius:8px;background:#2E5BC9"></span>Cleared every must-have gate</span><span style="display:flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:14px;height:8px;border-radius:8px;background:#0F1712;opacity:0.4"></span>Failed a gate, set aside</span><span>Illustrative</span></p></div>
+      <div data-glayer="5" data-gdark="1" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden;color:#E6EDE8"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#7FB0FF">05 What got built</h4><p data-gr="1" style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">Own a thin coordination layer. Keep the tools swappable.</p><div data-gr="2" aria-label="Diagram: three swappable tools sit on top of one coordination layer the firm owns." role="img" style="display:flex;flex-direction:column;gap:10px;max-width:760px"><div style="display:flex;gap:10px"><span style="flex:1 1 0;min-width:0;padding:12px 10px;border-radius:16px;border:1.5px dashed #7FB0FF;text-align:center;font-size:clamp(13px,1.1vw,16px);color:#E6EDE8">Request tool</span><span style="flex:1 1 0;min-width:0;padding:12px 10px;border-radius:16px;border:1.5px dashed #7FB0FF;text-align:center;font-size:clamp(13px,1.1vw,16px);color:#E6EDE8">Scheduling tool</span><span style="flex:1 1 0;min-width:0;padding:12px 10px;border-radius:16px;border:1.5px dashed #7FB0FF;text-align:center;font-size:clamp(13px,1.1vw,16px);color:#E6EDE8">Field tool</span></div><div aria-hidden="true" style="display:flex;justify-content:space-around"><span style="width:2px;height:18px;background:#2E3F35"></span><span style="width:2px;height:18px;background:#2E3F35"></span><span style="width:2px;height:18px;background:#2E3F35"></span></div><div style="padding:16px 20px;border-radius:999px;background:#7FB0FF;color:#0F1712;font-weight:600;text-align:center;font-size:clamp(15px,1.3vw,19px)">Coordination layer, owned by the firm</div></div><ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px"><li data-gr="3" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Architecture brief</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">How the layer connects the tools and where the firm keeps control.</span></li><li data-gr="4" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Phased roadmap</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">What to build first, what to buy and when to revisit each choice.</span></li></ul></div>
+      <div data-glayer="6" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">06 What got smarter over time</h4><p data-gr="1" style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">When a better tool appears, swap it. The layer keeps the history.</p><div data-gr="2" aria-hidden="true" style="display:flex;flex-direction:column;gap:10px;max-width:640px"><div style="display:flex;gap:10px"><span style="flex:1;padding:12px;border-radius:16px;background:#FFFFFF;border:1px solid #C9D4CD;text-align:center;font-size:15px">Request tool</span><span style="flex:1;position:relative;height:46px"><span data-gon="0.45" data-oncss="opacity:0;transform:translateY(-16px)" style="position:absolute;inset:0;display:grid;place-items:center;border-radius:16px;background:#FFFFFF;border:1px solid #C9D4CD;font-size:15px;transition:all .5s ease">Scheduling tool</span><span data-gon="0.45" data-oncss="opacity:1;transform:none" style="position:absolute;inset:0;display:grid;place-items:center;border-radius:16px;background:#2E5BC9;color:#FFFFFF;font-size:15px;opacity:0;transform:translateY(16px);transition:all .5s ease">Better tool</span></span><span style="flex:1;padding:12px;border-radius:16px;background:#FFFFFF;border:1px solid #C9D4CD;text-align:center;font-size:15px">Field tool</span></div><div style="padding:14px 20px;border-radius:999px;background:#0F1712;color:#E6EDE8;text-align:center;font-size:15px">Coordination layer: decisions, exceptions, outcomes</div></div><p data-gr="3" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">Decisions, exceptions and outcomes collect in the layer the firm owns, not inside a vendor. Each phase of the roadmap starts with more evidence than the last.</p></div>
+    </div>
+  </article>
+
+  <article data-gcase="3" aria-labelledby="case3-title" style="position:relative;height:700vh">
+    <div style="position:sticky;top:0;height:100svh;overflow:hidden">
+      <span data-gnum="1" aria-hidden="true" style="position:absolute;right:-2%;bottom:-8svh;z-index:0;font-size:62svh;line-height:0.8;letter-spacing:-0.06em;font-weight:600;color:#E0E7E2">03</span>
+      <div data-gstage="1" style="position:absolute;inset:0;z-index:1;background:#0F1712;visibility:hidden;clip-path:inset(32% 30% 32% 30% round 40px)"></div>
+      <div data-grail="1" style="position:absolute;top:84px;left:6%;right:6%;z-index:3;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;opacity:0">
+        <p data-glabel="1" style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.04em;color:#56645B">Case 03</p>
+        <ol aria-label="Jump to a part of case 03" style="list-style:none;margin:0;padding:0;display:flex;gap:4px">
+          <sc-for list="{{ case3Ch }}" as="ch" hint-placeholder-count="6">
+            <li><button type="button" onClick="{{ ch.go }}" aria-label="{{ ch.label }}" style="width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center"><span data-gtrack="1" style="display:block;width:100%;height:4px;border-radius:4px;background:#C9D4CD;overflow:hidden"><span data-gseg="1" style="display:block;height:100%;border-radius:4px;background:#2E5BC9;transform:scaleX(0);transform-origin:left"></span></span></button></li>
+          </sc-for>
+        </ol>
+      </div>
+      <div data-glayer="0" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px)"><ul aria-label="About this case" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px"><li style="padding:8px 16px;border-radius:999px;background:#0F1712;color:#EEF2EF">Case 03</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Carbon management</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Regulatory strategy</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">AI entry points</li></ul><h3 id="case3-title" style="margin:0;font-size:min(clamp(40px,7vw,136px),12svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:15ch;text-wrap:balance">Leadership wanted a pitch. They needed a map of what they owe.</h3><p style="margin:0;font-size:clamp(17px,1.5vw,22px);max-width:52ch;color:#3D4A42;text-wrap:pretty">For a carbon management operator, public regulatory filings rebuilt into one source-linked register, then four ways to start.</p></div>
+      <div data-glayer="1" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">01 The problem as first stated</h4><blockquote style="margin:0;padding:0;font-size:min(clamp(34px,5.6vw,104px),10svh);line-height:0.98;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">"Where should we start with AI?"</blockquote><p data-gr="1" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">A fair question, and one every vendor was happy to answer with their own product.</p></div>
+      <div data-glayer="2" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">02 The real problem, after discovery</h4><p style="margin:0;font-size:min(clamp(36px,6vw,112px),10.5svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">The obligations were scattered across filings. Nobody could see them in one place.</p><p data-gr="1" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">If you cannot see what you owe, you cannot rank where help matters most. The starting point was not a tool. It was a shared picture.</p></div>
+      <div data-glayer="3" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">03 Who was in the room</h4><p style="margin:0;font-size:min(clamp(36px,6vw,112px),10.5svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">The people who carry the obligations.</p><ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;max-width:900px"><li data-gr="1" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Leadership</li><li data-gr="2" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Regulatory and compliance</li><li data-gr="3" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Operations</li><li data-gr="4" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Technology</li></ul></div>
+      <div data-glayer="4" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">04 The artifact that aligned them</h4><p style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">A source-linked obligation register.</p><div role="table" aria-label="Illustrative obligation register" style="display:flex;flex-direction:column;background:#FFFFFF;border-radius:24px;padding:8px clamp(12px,1.6vw,24px);box-shadow:0 20px 50px rgba(15,23,18,0.08);max-width:880px"><div role="row" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;padding:12px 0;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#56645B;text-transform:uppercase;letter-spacing:0.04em"><span role="columnheader">Obligation</span><span role="columnheader">Cadence</span><span role="columnheader">Source</span></div><div role="row" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:center;padding:12px 0;border-top:1px solid #E0E7E2;font-size:clamp(14px,1.2vw,17px)"><span role="cell" style="font-weight:500">Monitoring plan update</span><span role="cell" style="color:#3D4A42">Annual</span><span role="cell"><span data-gon="0.30" data-oncss="background:#2E5BC9;color:#FFFFFF;border-color:#2E5BC9" style="display:inline-block;padding:4px 12px;border-radius:999px;border:1px solid #C9D4CD;font-size:13px;color:#3D4A42;transition:all .35s ease">Linked to filing</span></span></div><div role="row" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:center;padding:12px 0;border-top:1px solid #E0E7E2;font-size:clamp(14px,1.2vw,17px)"><span role="cell" style="font-weight:500">Emissions reporting</span><span role="cell" style="color:#3D4A42">Annual</span><span role="cell"><span data-gon="0.39" data-oncss="background:#2E5BC9;color:#FFFFFF;border-color:#2E5BC9" style="display:inline-block;padding:4px 12px;border-radius:999px;border:1px solid #C9D4CD;font-size:13px;color:#3D4A42;transition:all .35s ease">Linked to filing</span></span></div><div role="row" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:center;padding:12px 0;border-top:1px solid #E0E7E2;font-size:clamp(14px,1.2vw,17px)"><span role="cell" style="font-weight:500">Well integrity testing</span><span role="cell" style="color:#3D4A42">Periodic</span><span role="cell"><span data-gon="0.48" data-oncss="background:#2E5BC9;color:#FFFFFF;border-color:#2E5BC9" style="display:inline-block;padding:4px 12px;border-radius:999px;border:1px solid #C9D4CD;font-size:13px;color:#3D4A42;transition:all .35s ease">Linked to filing</span></span></div><div role="row" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:center;padding:12px 0;border-top:1px solid #E0E7E2;font-size:clamp(14px,1.2vw,17px)"><span role="cell" style="font-weight:500">Financial assurance</span><span role="cell" style="color:#3D4A42">Ongoing</span><span role="cell"><span data-gon="0.57" data-oncss="background:#2E5BC9;color:#FFFFFF;border-color:#2E5BC9" style="display:inline-block;padding:4px 12px;border-radius:999px;border:1px solid #C9D4CD;font-size:13px;color:#3D4A42;transition:all .35s ease">Linked to filing</span></span></div><div role="row" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:center;padding:12px 0;border-top:1px solid #E0E7E2;font-size:clamp(14px,1.2vw,17px)"><span role="cell" style="font-weight:500">Public notice</span><span role="cell" style="color:#3D4A42">Event-driven</span><span role="cell"><span data-gon="0.66" data-oncss="background:#2E5BC9;color:#FFFFFF;border-color:#2E5BC9" style="display:inline-block;padding:4px 12px;border-radius:999px;border:1px solid #C9D4CD;font-size:13px;color:#3D4A42;transition:all .35s ease">Linked to filing</span></span></div></div><p style="margin:0;font-size:14px;color:#3D4A42">Illustrative rows. Every obligation traces back to the public filing it came from.</p></div>
+      <div data-glayer="5" data-gdark="1" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden;color:#E6EDE8"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#7FB0FF">05 What got built</h4><p data-gr="1" style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">Four entry points, so leadership could choose by pain, not by pitch.</p><ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px"><li data-gr="2" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Smallest first step</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">Low effort, low risk, useful on day one.</span></li><li data-gr="3" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Highest exposure</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">Start where a miss costs the most.</span></li><li data-gr="4" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Clearest proof</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">Pick the result that is easiest to verify.</span></li><li data-gr="5" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Largest long-term value</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">Build the foundation the rest depends on.</span></li></ul></div>
+      <div data-glayer="6" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">06 What got smarter over time</h4><p data-gr="1" style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">Every new filing lands in the same register, linked to its source.</p><p data-gr="2" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">One schema means each new obligation is comparable to the last. The register gets more complete with every filing, and every claim can be checked.</p></div>
+    </div>
+  </article>
+
+  <article data-gcase="4" aria-labelledby="case4-title" style="position:relative;height:700vh">
+    <div style="position:sticky;top:0;height:100svh;overflow:hidden">
+      <span data-gnum="1" aria-hidden="true" style="position:absolute;right:-2%;bottom:-8svh;z-index:0;font-size:62svh;line-height:0.8;letter-spacing:-0.06em;font-weight:600;color:#E0E7E2">04</span>
+      <div data-gstage="1" style="position:absolute;inset:0;z-index:1;background:#0F1712;visibility:hidden;clip-path:inset(32% 30% 32% 30% round 40px)"></div>
+      <div data-grail="1" style="position:absolute;top:84px;left:6%;right:6%;z-index:3;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;opacity:0">
+        <p data-glabel="1" style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.04em;color:#56645B">Case 04</p>
+        <ol aria-label="Jump to a part of case 04" style="list-style:none;margin:0;padding:0;display:flex;gap:4px">
+          <sc-for list="{{ case4Ch }}" as="ch" hint-placeholder-count="6">
+            <li><button type="button" onClick="{{ ch.go }}" aria-label="{{ ch.label }}" style="width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center"><span data-gtrack="1" style="display:block;width:100%;height:4px;border-radius:4px;background:#C9D4CD;overflow:hidden"><span data-gseg="1" style="display:block;height:100%;border-radius:4px;background:#2E5BC9;transform:scaleX(0);transform-origin:left"></span></span></button></li>
+          </sc-for>
+        </ol>
+      </div>
+      <div data-glayer="0" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px)"><ul aria-label="About this case" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:15px"><li style="padding:8px 16px;border-radius:999px;background:#0F1712;color:#EEF2EF">Case 04</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Enterprise ERP</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Modernization</li><li style="padding:8px 16px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF">Design systems</li></ul><h3 id="case4-title" style="margin:0;font-size:min(clamp(40px,7vw,136px),12svh);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:15ch;text-wrap:balance">Modernize the product without breaking the business.</h3><p style="margin:0;font-size:clamp(17px,1.5vw,22px);max-width:52ch;color:#3D4A42;text-wrap:pretty">Modernization strategy for large ERP modules, including point of sale, purchasing and inventory, used by Fortune 100 retail and e-commerce customers.</p></div>
+      <div data-glayer="1" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">01 The problem as first stated</h4><blockquote style="margin:0;padding:0;font-size:min(clamp(34px,5.6vw,104px),10svh);line-height:0.98;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">"Make the product feel modern."</blockquote><p data-gr="1" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">The surface was dated. That part was true, and it was the easy part.</p></div>
+      <div data-glayer="2" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">02 The real problem, after discovery</h4><p style="margin:0;font-size:min(clamp(36px,6vw,112px),10.5svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">The risk was never the look. It was the business logic.</p><p data-gr="1" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">Customers ran their operations on rules built up over years. Any redesign that broke one of them would cost more than it saved.</p></div>
+      <div data-glayer="3" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">03 Who was in the room</h4><p style="margin:0;font-size:min(clamp(36px,6vw,112px),10.5svh);line-height:0.95;letter-spacing:-0.045em;font-weight:600;max-width:16ch;text-wrap:balance">Product, engineering and the customers who depend on it.</p><ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;max-width:900px"><li data-gr="1" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Product management</li><li data-gr="2" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Engineering</li><li data-gr="3" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Enterprise retail customers</li><li data-gr="4" style="padding:14px 24px;border-radius:999px;background:#FFFFFF;border:1px solid #C9D4CD;box-shadow:0 10px 30px rgba(15,23,18,0.07);font-size:clamp(16px,1.5vw,21px);font-weight:500">Design</li></ul></div>
+      <div data-glayer="4" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">04 The artifact that aligned them</h4><p style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">A module-by-module map of what could change and what could not.</p><ul aria-label="Illustrative module map. Each module lists business rules confirmed as preserved." style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px"><li data-gr="1" style="background:#FFFFFF;border-radius:24px;padding:clamp(16px,1.8vw,24px);display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 50px rgba(15,23,18,0.08)"><strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em">Point of sale</strong><ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px"><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.42" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Pricing rules</li><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.46" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Returns and exceptions</li><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.50" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Tender handling</li></ul></li><li data-gr="2" style="background:#FFFFFF;border-radius:24px;padding:clamp(16px,1.8vw,24px);display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 50px rgba(15,23,18,0.08)"><strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em">Purchasing</strong><ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px"><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.52" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Approval paths</li><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.56" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Vendor terms</li><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.60" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Receiving</li></ul></li><li data-gr="3" style="background:#FFFFFF;border-radius:24px;padding:clamp(16px,1.8vw,24px);display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 50px rgba(15,23,18,0.08)"><strong style="font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-0.02em">Inventory</strong><ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px"><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.62" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Costing methods</li><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.66" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Transfers</li><li style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,1.1vw,16px);color:#3D4A42"><span data-gon="0.70" data-oncss="background:#2E5BC9;border-color:#2E5BC9" aria-hidden="true" style="width:14px;height:14px;border-radius:5px;border:2px solid #0F1712;flex:none;transition:all .3s ease"></span>Counts and adjustments</li></ul></li></ul><p style="margin:0;font-size:14px;color:#3D4A42">Illustrative. Checked rules are confirmed preserved before a screen changes.</p></div>
+      <div data-glayer="5" data-gdark="1" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden;color:#E6EDE8"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#7FB0FF">05 What got built</h4><p data-gr="1" style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:18ch;text-wrap:balance">A design system for data-dense screens, and a new way to hand off.</p><ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px"><li data-gr="2" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Design system</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">Components and patterns built for dense enterprise data, shared across modules.</span></li><li data-gr="3" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Interactive style guides</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">Living references engineering builds from directly.</span></li><li data-gr="4" style="background:#1A261F;border:1px solid #2E3F35;border-radius:24px;padding:clamp(14px,1.8vw,28px);display:flex;flex-direction:column;gap:8px"><strong style="font-size:clamp(17px,1.5vw,22px);font-weight:600;letter-spacing:-0.01em">Redesigned handoff</strong><span style="font-size:clamp(14px,1.1vw,16px);line-height:1.4;color:#A9B8AE">A simpler path from design to engineering, with fewer places for intent to get lost.</span></li></ul></div>
+      <div data-glayer="6" style="position:absolute;left:6%;right:6%;top:140px;bottom:6%;z-index:2;display:flex;flex-direction:column;justify-content:safe center;gap:clamp(16px,3svh,32px);opacity:0;visibility:hidden"><h4 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">06 What got smarter over time</h4><p data-gr="1" style="margin:0;font-size:min(clamp(30px,4.6vw,84px),8.6svh);line-height:0.96;letter-spacing:-0.045em;font-weight:600;max-width:14ch;text-wrap:balance">Each module made the next one easier.</p><div data-gr="2" style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 24px"><span style="font-size:min(clamp(72px,12vw,220px),20svh);line-height:0.85;letter-spacing:-0.06em;font-weight:600;color:#2E5BC9">+40%</span><span style="font-size:clamp(16px,1.4vw,20px);max-width:22ch;color:#3D4A42;padding-bottom:8px">increase in feature release cadence after the handoff redesign.</span></div><p data-gr="3" style="margin:0;font-size:clamp(16px,1.4vw,20px);max-width:52ch;color:#3D4A42;text-wrap:pretty">Patterns proven in one module carried into the next, so every release started from more shared ground.</p></div>
+    </div>
+  </article>
+</section>
+
+
+<section id="experience" aria-labelledby="exp-title" style="background:#EEF2EF;color:#0F1712;padding:clamp(120px,18svh,200px) 6% clamp(80px,12svh,140px)">
+  <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,6svh,72px)">
+    <div data-reveal="1" style="display:flex;flex-direction:column;gap:24px">
+      <p style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">04 / Experience</p>
+      <h2 id="exp-title" style="margin:0;font-size:clamp(44px,8vw,152px);line-height:0.9;letter-spacing:-0.05em;font-weight:600;max-width:13ch;text-wrap:balance">Eighteen years. One practice.</h2>
+      <p style="margin:0;font-size:clamp(17px,1.5vw,22px);max-width:52ch;color:#3D4A42;text-wrap:pretty">Design leadership in regulated industries, enterprise software and public sector, then a company built on the same method.</p>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">2025 – Present</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">Co-Founder and Principal Product Architect</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">Foresera LLC</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">AI document and website accessibility for state, local and higher-education agencies, plus applied AI strategy engagements. Took the company through government procurement, including TX-RAMP certification.</p>
+        </div>
+      </li>
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">Dec 2024 – Apr 2026</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">User Experience Design Lead</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">Triumph Financial (TriumphPay)</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">FinTech payments and cash flow management. Made credit decisions explainable by visualizing the rationale behind them, and drove product strategy for risk assessment and transaction visibility.</p>
+        </div>
+      </li>
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">Oct 2022 – Jan 2025</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">Senior Principal UX Designer</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">Epicor Software</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">Led modernization strategy for large ERP modules for Fortune 100 retail customers. Architected a design system for data-dense environments. Feature release cadence up 40%.</p>
+        </div>
+      </li>
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">Jul 2020 – Dec 2022</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">Lead UX Designer / Senior UX Designer</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">First American</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">Title insurance and regulatory compliance. Streamlined internal tools in a heavily regulated environment and built extensible interactive style guides.</p>
+        </div>
+      </li>
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">Feb 2020 – Apr 2020</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">User Experience Consultant</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">Rosetree Solutions</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">Established a global UX practice and user-centered methodology across multiple complex SaaS applications.</p>
+        </div>
+      </li>
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">Apr 2018 – Feb 2020</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">Director of User Experience</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">American First Finance</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">Grew customer portal utilization from 2% to 65% by overhauling the experience. Led the transition from waterfall to Agile. Web services saved close to $1.2M in hardware and vendor costs.</p>
+        </div>
+      </li>
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">Feb 2017 – Apr 2018</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">User Experience Manager</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">ACE Cash Express</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">Turned e-commerce channels into an agile shop, standardized release decisions and applied behavioral insights to contextual experiences.</p>
+        </div>
+      </li>
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">Dec 2014 – Jan 2017</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">Director and Founder</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">Aloha Travel Ltd.</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">Travel tech, acquired by FareHarbor. Delivered an 800% sales increase across the client portfolio and a $20.1M revenue channel through three mobile apps.</p>
+        </div>
+      </li>
+      <li data-reveal="1" style="display:flex;flex-wrap:wrap;gap:8px clamp(24px,4vw,64px);padding:clamp(22px,3svh,32px) 0;border-top:1px solid #C9D4CD">
+        <p style="margin:0;flex:0 0 200px;font-family:'Geist Mono',ui-monospace,monospace;font-size:14px;color:#56645B;padding-top:6px">Jan 2012 – Dec 2014</p>
+        <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0;font-size:clamp(22px,2.2vw,32px);line-height:1.1;letter-spacing:-0.025em;font-weight:600">Group Creative Director</h3>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:500;color:#2E5BC9">WorldVentures Holdings</p>
+          <p style="margin:4px 0 0;font-size:clamp(15px,1.2vw,18px);max-width:64ch;color:#3D4A42;text-wrap:pretty">Led B2B and B2C digital products for a $600M global company and grew the team from 6 to 40+.</p>
+        </div>
+      </li>
+    </ol>
+    <ul aria-label="Patents and credentials" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
+      <li data-reveal="1" style="background:#0F1712;color:#E6EDE8;border-radius:28px;padding:clamp(22px,2.4vw,36px);display:flex;flex-direction:column;gap:10px"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#7FB0FF;text-transform:uppercase;letter-spacing:0.06em">Patents</span><strong style="font-size:clamp(20px,1.8vw,26px);font-weight:600;letter-spacing:-0.02em;line-height:1.2">Ten provisional patents filed as sole inventor, one pending.</strong></li>
+      <li data-reveal="1" style="background:#FFFFFF;border-radius:28px;padding:clamp(22px,2.4vw,36px);display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 50px rgba(15,23,18,0.06)"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9;text-transform:uppercase;letter-spacing:0.06em">Certification</span><strong style="font-size:clamp(20px,1.8vw,26px);font-weight:600;letter-spacing:-0.02em;line-height:1.2">TX-RAMP certified provider. WCAG 2.2 AA practitioner.</strong></li>
+      <li data-reveal="1" style="background:#FFFFFF;border-radius:28px;padding:clamp(22px,2.4vw,36px);display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 50px rgba(15,23,18,0.06)"><span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#2E5BC9;text-transform:uppercase;letter-spacing:0.06em">Community</span><strong style="font-size:clamp(20px,1.8vw,26px);font-weight:600;letter-spacing:-0.02em;line-height:1.2">Organizer, UP Golf Annual Charity Scramble benefiting First Tee Greater Dallas.</strong></li>
+    </ul>
+  </div>
+</section>
+
+<section id="fit" aria-labelledby="fit-title" style="background:#E2E9E4;color:#0F1712;padding:clamp(120px,18svh,200px) 6%">
+  <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(32px,5svh,56px)">
+    <div data-reveal="1" style="display:flex;flex-direction:column;gap:24px">
+      <p style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">05 / Analyze fit</p>
+      <h2 id="fit-title" style="margin:0;font-size:clamp(44px,8vw,152px);line-height:0.9;letter-spacing:-0.05em;font-weight:600;max-width:12ch;text-wrap:balance">Paste a role. See the evidence.</h2>
+      <p style="margin:0;font-size:clamp(17px,1.5vw,22px);max-width:54ch;color:#3D4A42;text-wrap:pretty">The analysis maps each requirement to specific work on this site, and names the gaps worth probing. The example is a design strategy studio leadership role.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+      <form onSubmit="{{ analyze }}" data-reveal="1" style="flex:1 1 400px;min-width:0;background:#FFFFFF;border-radius:28px;padding:clamp(18px,2vw,28px);display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 50px rgba(15,23,18,0.06)">
+        <label for="jd" style="font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#3D4A42">Job description</label>
+        <textarea id="jd" value="{{ jd }}" onChange="{{ onJd }}" rows="13" style="width:100%;border:1px solid #C9D4CD;border-radius:18px;padding:16px;font-family:inherit;font-size:16px;line-height:1.5;resize:vertical;background:#F6F8F6;color:#0F1712"></textarea>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <button type="submit" disabled="{{ loading }}" style="min-height:52px;padding:0 26px;border-radius:999px;border:0;background:#2E5BC9;color:#FFFFFF;font-family:inherit;font-size:17px;font-weight:500;cursor:pointer" style-hover="background:#0F1712">{{ btnLabel }}</button>
+          <button type="button" onClick="{{ reset }}" style="min-height:52px;padding:0 22px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF;color:#0F1712;font-family:inherit;font-size:17px;font-weight:500;cursor:pointer" style-hover="border-color:#0F1712">Use the example</button>
+        </div>
+        <sc-if value="{{ hasErr }}" hint-placeholder-val="{{ false }}"><p role="status" style="margin:0;font-size:15px;color:#3D4A42">{{ err }}</p></sc-if>
+      </form>
+      <div aria-live="polite" aria-busy="{{ loading }}" style="flex:1.3 1 480px;min-width:0;display:flex;flex-direction:column;gap:12px">
+        <div data-reveal="1" style="background:#0F1712;color:#E6EDE8;border-radius:28px;padding:clamp(22px,2.4vw,36px);display:flex;flex-direction:column;gap:12px">
+          <h3 style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#7FB0FF">{{ resultLabel }}</h3>
+          <p style="margin:0;font-size:clamp(28px,3.2vw,52px);line-height:1;letter-spacing:-0.04em;font-weight:600">{{ verdict }}</p>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);color:#A9B8AE;max-width:60ch;text-wrap:pretty">{{ summary }}</p>
+        </div>
+        <ul aria-label="Requirements and evidence" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ fitRows }}" as="r" hint-placeholder-count="6">
+            <li style="background:#FFFFFF;border-radius:20px;padding:16px 20px;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline">
+              <strong style="flex:1 1 260px;min-width:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">{{ r.req }}</strong>
+              <sc-if value="{{ r.strong }}" hint-placeholder-val="{{ true }}"><span style="flex:none;padding:4px 12px;border-radius:999px;background:#2E5BC9;color:#FFFFFF;font-size:13px;font-weight:500">Strong evidence</span></sc-if>
+              <sc-if value="{{ r.partial }}" hint-placeholder-val="{{ false }}"><span style="flex:none;padding:4px 12px;border-radius:999px;border:1px solid #0F1712;font-size:13px;font-weight:500">Partial</span></sc-if>
+              <span style="flex:1 1 100%;font-size:15px;line-height:1.45;color:#3D4A42">{{ r.ev }}</span>
+            </li>
+          </sc-for>
+        </ul>
+        <p style="margin:0;padding:16px 20px;border-radius:20px;border:1px dashed #56645B;font-size:15px;color:#0F1712"><strong style="font-weight:600">Worth probing: </strong>{{ gap }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" aria-labelledby="contact-title" style="background:#EEF2EF;color:#0F1712;padding:clamp(120px,18svh,200px) 6% clamp(64px,10svh,120px)">
+  <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;align-items:flex-start;gap:32px">
+    <p style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#2E5BC9">Contact</p>
+    <h2 id="contact-title" style="margin:0;font-size:clamp(44px,7.4vw,140px);line-height:0.92;letter-spacing:-0.05em;font-weight:600;max-width:14ch;text-wrap:balance">Have a decision that deserves better evidence?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <a href="mailto:sparkingmatt@gmail.com" style="display:inline-flex;align-items:center;min-height:56px;padding:0 28px;border-radius:999px;background:#2E5BC9;color:#FFFFFF;font-weight:500;font-size:18px;text-decoration:none" style-hover="background:#0F1712;color:#FFFFFF">sparkingmatt@gmail.com</a>
+      <a href="https://linkedin.com/in/matte-design" style="display:inline-flex;align-items:center;min-height:56px;padding:0 28px;border-radius:999px;border:1px solid #C9D4CD;background:#FFFFFF;color:#0F1712;font-weight:500;font-size:18px;text-decoration:none" style-hover="border-color:#0F1712;color:#0F1712">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ambientMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;heroScroll&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:600,&quot;min&quot;:400,&quot;max&quot;:900,&quot;step&quot;:20,&quot;unit&quot;:&quot;vh&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const LIGHT = '#E6EDE8', BLUE_L = '#7FB0FF', BLUE = '#2E5BC9', INK = '#0F1712', BG = '#EEF2EF';
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+// Remotion-style interpolate(frame, [in, out]) clamped to 0..1
+const I = (f, r) => clamp((f - r[0]) / (r[1] - r[0]));
+const HERO_F = 400, STAGES = [30, 90, 150, 210, 270, 330];
+const PATTERN = [3, 8, 14, 17, 22, 27, 31, 38, 41, 46, 50, 57];
+const CASE_LABELS = ['Case 01', '01 The problem as stated', '02 The real problem', '03 Who was in the room', '04 The artifact that aligned them', '05 What got built', '06 What got smarter'];
+const CASE_AT = [0, 95, 220, 355, 485, 705, 865];
+const CASE_GO = [110, 240, 372, 505, 760, 890];
+const SEG = [[95, 225], [220, 360], [355, 490], [485, 720], [705, 855], [865, 985]];
+const DEFAULT_JD = "Director, Design Strategy\n\nA new AI innovation lab is building a design strategy studio. You will lead design strategy engagements from problem framing to strategic recommendation.\n\n- Run discovery interviews and workshops with senior stakeholders\n- Synthesize research into problem statements and opportunity areas\n- Produce experience visions, service concepts, journey maps, service blueprints and roadmaps\n- Align design intent with technology and delivery teams\n- Validate strategy with evidence\n- Help shape design-led transformation alongside agentic AI and infrastructure modernization\n\nThis is a founding role.";
+const DEFAULT_RES = {
+  verdict: 'Strong fit across every core requirement.',
+  summary: 'The role asks for one person who can run strategy with senior stakeholders and make it real with technology teams. The work here does both, often on the same engagement.',
+  rows: [
+    { req: 'Lead engagements from problem framing to recommendation', ev: 'Ran a municipal proof of concept end to end and structured the executive readout as a five-question decision path.', level: 'strong' },
+    { req: 'Discovery interviews and workshops with senior stakeholders', ev: 'Led discovery with leadership at a security services firm and readouts for city leadership and counsel.', level: 'strong' },
+    { req: 'Synthesis into problem statements and opportunity areas', ev: 'Separated three distinct booking problems; framed four entry points for a carbon management operator.', level: 'strong' },
+    { req: 'Experience visions, journey maps, blueprints and roadmaps', ev: 'Delivered an architecture brief and phased roadmap; built a source-linked obligation register as the shared picture.', level: 'strong' },
+    { req: 'Align design intent with technology and delivery', ev: 'Architects and builds the systems; redesigned an enterprise design-to-engineering handoff, raising release cadence 40%.', level: 'strong' },
+    { req: 'Validate strategy with evidence', ev: 'Risk-scoring model weighted by impact; results verified against PDF/UA with regression and visual-fidelity gates.', level: 'strong' },
+    { req: 'Agentic AI and infrastructure modernization', ev: 'Human-in-the-loop AI systems in production; ten provisional patents filed as sole inventor; led ERP modernization strategy.', level: 'strong' },
+    { req: 'Founding role', ev: 'Co-founded an AI accessibility company; established a global UX practice; grew a creative team from 6 to 40+.', level: 'partial' }
+  ],
+  gap: 'Has built practices and a company, but has not yet led a studio inside a larger lab. Ask how he would set operating rhythm with lab leadership.'
+};
+const PROFILE = "Matthew Brown. 18+ years. Design strategy and applied AI leader. Co-Founder and Principal Product Architect, Foresera LLC (2025 to present): AI document accessibility for public sector; reframed category from compliance to usability; risk-scoring model for executives; municipal proof of concept with five-question decision path; government procurement incl. TX-RAMP; built remediation engine verified against PDF/UA; human-in-the-loop corrections; ten provisional patents as sole inventor, one pending. Same method in security services (discovery with leadership, three booking problems, 14-platform weighted gating scorecard, coordination layer, architecture brief and phased roadmap), carbon management (source-linked obligation register, four entry points), education publisher (AI store management app), AI-to-CMS publishing layer with human approval. UX Design Lead, Triumph Financial (2024 to 2026): explainable credit decisions, risk tooling strategy. Senior Principal UX Designer, Epicor (2022 to 2025): ERP modernization for Fortune 100 retail, design system, handoff redesign +40% release cadence. Lead UX, First American (2020 to 2022). UX Consultant, Rosetree (2020): global UX practice. Director of UX, American First Finance (2018 to 2020): portal utilization 2% to 65%, waterfall to Agile. UX Manager, ACE Cash Express. Founder, Aloha Travel (acquired by FareHarbor). Group Creative Director, WorldVentures: team 6 to 40+. Skills: discovery, workshops, synthesis, journey maps, service blueprints, roadmaps, design systems, WCAG 2.2 AA, Anthropic API, MCP, agentic workflows, RAG, React, TypeScript, Python.";
+
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  cells = Array.from({ length: 60 }, (_, i) => ({ i, p: PATTERN.includes(i) ? '1' : '0' }));
+  chapters = CASE_LABELS.slice(1).map((label, k) => ({ label: 'Go to ' + label, go: () => this.goCase(CASE_GO[k]) }));
+  gch = [2, 3, 4].map(n => CASE_LABELS.slice(1).map((label, i) => ({ label: 'Go to case 0' + n + ', ' + label.slice(3), go: () => this.goG(n - 2, i) })));
+  state = { jd: DEFAULT_JD, res: DEFAULT_RES, loading: false, err: '', live: false };
+
+  renderVals() {
+    const { res, loading, err, jd, live } = this.state;
+    return {
+      rootRef: this.rootRef, cells: this.cells, chapters: this.chapters,
+      case2Ch: this.gch[0], case3Ch: this.gch[1], case4Ch: this.gch[2],
+      jd, onJd: e => this.setState({ jd: e.target.value }),
+      analyze: e => { e.preventDefault(); this.analyze(); },
+      reset: () => this.setState({ jd: DEFAULT_JD, res: DEFAULT_RES, err: '', live: false }),
+      loading, btnLabel: loading ? 'Analyzing…' : 'Analyze fit',
+      hasErr: !!err, err,
+      resultLabel: live ? 'Fit summary' : 'Fit summary, example role',
+      verdict: res.verdict, summary: res.summary, gap: res.gap,
+      fitRows: (res.rows || []).map(r => ({ req: r.req, ev: r.ev, strong: r.level === 'strong', partial: r.level !== 'strong' }))
+    };
+  }
+
+  async analyze() {
+    const jd = (this.state.jd || '').trim();
+    if (jd.length < 40) { this.setState({ err: 'Paste a fuller job description to analyze.' }); return; }
+    if (!(window.claude && window.claude.complete)) { this.setState({ err: 'Live analysis is not available in this preview, so the example is shown.' }); return; }
+    this.setState({ loading: true, err: '' });
+    const prompt = 'You assess candidate fit honestly. Candidate profile:\n' + PROFILE + '\n\nJob description:\n' + jd + '\n\nReturn ONLY JSON: {"verdict": one short sentence, "summary": two sentences, "rows": [6 to 8 items {"req": key requirement from the job, "ev": specific evidence from the profile in under 25 words, "level": "strong" or "partial"}], "gap": one honest gap worth probing}. Plain language. No em dashes. Do not name any company from the job description.';
+    try {
+      const out = await window.claude.complete(prompt);
+      const json = JSON.parse(out.slice(out.indexOf('{'), out.lastIndexOf('}') + 1));
+      this.setState({ res: json, loading: false, live: true });
+    } catch (e) { this.setState({ loading: false, err: 'The analysis could not be completed. Try again.' }); }
+  }
+
+  goG(ci, i) {
+    const c = this.gcases && this.gcases[ci]; if (!c) return;
+    const r = c.el.getBoundingClientRect();
+    scrollTo({ top: r.top + scrollY + (c.el.offsetHeight - innerHeight) * ((i + 1) * c.w + 24) / 1000, behavior: this.still ? 'auto' : 'smooth' });
+  }
+
+  gDom(c, f) {
+    const { w, N } = c;
+    c.layers.forEach((el, k) => { const a = k * w; this.layer(el, f, k === 0 ? -1 : a - 18, a + 14, k === N - 1 ? null : a + w - 26, a + w - 2); });
+    c.ons.forEach(o => { const on = f >= o.k * w + o.thr * w; if (on !== o.state) { o.state = on; o.e.style.cssText = on ? o.off + ';' + o.on : o.off; } });
+    c.bars.forEach(b => { b.e.style.transform = 'scaleX(' + (b.v * ease(I(f, [b.k * w + 18 + b.j * 3, b.k * w + 56 + b.j * 3])).toFixed(4)) + ')'; });
+    c.items.forEach(it => this.rise(it.e, I(f, [it.k * w + 4 + it.j * 9, it.k * w + 30 + it.j * 9]), 36, 0.06));
+    if (c.dk >= 0) {
+      const a = c.dk * w, open = ease(I(f, [a - 34, a + 4])) * (1 - ease(I(f, [a + w - 30, a + w + 4])));
+      const k = 1 - open, W = this.W, H = this.H;
+      c.stage.style.visibility = open < 0.002 ? 'hidden' : 'visible';
+      c.stage.style.opacity = clamp(open * 5);
+      c.stage.style.clipPath = 'inset(' + H * 0.32 * k + 'px ' + W * 0.3 * k + 'px ' + H * 0.32 * k + 'px ' + W * 0.3 * k + 'px round ' + (40 * k + 0.001) + 'px)';
+      c.num.style.opacity = 1 - I(f, [a - 34, a]) + I(f, [a + w - 20, a + w + 10]);
+    }
+    c.num.style.transform = 'translate3d(0,' + lerp(6, -10, f / 1000) * this.H / 100 + 'px,0)';
+    c.rail.style.opacity = I(f, [w - 40, w - 10]);
+    const dark = c.dk >= 0 && f > c.dk * w - 10 && f < (c.dk + 1) * w - 14;
+    const idx = clamp(Math.floor((f + 18) / w), 0, N - 1);
+    const lbl = idx === 0 ? 'Case 0' + c.n : 'Case 0' + c.n + ' · ' + CASE_LABELS[idx];
+    if (c.label.textContent !== lbl) c.label.textContent = lbl;
+    c.label.style.color = dark ? '#A9B8AE' : '#56645B';
+    c.segs.forEach((sg, i) => { sg.style.transform = 'scaleX(' + I(f, [(i + 1) * w - 18, (i + 2) * w - 2]) + ')'; sg.style.background = dark ? BLUE_L : BLUE; });
+    c.tracks.forEach(t => { t.style.background = dark ? '#2E3F35' : '#C9D4CD'; });
+  }
+
+  componentDidMount() {
+    this.mq = matchMedia('(prefers-reduced-motion: reduce)');
+    this.sf = { hero: 0, method: 0, case: 0 }; this.seed = 11;
+    this.initParticles();
+    this.ready = false;
+    this.onResize = () => { this.ready = false; };
+    addEventListener('resize', this.onResize);
+    this.ro = new ResizeObserver(() => { this.ready = false; });
+    if (this.rootRef.current) this.ro.observe(this.rootRef.current);
+    this.last = { hero: -1, method: -1, case: -1 }; this.prevT = 0;
+    const loop = t => {
+      this.raf = requestAnimationFrame(loop);
+      try {
+        if (!this.ready || (this.canvas && this.canvas.clientWidth !== this.cw)) this.ready = this.layout();
+        if (this.ready && (!this.hero.isConnected || !this.stage.isConnected)) this.ready = this.layout();
+        if (this.ready) this.tick(t);
+      } catch (e) { console.error(e); }
+    };
+    this.raf = requestAnimationFrame(loop);
+  }
+  componentDidUpdate() { this.ready = false; }
+  componentWillUnmount() { this.io && this.io.disconnect(); cancelAnimationFrame(this.raf); removeEventListener('resize', this.onResize); this.ro && this.ro.disconnect(); }
+
+  get still() { return (this.mq && this.mq.matches) || this.props.ambientMotion === false; }
+  rand() { this.seed = (this.seed * 16807) % 2147483647; return (this.seed - 1) / 2147483646; }
+
+  layer(el, f, a, b, c, d, dist = 56) {
+    const i = a < 0 ? 1 : ease(I(f, [a, b])), o = c == null ? 0 : ease(I(f, [c, d]));
+    const v = i * (1 - o);
+    el.style.opacity = v;
+    el.style.visibility = v < 0.01 ? 'hidden' : 'visible';
+    if (v < 0.01) return;
+    el.style.transform = `translate3d(0,${((1 - i) * dist - o * dist).toFixed(1)}px,0) scale(${(1 - (1 - i) * 0.08 + o * 0.1).toFixed(4)})`;
+  }
+  rise(el, t, dist = 30, sc = 0) {
+    const e = this.still ? (t > 0 ? 1 : 0) : ease(t);
+    el.style.opacity = e;
+    el.style.transform = `translate3d(0,${(1 - e) * dist}px,0) scale(${1 - (1 - e) * sc})`;
+  }
+
+  initParticles() {
+    const ps = [];
+    for (let i = 0; i < 144; i++) ps.push({ i, kind: i % 4, w: Math.pow(this.rand(), 1.5), sx: this.rand(), sy: this.rand(), ph: this.rand() * 6.28, st: this.rand(), s0: 4 + this.rand() * 6, fx: this.rand(), fy: this.rand() });
+    const base = ps.slice(0, 96);
+    [...base].sort((a, b) => b.w - a.w).forEach((p, r) => { p.rank = r; });
+    const flagged = base.filter(p => p.i % 11 === 4 && p.rank >= 10);
+    const pos = p => [p.rank % 12, Math.floor(p.rank / 12)];
+    const origin = flagged.reduce((best, p) => { const [c, r] = pos(p); const d = Math.hypot(c - 6, r - 4); return d < best.d ? { p, d } : best; }, { p: flagged[0], d: 1e9 }).p;
+    const [oc, or] = pos(origin);
+    const maxd = Math.max(...flagged.map(p => { const [c, r] = pos(p); return Math.hypot(c - oc, r - or); })) || 1;
+    flagged.forEach(p => { p.flag = true; const [c, r] = pos(p); p.res = p === origin ? 280 : 290 + (Math.hypot(c - oc, r - or) / maxd) * 32; p.origin = p === origin; });
+    this.ps = ps;
+    const oCell = 27, ocC = oCell % 12, ocR = Math.floor(oCell / 12);
+    const md = Math.max(...PATTERN.map(k => Math.hypot(k % 12 - ocC, Math.floor(k / 12) - ocR)));
+    this.cellRes = {};
+    PATTERN.forEach(k => { this.cellRes[k] = k === oCell ? 0.1 : 0.28 + Math.hypot(k % 12 - ocC, Math.floor(k / 12) - ocR) / md * 0.55; });
+  }
+
+  layout() {
+    const root = this.rootRef.current; if (!root) return false;
+    if (!root.querySelector('[data-cell]') || !root.querySelector('[data-hero-canvas]') || !root.querySelector('[data-hero-canvas]').clientWidth) return false;
+    const W = innerWidth, H = innerHeight;
+    this.W = W; this.H = H; this.narrow = W < 1000;
+    const q = s => root.querySelector(s), qa = s => [...root.querySelectorAll(s)];
+
+    this.hero = q('[data-scene="hero"]');
+    this.hero.style.height = (this.props.heroScroll ?? 600) + 'vh';
+    this.canvas = q('[data-hero-canvas]');
+    this.ctx = this.canvas.getContext('2d');
+    const dpr = Math.min(2, devicePixelRatio || 1);
+    this.cw = this.canvas.clientWidth; this.ch = this.canvas.clientHeight;
+    this.canvas.width = this.cw * dpr; this.canvas.height = this.ch * dpr;
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this.stage = q('[data-stage]');
+    this.heroCopy = q('[data-hero-copy]');
+    this.caps = qa('[data-cap]'); this.capLabels = qa('[data-cap-label]'); this.hsegs = qa('[data-hseg]');
+    this.cue = q('[data-cue]');
+    const caps = q('[data-hero-caps]');
+    if (this.narrow) {
+      Object.assign(this.heroCopy.style, { right: '6%', bottom: 'auto', top: '88px' });
+      const kids = [...this.heroCopy.children], gap = parseFloat(getComputedStyle(this.heroCopy).rowGap) || 16;
+      const copyH = kids.reduce((s, el) => s + el.offsetHeight, 0) + gap * (kids.length - 1);
+      const cardT = Math.min(H - 106, Math.max(H * 0.73, 88 + copyH + 24));
+      this.heroCopy.style.bottom = (H - cardT + 20) + 'px';
+      Object.assign(caps.style, { top: Math.max(88, Math.min(H * 0.45, H - caps.offsetHeight - 16)) + 'px', bottom: 'auto' });
+      this.cue.style.display = 'none';
+      this.card = { t: cardT, r: 16, b: 16, l: 16, rad: 24 };
+      this.scatter = { y0: (cardT + 20) / H, y1: (H - 30) / H };
+    } else {
+      Object.assign(this.heroCopy.style, { right: '52%', bottom: '12%', top: '88px' });
+      this.scatter = null;
+      Object.assign(caps.style, { top: 'auto', bottom: '9%' });
+      this.cue.style.display = 'block';
+      this.card = { t: 96, r: W * 0.04, b: H * 0.05, l: W * 0.5, rad: 32 };
+    }
+
+    this.method = q('[data-scene="method"]');
+    this.mIntro = q('[data-m-intro]'); this.mBody = q('[data-m-body]');
+    this.mSteps = qa('[data-mstep]'); this.mLoop = q('[data-mloop]');
+    this.arc = q('[data-ring-arc]'); this.dot = q('[data-ring-dot]');
+    this.nodes = qa('[data-node]'); this.ringNum = q('[data-ring-num]'); this.ringName = q('[data-ring-name]');
+    const rw = q('[data-ring-wrap]');
+    this.mBody.style.flexDirection = this.narrow ? 'column-reverse' : 'row';
+    if (this.narrow) {
+      const stepH = Math.max(...this.mSteps.map(li => { const k = [...li.children]; const g = parseFloat(getComputedStyle(li).rowGap) || 12; return k.reduce((s, e) => s + e.offsetHeight, 0) + g * (k.length - 1); }));
+      const avail = H - 132 - H * 0.05 - stepH - 20;
+      const ringW = Math.min(W * 0.64, H * 0.34, avail * 540 / 440);
+      rw.style.width = ringW + 'px';
+      rw.style.display = ringW < 90 ? 'none' : 'block';
+    } else { rw.style.width = 'min(46vw, 76svh)'; rw.style.display = 'block'; }
+    q('[data-ring-labels]').style.display = this.narrow ? 'none' : 'inline';
+
+    this.caseEl = q('[data-scene="case"]');
+    this.cLayers = qa('[data-clayer]'); this.cStage = q('[data-c-stage]');
+    this.cRail = q('[data-c-rail]'); this.cLabel = q('[data-c-label]');
+    this.cSegs = qa('[data-cseg]'); this.cTracks = qa('[data-ctrack]');
+    this.cSubs = qa('[data-c-sub]'); this.cPills = qa('[data-c-pill]'); this.cTiles = qa('[data-c-tile]');
+    this.cGrades = qa('[data-c-grade]'); this.cCards = qa('[data-c-card]'); this.cNum = q('[data-c-num]');
+    this.cellEls = qa('[data-cell]');
+    const top = this.narrow ? '128px' : '140px';
+    this.cLayers.forEach(l => { l.style.top = top; l.style.willChange = 'transform, opacity'; });
+    [this.mIntro, this.mBody, this.mLoop, ...this.mSteps, this.heroCopy].forEach(l => { l.style.willChange = 'transform, opacity'; });
+    this.stage.style.willChange = 'clip-path';
+    this.sfG = this.sfG || [0, 0, 0];
+    this.gcases = qa('[data-gcase]').map(el => {
+      const layers = [...el.querySelectorAll('[data-glayer]')], N = layers.length, w = 1000 / N;
+      const kOf = e => +e.closest('[data-glayer]').dataset.glayer;
+      layers.forEach(l => { l.style.top = top; l.style.willChange = 'transform, opacity'; });
+      return {
+        el, n: +el.dataset.gcase, g: this.geo(el), layers, N, w, last: -1,
+        items: [...el.querySelectorAll('[data-gr]')].map(e => ({ e, k: kOf(e), j: +e.dataset.gr })),
+        bars: [...el.querySelectorAll('[data-gbar]')].map(e => ({ e, k: kOf(e), j: +(e.dataset.gj || 0), v: +e.dataset.gbar })),
+        ons: [...el.querySelectorAll('[data-gon]')].map(e => { if (e.dataset.offcss == null) e.dataset.offcss = e.style.cssText; return { e, k: kOf(e), thr: +e.dataset.gon, off: e.dataset.offcss, on: e.dataset.oncss || '', state: null }; }),
+        stage: el.querySelector('[data-gstage]'), rail: el.querySelector('[data-grail]'), label: el.querySelector('[data-glabel]'),
+        segs: [...el.querySelectorAll('[data-gseg]')], tracks: [...el.querySelectorAll('[data-gtrack]')], num: el.querySelector('[data-gnum]'),
+        dk: layers.findIndex(l => l.dataset.gdark)
+      };
+    });
+    [...this.cLayers, ...this.gcases.flatMap(c => c.layers)].forEach(l => {
+      const kids = [...l.children];
+      kids.forEach(k => { k.style.zoom = ''; });
+      const avail = l.clientHeight, need = l.scrollHeight;
+      if (need > avail + 1) { const z = Math.max(0.55, (avail / need) * 0.97); kids.forEach(k => { k.style.zoom = z.toFixed(3); }); }
+    });
+    if (this.io) this.io.disconnect();
+    this.io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.style.opacity = '1'; en.target.style.transform = 'none'; en.target.dataset.rv = '2'; this.io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    qa('[data-reveal]').forEach(el => {
+      if (el.dataset.rv === '2' || this.still) return;
+      if (!el.dataset.rv) { el.dataset.rv = '1'; el.style.opacity = '0'; el.style.transform = 'translate3d(0,40px,0)'; el.style.transition = 'opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)'; }
+      this.io.observe(el);
+    });
+    this.navLinks = qa('[data-nav]');
+    this.navSecs = ['method', 'work', 'experience', 'fit', 'contact'].map(id => { const el = q('#' + id); return { id, top: el ? el.getBoundingClientRect().top + scrollY : 1e9 }; });
+    this.navActive = undefined;
+    this.gHero = this.geo(this.hero); this.gMethod = this.geo(this.method); this.gCase = this.geo(this.caseEl);
+    this.last = { hero: -1, method: -1, case: -1 };
+    if (this.ro && !this._obs) { this._obs = 1; this.ro.observe(root); }
+    return true;
+  }
+
+  navDom() {
+    if (!this.navLinks) return;
+    const y = scrollY + this.H * 0.4;
+    let act = null;
+    this.navSecs.forEach(sc => { if (y >= sc.top) act = sc.id; });
+    if (scrollY + this.H >= document.documentElement.scrollHeight - 4) act = 'contact';
+    if (act === this.navActive) return;
+    this.navActive = act;
+    this.navLinks.forEach(a => {
+      const on = a.dataset.nav === act;
+      if (a.dataset.nav === 'contact') { a.style.background = on ? '#0F1712' : 'transparent'; a.style.color = on ? '#EEF2EF' : '#0F1712'; }
+      else { a.style.background = on ? '#DCE4DE' : 'transparent'; a.style.fontWeight = on ? '600' : '400'; }
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  geo(el) { return { top: el.getBoundingClientRect().top + scrollY, h: el.offsetHeight }; }
+  prog(g) { const y = scrollY, H = this.H, range = g.h - H, top = g.top - y; return { p: range <= 0 ? 0 : clamp(-top / range), on: top + g.h > -40 && top < H + 40 }; }
+  smooth(key, target) {
+    let f = this.sf[key];
+    const k = 1 - Math.exp(-this.dt / 45);
+    f = this.still ? target : f + (target - f) * k;
+    if (Math.abs(target - f) < 0.3) f = target;
+    return (this.sf[key] = f);
+  }
+
+  tick(time) {
+    if (!this.hero) return;
+    this.navDom();
+    this.dt = Math.min(64, this.prevT ? time - this.prevT : 16); this.prevT = time;
+    const h = this.prog(this.gHero);
+    if (h.on) {
+      const f = this.smooth('hero', h.p * HERO_F);
+      const drifting = !this.still && f < 150;
+      if (f !== this.last.hero || drifting) this.drawHero(f, time);
+      if (f !== this.last.hero) this.heroDom(f);
+      this.last.hero = f;
+    }
+    const m = this.prog(this.gMethod);
+    if (m.on) { const f = this.smooth('method', m.p * 1000); if (f !== this.last.method) this.methodDom(f); this.last.method = f; }
+    const c = this.prog(this.gCase);
+    if (c.on) { const f = this.smooth('case', c.p * 1000); if (f !== this.last.case) this.caseDom(f); this.last.case = f; }
+    (this.gcases || []).forEach((gc, i) => {
+      const pr = this.prog(gc.g); if (!pr.on) return;
+      const t = pr.p * 1000, k = 1 - Math.exp(-this.dt / 45);
+      let f = this.still ? t : this.sfG[i] + (t - this.sfG[i]) * k;
+      if (Math.abs(t - f) < 0.3) f = t;
+      this.sfG[i] = f;
+      if (f !== gc.last) { this.gDom(gc, f); gc.last = f; }
+    });
+  }
+
+  goCase(frame) {
+    const r = this.caseEl.getBoundingClientRect();
+    const top = r.top + scrollY + (this.caseEl.offsetHeight - innerHeight) * frame / 1000;
+    scrollTo({ top, behavior: this.still ? 'auto' : 'smooth' });
+  }
+
+  heroDom(f) {
+    const c = this.card, e = ease(I(f, [6, 46])), x = ease(I(f, [370, 398]));
+    const end = this.narrow ? 12 : 24;
+    const v = k => lerp(lerp(c[k], 0, e), end, x);
+    const rad = lerp(lerp(c.rad, 0, e), this.narrow ? 24 : 36, x);
+    this.stage.style.clipPath = `inset(${v('t')}px ${v('r')}px ${v('b')}px ${v('l')}px round ${rad}px)`;
+    const hc = this.heroCopy;
+    hc.style.opacity = 1 - e;
+    hc.style.transform = `scale(${1 - 0.08 * e})`;
+    hc.style.visibility = e > 0.98 ? 'hidden' : 'visible';
+    this.cue.style.opacity = 1 - I(f, [0, 10]);
+    this.capLabels.forEach(el => { el.style.opacity = I(f, [26, 42]) * (1 - x); });
+    this.caps.forEach((el, k) => {
+      const st = STAGES[k], en = STAGES[k + 1];
+      const i = I(f, [st, st + 14]), out = en ? I(f, [en - 12, en]) : x;
+      el.style.opacity = i * (1 - out);
+      el.style.transform = `translateY(${(1 - i) * 24 - out * 24}px)`;
+    });
+    this.hsegs.forEach((el, k) => { el.style.transform = `scaleX(${I(f, [STAGES[k], STAGES[k + 1] || HERO_F - 30])})`; });
+  }
+
+  shape(kind, x, y, s, a, color, hollow) {
+    const ctx = this.ctx; if (a <= 0.001) return;
+    ctx.globalAlpha = a; ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+    const r = Math.min(s * 0.28, 6);
+    if (kind === 0) { ctx.beginPath(); hollow ? ctx.roundRect(x - s / 2 + 0.75, y - s / 2 + 0.75, s - 1.5, s - 1.5, r) : ctx.roundRect(x - s / 2, y - s / 2, s, s, r); hollow ? ctx.stroke() : ctx.fill(); }
+    else if (kind === 1) { ctx.beginPath(); ctx.arc(x, y, s / 2, 0, 6.283); ctx.fill(); }
+    else if (kind === 2) { ctx.beginPath(); ctx.arc(x, y, s / 2, 0, 6.283); ctx.stroke(); }
+    else { ctx.beginPath(); ctx.roundRect(x - s * 0.8, y - s * 0.22, s * 1.6, s * 0.44, s * 0.22); ctx.fill(); }
+  }
+  ring(x, y, r, a) { const ctx = this.ctx; ctx.globalAlpha = a; ctx.strokeStyle = BLUE_L; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.stroke(); }
+
+  drawHero(f, time) {
+    const ctx = this.ctx, W = this.cw, H = this.ch, N = this.narrow;
+    ctx.clearRect(0, 0, W, H);
+    const A = N ? { x0: W * 0.06, x1: W * 0.94, y0: H * 0.12, y1: H * 0.41 } : { x0: Math.max(W * 0.5, W * 0.06 + 620), x1: W * 0.95, y0: H * 0.16, y1: H * 0.84 };
+    const sc = this.scatter || { y0: 0.77, y1: 0.94 };
+    const S = N ? { x0: W * 0.1, x1: W * 0.9, y0: H * sc.y0, y1: H * sc.y1 } : { x0: W * 0.54, x1: W * 0.93, y0: H * 0.2, y1: H * 0.9 };
+    const g = ease(I(f, [330, 366]));
+    const cols = 12, rows = 8 + 4 * g;
+    const cell = Math.min((A.x1 - A.x0) / cols, (A.y1 - A.y0) / rows);
+    const gw = cell * cols, gh = cell * rows;
+    const ox = N ? A.x0 + (A.x1 - A.x0 - gw) / 2 : A.x1 - gw;
+    const oy = A.y0 + (A.y1 - A.y0 - gh) / 2;
+    const slot = k => [ox + (k % cols + 0.5) * cell, oy + (Math.floor(k / cols) + 0.5) * cell];
+    const t3 = I(f, [212, 262]);
+    const sweep = ox - 14 + (gw + 28) * t3;
+    const sz = w => cell * (0.24 + 0.6 * w);
+    const still = this.still;
+
+    for (const p of this.ps) {
+      let x, y, s, morph, alpha, color = LIGHT, hollow = false;
+      if (p.i < 96) {
+        const t1 = ease(I(f, [88 + p.st * 26, 122 + p.st * 26]));
+        const t2 = ease(I(f, [150 + p.st * 22, 186 + p.st * 22]));
+        const dr = still ? 0 : 1 - t1;
+        const sx = S.x0 + p.sx * (S.x1 - S.x0) + Math.sin(time * 0.0005 + p.ph) * 12 * dr;
+        const sy = S.y0 + p.sy * (S.y1 - S.y0) + Math.cos(time * 0.0004 + p.ph) * 12 * dr;
+        const [ax, ay] = slot(p.i), [bx, by] = slot(p.rank);
+        x = lerp(lerp(sx, ax, t1), bx, t2); y = lerp(lerp(sy, ay, t1), by, t2);
+        s = lerp(lerp(p.s0, cell * 0.56, t1), sz(p.w), t2);
+        morph = t1; alpha = lerp(0.55, 0.62, t1);
+        if (p.rank < 10 && t2 > 0.5) color = BLUE_L;
+        if (f > 205 && x < sweep) { alpha = 1; if (p.flag && f < p.res) hollow = true; }
+        if (p.flag) {
+          if (p.origin && f > 266 && f < p.res + 4) this.ring(x, y, cell * (0.55 + 0.15 * Math.sin(time * 0.012)), 0.9);
+          if (f >= p.res && f < p.res + 18) { const k = (f - p.res) / 18; this.ring(x, y, cell * (0.4 + 0.8 * k), 1 - k); }
+          if (f >= p.res) color = LIGHT;
+        }
+      } else {
+        const a = 334 + (p.i - 96) * 0.6, t = ease(I(f, [a, a + 18]));
+        if (t <= 0) continue;
+        const [bx, by] = slot(p.i);
+        x = lerp(W + 20 + p.fx * 140, bx, t); y = lerp(S.y0 + p.fy * (S.y1 - S.y0), by, t);
+        s = lerp(p.s0, sz(p.w), t); morph = t; alpha = lerp(0.6, 1, t);
+      }
+      if (morph < 1) this.shape(p.kind, x, y, s, alpha * (1 - morph), color, false);
+      if (morph > 0) this.shape(0, x, y, s, alpha * morph, color, hollow);
+    }
+    const la = I(f, [205, 212]) * (1 - I(f, [262, 272]));
+    if (la > 0) {
+      ctx.globalAlpha = la; ctx.strokeStyle = BLUE_L; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(sweep, oy - 28); ctx.lineTo(sweep, oy + gh + 16); ctx.stroke();
+      ctx.fillStyle = BLUE_L; ctx.font = '500 11px "Geist Mono", monospace';
+      ctx.fillText('SOURCE OF TRUTH', Math.min(sweep + 8, W - 130), oy - 18);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  methodDom(f) {
+    this.layer(this.mIntro, f, -1, 0, 70, 130);
+    this.layer(this.mBody, f, 90, 140, 960, 1000, 40);
+    const w = 152, names = ['DISCOVER', 'FRAME', 'MAKE IT VISIBLE', 'BUILD', 'LEARN'];
+    this.mSteps.forEach((el, k) => {
+      const a = 120 + k * w;
+      const inA = k === 0 ? 100 : a - 12;
+      this.layer(el, f, inA, inA + 32, a + w - 30, a + w);
+    });
+    this.layer(this.mLoop, f, 872, 900);
+    const u = clamp((f - 120) / (5 * w)) * 5, frac = u / 5;
+    const C = 942.48;
+    this.arc.setAttribute('stroke-dashoffset', (C * (1 - frac)).toFixed(1));
+    const ang = -Math.PI / 2 + frac * Math.PI * 2;
+    this.dot.setAttribute('cx', (150 * Math.cos(ang)).toFixed(1));
+    this.dot.setAttribute('cy', (150 * Math.sin(ang)).toFixed(1));
+    const loop = f >= 880, active = loop ? 0 : Math.min(4, Math.floor(u));
+    this.nodes.forEach((n, k) => {
+      const reached = u >= k || loop;
+      const on = k === active;
+      n.setAttribute('fill', reached ? (on ? BLUE : INK) : BG);
+      n.setAttribute('stroke', on ? BLUE : INK);
+      n.setAttribute('r', on ? 19 : 13);
+    });
+    const num = loop ? '↺' : String(active + 1).padStart(2, '0');
+    if (this.ringNum.textContent !== num) this.ringNum.textContent = num;
+    const nm = loop ? 'AGAIN' : names[active];
+    if (this.ringName.textContent !== nm) this.ringName.textContent = nm;
+  }
+
+  caseDom(f) {
+    const L = this.cLayers;
+    this.layer(L[0], f, -1, 0, 70, 100);
+    this.layer(L[1], f, 95, 125, 200, 225);
+    this.layer(L[2], f, 220, 250, 335, 360);
+    this.layer(L[3], f, 355, 385, 465, 490);
+    this.layer(L[4], f, 485, 510, 600, 625);
+    this.layer(L[5], f, 620, 645, 700, 720);
+    this.layer(L[6], f, 738, 762, 832, 852);
+    this.layer(L[7], f, 866, 892);
+    this.rise(this.cSubs[0], I(f, [135, 165]));
+    this.rise(this.cSubs[1], I(f, [255, 285]));
+    this.rise(this.cSubs[2], I(f, [280, 310]));
+    this.cPills.forEach((el, k) => this.rise(el, I(f, [372 + k * 12, 402 + k * 12]), 40, 0.15));
+    this.cTiles.forEach((el, k) => this.rise(el, I(f, [498 + k * 12, 530 + k * 12]), 60, 0.08));
+    this.cCards.forEach((el, k) => this.rise(el, I(f, [748 + k * 10, 778 + k * 10]), 50, 0.06));
+    const gd = I(f, [655, 680]) > 0.5;
+    if (gd !== this._gd) { this._gd = gd; this.cGrades.forEach(el => { el.style.background = gd ? BLUE : '#FFFFFF'; el.style.color = gd ? '#FFFFFF' : INK; el.style.borderColor = gd ? BLUE : '#C9D4CD'; el.style.transform = `scale(${gd ? 1.06 : 1})`; el.style.transition = 'all .35s ease'; }); }
+
+    const open = ease(I(f, [700, 745])) * (1 - ease(I(f, [838, 872])));
+    const W = this.W, H = this.H, k = 1 - open;
+    this.cStage.style.visibility = open < 0.002 ? 'hidden' : 'visible';
+    this.cStage.style.opacity = clamp(open * 5);
+    this.cStage.style.clipPath = `inset(${H * 0.32 * k}px ${W * 0.3 * k}px ${H * 0.32 * k}px ${W * 0.3 * k}px round ${40 * k + 0.001}px)`;
+    this.cNum.style.transform = `translate3d(0,${lerp(6, -10, f / 1000) * H / 100}px,0)`;
+    this.cNum.style.opacity = 1 - I(f, [690, 720]) + I(f, [850, 880]);
+
+    this.cRail.style.opacity = I(f, [80, 110]);
+    const dark = f > 718 && f < 846;
+    let idx = 0; CASE_AT.forEach((a, i) => { if (f >= a) idx = i; });
+    const lbl = idx === 0 ? 'Case 01' : 'Case 01 · ' + CASE_LABELS[idx];
+    if (this.cLabel.textContent !== lbl) this.cLabel.textContent = lbl;
+    this.cLabel.style.color = dark ? '#A9B8AE' : '#56645B';
+    this.cSegs.forEach((s, i) => { s.style.transform = `scaleX(${I(f, SEG[i])})`; s.style.background = dark ? BLUE_L : BLUE; });
+    this.cTracks.forEach(t => { t.style.background = dark ? '#2E3F35' : '#C9D4CD'; });
+
+    const cq = I(f, [895, 975]);
+    this.cellEls.forEach(el => {
+      if (el.dataset.pattern !== '1') return;
+      const at = this.cellRes[+el.dataset.cell], done = cq >= at;
+      el.style.background = done ? BLUE : 'transparent';
+      el.style.borderColor = done ? BLUE : INK;
+      el.style.boxShadow = done && cq < at + 0.1 ? '0 0 0 6px rgba(46,91,201,0.25)' : 'none';
+    });
+  }
+}
+</script>
+</body>
+</html>

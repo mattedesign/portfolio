@@ -1,0 +1,20 @@
+html,body{margin:0;padding:0;background:#EEF2EF;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+a{color:#2E5BC9;text-underline-offset:3px}
+a:hover{color:#0F1712;text-decoration-thickness:2px}
+:focus-visible{outline:3px solid #2E5BC9;outline-offset:3px;border-radius:8px}
+
+/* Analyze fit status line: kept in the accessibility tree while empty so updates are announced */
+.fit-err:empty{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+[data-fit-submit][aria-disabled="true"]{cursor:progress;opacity:.7}
+
+/* Case rails fade in with scroll; keep them visible while a rail button has keyboard focus */
+[data-c-rail]:focus-within,[data-grail]:focus-within{opacity:1 !important}
+
+/* Hover and focus states from the design's style-hover / style-focus attributes */
+.s1:focus{left:12px !important}
+.s2:hover{background:#0F1712 !important;color:#FFFFFF !important}
+.s3:hover{background:#0F1712 !important}
+.s4:hover{border-color:#0F1712 !important}
+.s5:hover{background:#0F1712 !important;color:#FFFFFF !important}
+.s6:hover{border-color:#0F1712 !important;color:#0F1712 !important}
