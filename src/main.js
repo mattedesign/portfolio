@@ -4,8 +4,12 @@ import { DEFAULT_JD, DEFAULT_RES } from './fit-data.js';
 // Motion engine ported from the Claude Design source (design_handoff_portfolio/reference/source).
 // Frame windows and easing are kept verbatim; only the React shell around them was removed.
 const BLUE_L = '#7FB0FF', BLUE = '#2E5BC9', INK = '#0F1712', BG = '#EEF2EF';
-// Hero objects draw on the page background (no dark stage): ink-2 objects, accent highlights
-const DOT = '#3D4A42';
+// The hero stage starts transparent (no dark card on first load) and darkens to ink as it expands
+// over frames 6-46. Objects shift with it from ink-2/accent (on the light page) to the original
+// light/light-accent colors (on the dark stage).
+const RGB = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mix = (a, b, t) => 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',') + ')';
+const DOT_RGB = RGB('#3D4A42'), LIGHT_RGB = RGB('#E6EDE8'), BLUE_RGB = RGB(BLUE), BLUE_L_RGB = RGB(BLUE_L);
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -285,6 +289,7 @@ class Portfolio {
     const v = k => lerp(lerp(c[k], 0, e), end, x);
     const rad = lerp(lerp(c.rad, 0, e), this.narrow ? 24 : 36, x);
     this.stage.style.clipPath = `inset(${v('t')}px ${v('r')}px ${v('b')}px ${v('l')}px round ${rad}px)`;
+    this.stage.style.backgroundColor = `rgba(15,23,18,${e.toFixed(3)})`;
     const hc = this.heroCopy;
     hc.style.opacity = 1 - e;
     hc.style.transform = `scale(${1 - 0.08 * e})`;
@@ -309,7 +314,7 @@ class Portfolio {
     else if (kind === 2) { ctx.beginPath(); ctx.arc(x, y, s / 2, 0, 6.283); ctx.stroke(); }
     else { ctx.beginPath(); ctx.roundRect(x - s * 0.8, y - s * 0.22, s * 1.6, s * 0.44, s * 0.22); ctx.fill(); }
   }
-  ring(x, y, r, a) { const ctx = this.ctx; ctx.globalAlpha = a; ctx.strokeStyle = BLUE; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.stroke(); }
+  ring(x, y, r, a) { const ctx = this.ctx; ctx.globalAlpha = a; ctx.strokeStyle = this.hi; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.stroke(); }
 
   drawHero(f, time) {
     const ctx = this.ctx, W = this.cw, H = this.ch, N = this.narrow;
@@ -328,9 +333,12 @@ class Portfolio {
     const sweep = ox - 14 + (gw + 28) * t3;
     const sz = w => cell * (0.24 + 0.6 * w);
     const still = this.still;
+    const kc = clamp((ease(I(f, [6, 46])) - 0.4) / 0.2);
+    const base = mix(DOT_RGB, LIGHT_RGB, kc), hi = mix(BLUE_RGB, BLUE_L_RGB, kc);
+    this.hi = hi;
 
     for (const p of this.ps) {
-      let x, y, s, morph, alpha, color = DOT, hollow = false;
+      let x, y, s, morph, alpha, color = base, hollow = false;
       if (p.i < 96) {
         const t1 = ease(I(f, [88 + p.st * 26, 122 + p.st * 26]));
         const t2 = ease(I(f, [150 + p.st * 22, 186 + p.st * 22]));
@@ -341,12 +349,12 @@ class Portfolio {
         x = lerp(lerp(sx, ax, t1), bx, t2); y = lerp(lerp(sy, ay, t1), by, t2);
         s = lerp(lerp(p.s0, cell * 0.56, t1), sz(p.w), t2);
         morph = t1; alpha = lerp(0.55, 0.62, t1);
-        if (p.rank < 10 && t2 > 0.5) color = BLUE;
+        if (p.rank < 10 && t2 > 0.5) color = hi;
         if (f > 205 && x < sweep) { alpha = 1; if (p.flag && f < p.res) hollow = true; }
         if (p.flag) {
           if (p.origin && f > 266 && f < p.res + 4) this.ring(x, y, cell * (0.55 + 0.15 * Math.sin(time * 0.012)), 0.9);
           if (f >= p.res && f < p.res + 18) { const k = (f - p.res) / 18; this.ring(x, y, cell * (0.4 + 0.8 * k), 1 - k); }
-          if (f >= p.res) color = DOT;
+          if (f >= p.res) color = base;
         }
       } else {
         const a = 334 + (p.i - 96) * 0.6, t = ease(I(f, [a, a + 18]));
@@ -360,9 +368,9 @@ class Portfolio {
     }
     const la = I(f, [205, 212]) * (1 - I(f, [262, 272]));
     if (la > 0) {
-      ctx.globalAlpha = la; ctx.strokeStyle = BLUE; ctx.lineWidth = 1.5;
+      ctx.globalAlpha = la; ctx.strokeStyle = hi; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(sweep, oy - 28); ctx.lineTo(sweep, oy + gh + 16); ctx.stroke();
-      ctx.fillStyle = BLUE; ctx.font = '500 11px "Geist Mono", monospace';
+      ctx.fillStyle = hi; ctx.font = '500 11px "Geist Mono", monospace';
       ctx.fillText('SOURCE OF TRUTH', Math.min(sweep + 8, W - 130), oy - 18);
     }
     ctx.globalAlpha = 1;
