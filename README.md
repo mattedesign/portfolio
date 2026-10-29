@@ -22,14 +22,43 @@ npm run build     # production build to dist/, then the copy check
 npm run preview   # serve dist/
 ```
 
-`npm run build` fails if the built page contains an em dash (a content rule from the design handoff).
+`npm run build` fails if any built page this site authors contains an em dash (a content rule from the design handoff).
 `/api/fit` only runs on Vercel (or `vercel dev`); locally the page shows the precomputed example.
+
+## Work samples (private)
+
+`/samples/` is a password-protected page of design work made with Claude Design and Claude Code,
+each piece with the decision it served and how it ties to the method on the home page. It is built
+from `samples/index.html` (styles in `src/samples.css`, behaviour in `src/samples.js`), with
+screenshots under `public/samples/img/` and self-contained interactive examples under
+`public/samples/examples/`. Both pages carry `noindex` and are disallowed in `robots.txt`.
+
+The gate:
+
+- `middleware.js` (Vercel Routing Middleware, matcher `/samples/:path*`) checks a signed cookie and
+  otherwise redirects to `/unlock/?next=...`. Static files under `/samples` go through it too.
+- `unlock/index.html` posts the password to `api/unlock.js`, which compares it in constant time,
+  rate-limits per IP, sets the cookie (HMAC-SHA256, 30 days, HttpOnly) and sends the visitor on.
+- `lib/gate.js` holds the token code shared by both.
+- `node scripts/test-gate.mjs` exercises the whole flow without a server.
+
+Environment: set `SAMPLES_PASSWORD` in the Vercel project (and optionally `SAMPLES_SECRET`, the
+cookie signing key; without it the key is derived from the password). With neither set the gate
+fails closed and the unlock page says the samples are not set up. `npm run dev` serves `/samples/`
+without the gate, since Vite does not run the middleware; `vercel dev` runs all of it.
+
+To add a Figma example, give a button `data-src` pointing at the file's embed URL
+(`https://embed.figma.com/design/<key>/<name>?embed-host=matthewbrown`) and a `data-title`; the
+shared dialog opens it. To add a screenshot, drop a WebP under `public/samples/img/` and add a
+`<figure class="shot">` with width, height and alt.
 
 ## Environment
 
 | Variable | Where | Purpose |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | Vercel project env, server side | Live Analyze fit. Without it the endpoint returns 503 and the page keeps the example result. |
+| `SAMPLES_PASSWORD` | Vercel project env, server side | Opens `/samples/`. Without it the gate fails closed. |
+| `SAMPLES_SECRET` | Vercel project env, optional | Cookie signing key for the samples gate. Derived from the password when unset. |
 
 Never prefix it with `VITE_`: Vite inlines `VITE_*` variables into the public JavaScript bundle.
 

@@ -1,0 +1,174 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>Editor toolbar — decided: docked, icon-first, 3 modes</title>
+<style>
+  :root{
+    --bg:#f4f2ec; --panel:#fbfaf6; --ink:#1d211f; --muted:#6c736e; --line:rgba(29,33,31,.12);
+    --accent:#2f7b91; --accent-ink:#f5fbfc; --commit:#e0714f; --commit-ink:#fff7f3;
+    --canvas:#e9e6dd; --page:#ffffff; --rail:#f1efe8;
+    --chip:#e7e4da; --tool:#f6f4ee; --tool-line:rgba(29,33,31,.14);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#181b1a; --panel:#202422; --ink:#e8eae6; --muted:#9aa39d; --line:rgba(232,234,230,.14);
+      --accent:#5cb3c9; --accent-ink:#0d2b33; --commit:#e88a6b; --commit-ink:#33170c;
+      --canvas:#141715; --page:#242826; --rail:#1c201e;
+      --chip:#2b302d; --tool:#262b28; --tool-line:rgba(232,234,230,.18); }
+  }
+  :root[data-theme="dark"]{ --bg:#181b1a; --panel:#202422; --ink:#e8eae6; --muted:#9aa39d; --line:rgba(232,234,230,.14);
+      --accent:#5cb3c9; --accent-ink:#0d2b33; --commit:#e88a6b; --commit-ink:#33170c;
+      --canvas:#141715; --page:#242826; --rail:#1c201e;
+      --chip:#2b302d; --tool:#262b28; --tool-line:rgba(232,234,230,.18); }
+  :root[data-theme="light"]{ --bg:#f4f2ec; --panel:#fbfaf6; --ink:#1d211f; --muted:#6c736e; --line:rgba(29,33,31,.12);
+      --accent:#2f7b91; --accent-ink:#f5fbfc; --commit:#e0714f; --commit-ink:#fff7f3;
+      --canvas:#e9e6dd; --page:#ffffff; --rail:#f1efe8;
+      --chip:#e7e4da; --tool:#f6f4ee; --tool-line:rgba(29,33,31,.14); }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,"SF Pro Text","Segoe UI",sans-serif;padding:32px 20px 64px}
+  .wrap{max-width:1060px;margin:0 auto}
+  h1{font-size:22px;letter-spacing:-.2px;margin:0 0 4px;text-wrap:balance}
+  .sub{color:var(--muted);margin:0 0 22px;max-width:66ch}
+  h2{font-size:15px;margin:34px 0 10px;letter-spacing:.02em}
+  .controls{display:flex;flex-wrap:wrap;gap:18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:18px}
+  .ctl-group{display:flex;align-items:center;gap:8px}
+  .ctl-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .toggle{display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;user-select:none}
+  .toggle input{accent-color:var(--accent)}
+  .ruled{font-size:12px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:4px 10px}
+
+  .frame{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;height:430px}
+  .appnav{width:44px;background:var(--rail);border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:14px;padding-top:14px;flex:none}
+  .appnav i{width:18px;height:18px;border-radius:5px;background:var(--chip);display:block}
+  .rail{background:var(--rail);border-right:1px solid var(--line);width:180px;flex:none;padding:12px;font-size:11px;color:var(--muted);transition:width .25s,padding .25s,opacity .2s;overflow:hidden;white-space:nowrap}
+  .rail.right{border-right:0;border-left:1px solid var(--line);width:210px}
+  .rail .t{font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;color:var(--ink);font-size:10.5px}
+  .rail .row{height:9px;border-radius:4px;background:var(--chip);margin:8px 0}
+  .rail .row.w1{width:82%}.rail .row.w2{width:64%}.rail .row.w3{width:91%}.rail .row.w4{width:55%}
+  .rail .card{border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:10px;background:var(--panel)}
+  .frame.no-left .rail.left{width:0;padding:0;opacity:0}
+  .frame.no-right .rail.right{width:0;padding:0;opacity:0}
+
+  .col{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--canvas)}
+  .viewport{flex:1;min-height:0;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;padding:18px 18px 0}
+  .page{background:var(--page);width:min(64%,300px);height:150%;border-radius:3px;box-shadow:0 2px 14px rgba(0,0,0,.14);padding:16px;flex:none;position:relative}
+  .page .l{height:8px;border-radius:4px;background:var(--chip);margin:7px 0}
+  .page .l.h{height:13px;width:70%;margin-bottom:12px}
+  .page .l.s1{width:92%}.page .l.s2{width:85%}.page .l.s3{width:60%}
+  .page .img{height:70px;border-radius:4px;background:var(--chip);margin:12px 0}
+  .bbox{position:absolute;border:1.5px solid var(--accent);border-radius:3px;opacity:.75;pointer-events:none;transition:opacity .2s}
+  .frame.no-bbox .bbox{opacity:0}
+  .statusbar{flex:none;height:26px;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 12px;font-size:10.5px;color:var(--muted);background:var(--rail)}
+
+  /* THE decided toolbar: docked row, in normal flow */
+  .tb-dock{flex:none;border-top:1px solid var(--line);background:var(--panel);padding:7px 10px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;row-gap:6px}
+  .modes{display:flex;background:var(--chip);border-radius:9px;padding:3px;gap:2px;flex:none}
+  .modes button{border:0;background:transparent;color:var(--ink);width:34px;height:28px;border-radius:7px;cursor:pointer;font:700 13px/1 inherit;display:grid;place-items:center}
+  .modes button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+  .tool{border:1px solid var(--tool-line);background:var(--tool);color:var(--ink);border-radius:8px;width:34px;height:32px;cursor:pointer;flex:none;font:600 13px/1 inherit;display:grid;place-items:center;position:relative}
+  .tool.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .tool.wide{width:auto;padding:0 14px;font-size:12px}
+  .tool.commit{background:var(--commit);border-color:var(--commit);color:var(--commit-ink);font-weight:700}
+  .tool.ghost{background:transparent;border-color:transparent}
+  .sep{width:1px;align-self:stretch;background:var(--line);margin:2px 5px;flex:none}
+  .push{flex:1;min-width:8px}
+  /* wireframe tooltips */
+  .tool:hover::after,.modes button:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:600 10.5px/1 inherit;padding:5px 8px;border-radius:5px;white-space:nowrap;z-index:5}
+  .modes button{position:relative}
+  kbd{background:var(--chip);border:1px solid var(--line);border-radius:4px;padding:0 4px;font:600 10.5px/1.5 ui-monospace,monospace}
+
+  table{border-collapse:collapse;width:100%;font-size:13px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:var(--rail)}
+  tr:last-child td{border-bottom:0}
+  td b{font-weight:650}
+  .why{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:12px 16px;margin-top:10px;font-size:13.5px;max-width:76ch}
+</style>
+<div class="wrap">
+  <h1>Editor toolbar — decided design <span class="ruled">docked row · icon-first · 3 modes</span></h1>
+  <p class="sub">Ruled 2026-07-14: docked in normal flow (never over the document), icons with tooltips + shortcuts for tools and globals, Preview removed as a mode — it was only ever bbox visibility, so it becomes the eye toggle in globals, available in every mode. Glyphs here are wireframe monograms; production uses the icon set.</p>
+
+  <div class="controls">
+    <div class="ctl-group"><span class="ctl-label">Rails</span>
+      <label class="toggle"><input type="checkbox" id="leftRail" checked> Layers</label>
+      <label class="toggle"><input type="checkbox" id="rightRail" checked> Advisories</label>
+    </div>
+    <div class="ctl-group"><span class="ctl-label">Try</span>
+      <span style="font-size:12.5px;color:var(--muted)">click modes · hover anything for its tooltip · toggle the eye</span>
+    </div>
+  </div>
+
+  <div class="frame" id="frame">
+    <div class="appnav"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="rail left"><div class="t">Layers · 461</div>
+      <div class="card"><div class="row w1"></div><div class="row w2"></div><div class="row w3"></div></div>
+      <div class="row w3"></div><div class="row w1"></div><div class="row w4"></div><div class="row w2"></div><div class="row w1"></div><div class="row w3"></div>
+    </div>
+    <div class="col" id="col">
+      <div class="viewport">
+        <div class="page">
+          <div class="l h"></div><div class="l s1"></div><div class="l s2"></div><div class="l s3"></div><div class="img"></div><div class="l s2"></div><div class="l s1"></div>
+          <div class="bbox" style="top:12px;left:12px;right:80px;height:22px"></div>
+          <div class="bbox" style="top:118px;left:12px;right:12px;height:76px"></div>
+          <div class="bbox" style="top:44px;left:12px;right:24px;height:60px"></div>
+        </div>
+      </div>
+      <div class="tb-dock" id="dock"></div>
+      <div class="statusbar"><span>461 tags</span><span>p.1 of 39</span><span>⌘K commands</span></div>
+    </div>
+    <div class="rail right"><div class="t">Advisories · 5</div>
+      <div class="card"><div class="row w3"></div><div class="row w1"></div><div class="row w2"></div></div>
+      <div class="card"><div class="row w2"></div><div class="row w4"></div></div>
+    </div>
+  </div>
+
+  <h2>What lives where</h2>
+  <table>
+    <tr><th style="width:22%">Cluster</th><th>Contents</th><th style="width:36%">Notes</th></tr>
+    <tr><td><b>Modes</b> (icon + tooltip)</td><td>Structure · Order · Contrast</td><td>Preview removed — it was bbox visibility wearing a mode costume. Selecting a mode swaps the contextual tools.</td></tr>
+    <tr><td><b>Contextual tools</b> (icon-only)</td><td><b>Structure:</b> Select <kbd>V</kbd> · Marquee <kbd>M</kbd> · Retag <kbd>R</kbd><br><b>Order:</b> Confirm · Trace — reorder lands here (#40)<br><b>Contrast:</b> Inspect · AA/AAA</td><td>Tooltip = name + shortcut. Every icon carries an aria-label — icon-only must not mean screen-reader-silent, of all products in this one.</td></tr>
+    <tr><td><b>Globals</b> (icon-only)</td><td>👁 bboxes · Zoom · Download · ⋯</td><td>The eye is Preview's replacement: works in any mode, so you can hide boxes while retagging — strictly better than the old modal version.</td></tr>
+    <tr><td><b>Commit</b> (keeps words)</td><td>Discard · <b>Apply</b></td><td>The one deliberate exception to icon-only: the money buttons stay labeled. Figma does the same — tools are icons, primary CTAs are words. An ambiguous Apply icon is a risk with zero payoff.</td></tr>
+  </table>
+
+  <div class="why"><b>Space math:</b> icon-first shrinks the bar's min-content width by roughly half, which — combined with being in normal flow instead of floating — makes the both-rails-open clipping geometrically impossible rather than just patched. The wrap fallback shipped in #19 stays as a belt-and-suspenders for extreme widths but should never engage.</div>
+</div>
+
+<script>
+(function(){
+  const MODES={
+    structure:{icon:'⌖',tip:'Structure',tools:[['➤','Select · V'],['⬚','Marquee · M'],['✎','Retag · R']]},
+    order:{icon:'⇅',tip:'Order',tools:[['✓','Confirm order'],['〰','Reading-order trace']]},
+    contrast:{icon:'◐',tip:'Contrast',tools:[['⊙','Inspect color'],['AA','AA / AAA threshold']]}
+  };
+  let mode='structure', bbox=true;
+  const dock=document.getElementById('dock'), frame=document.getElementById('frame');
+  function el(tag,cls,txt,tip){const e=document.createElement(tag==='btn'?'button':tag);if(tag==='btn')e.type='button';e.className=cls;if(txt)e.textContent=txt;if(tip){e.dataset.tip=tip;e.setAttribute('aria-label',tip);}return e;}
+  function sep(){return el('div','sep');}
+  function render(){
+    dock.innerHTML='';
+    const modes=el('div','modes');
+    for(const[k,m]of Object.entries(MODES)){
+      const b=el('btn','',m.icon,m.tip);
+      b.setAttribute('aria-pressed',String(k===mode));
+      b.onclick=()=>{mode=k;render();};
+      modes.appendChild(b);
+    }
+    dock.appendChild(modes);dock.appendChild(sep());
+    MODES[mode].tools.forEach(([g,tip],i)=>{const b=el('btn','tool'+(i===0?' on':''),g,tip);dock.appendChild(b);});
+    dock.appendChild(sep());
+    const eye=el('btn','tool'+(bbox?' on':''),'👁','Show bboxes');
+    eye.onclick=()=>{bbox=!bbox;frame.classList.toggle('no-bbox',!bbox);render();};
+    dock.appendChild(eye);
+    dock.appendChild(el('btn','tool ghost wide','100%','Zoom'));
+    dock.appendChild(el('btn','tool ghost','⤓','Download'));
+    dock.appendChild(el('btn','tool ghost','⋯','More'));
+    dock.appendChild(el('div','push'));
+    dock.appendChild(el('btn','tool ghost wide','Discard','Discard changes'));
+    dock.appendChild(el('btn','tool commit wide','Apply','Apply corrections'));
+  }
+  document.getElementById('leftRail').onchange=e=>frame.classList.toggle('no-left',!e.target.checked);
+  document.getElementById('rightRail').onchange=e=>frame.classList.toggle('no-right',!e.target.checked);
+  render();
+})();
+</script>
+
+</body></html>

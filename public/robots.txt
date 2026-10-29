@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
-
+Disallow: /samples/
+Disallow: /unlock/
+Disallow: /api/
 Sitemap: https://www.matthewbrown.design/sitemap.xml

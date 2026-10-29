@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work samples | Matthew Brown</title>
+<meta name="description" content="Private work samples: design work made with Claude Design, with the reasoning behind each piece.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#EEF2EF">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="app" class="samples-root">
+
+<a class="s1 btn skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="pill-bar">
+      <a class="brand" href="/">Matthew Brown</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="/#method">Method</a></li>
+          <li><a href="/#work">Work</a></li>
+          <li><a href="/#experience">Experience</a></li>
+          <li><a href="/#fit">Fit</a></li>
+          <li><a class="nav-contact" href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="unlock" aria-labelledby="unlock-title">
+  <div class="wrap unlock-grid">
+    <div class="unlock-copy">
+      <p class="eyebrow">Private · Work samples</p>
+      <h1 id="unlock-title">Decisions you can see.</h1>
+      <p class="lede">Seven pieces of work made with Claude Design, for Foresera and for this site, with the reasoning behind each one and where it sits in the method on the home page.</p>
+      <p class="lede small">They include product and client material that is not public, so this page sits behind a password.</p>
+    </div>
+    <form class="card unlock-form" method="post" action="/api/unlock">
+      <p class="form-error" role="status" data-unlock-error></p>
+      <label for="unlock-password">Password</label>
+      <input id="unlock-password" name="password" type="password" required autocomplete="current-password" autocapitalize="off" spellcheck="false">
+      <input type="hidden" name="next" value="/samples/" data-unlock-next>
+      <button class="s2 btn btn-primary" type="submit">Open the samples</button>
+      <p class="form-note">Need the password? <a href="mailto:sparkingmatt@gmail.com?subject=Work%20samples%20password">Email Matthew</a>.</p>
+    </form>
+  </div>
+</section>
+</main>
+</div>
+<script type="module" src="/src/unlock.js"></script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<style>
+  :root {
+    /* warm-biased neutrals — a chosen paper, not a default grey */
+    --paper:#FBFAF7; --card:#FFFFFF; --card-2:#F7F5F0;
+    --hair:#EBE7DE; --hair-2:#DED9CE;
+    --ink:#1A1C1E; --ink-2:#585650; --ink-3:#8C887F; --ink-4:#B4AFA4;
+    --coral:#E07B5D; --coral-ink:#C0563A;
+    --flag:#C0362C; --flag-wash:#FBEDEB;
+    --good:#2F7D5E; --good-wash:#EAF3EE;
+    /* pairing hues — identify a piece of data that repeats */
+    --t-risk:#5B54D6; --t-type:#0E8C86; --t-dept:#B5620A; --t-docs:#8A3FD1;
+    /* app-render fidelity: the real tier colors from EntityScan */
+    --f:#EF4444; --d:#F97316; --c:#F59E0B; --b:#3B82F6; --a:#22C55E; --ap:#16A34A;
+    --shell:#EFEDE4; --panel:#FAF9F5;
+    --serif:"Tiempos Headline","New York",Charter,"Iowan Old Style",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI","Plus Jakarta Sans",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,monospace;
+    --sh:0 1px 2px rgba(26,28,30,.04),0 8px 24px rgba(26,28,30,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#121313; --card:#1A1B1C; --card-2:#1F2021;
+      --hair:#2B2D2E; --hair-2:#3A3C3D;
+      --ink:#ECEAE4; --ink-2:#ABA8A1; --ink-3:#7C7A73; --ink-4:#565550;
+      --coral:#E88A6E; --coral-ink:#EE9B82;
+      --flag:#F0776C; --flag-wash:#2A1A18;
+      --good:#5FBE93; --good-wash:#17241E;
+      --t-risk:#8B85F0; --t-type:#3FB8B1; --t-dept:#E39140; --t-docs:#B482EA;
+      --shell:#1B1C1D; --panel:#202122;
+      --sh:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#FBFAF7; --card:#FFFFFF; --card-2:#F7F5F0; --hair:#EBE7DE; --hair-2:#DED9CE;
+    --ink:#1A1C1E; --ink-2:#585650; --ink-3:#8C887F; --ink-4:#B4AFA4;
+    --coral:#E07B5D; --coral-ink:#C0563A; --flag:#C0362C; --flag-wash:#FBEDEB;
+    --good:#2F7D5E; --good-wash:#EAF3EE;
+    --t-risk:#5B54D6; --t-type:#0E8C86; --t-dept:#B5620A; --t-docs:#8A3FD1;
+    --shell:#EFEDE4; --panel:#FAF9F5;
+    --sh:0 1px 2px rgba(26,28,30,.04),0 8px 24px rgba(26,28,30,.06);
+  }
+  :root[data-theme="dark"]{
+    --paper:#121313; --card:#1A1B1C; --card-2:#1F2021; --hair:#2B2D2E; --hair-2:#3A3C3D;
+    --ink:#ECEAE4; --ink-2:#ABA8A1; --ink-3:#7C7A73; --ink-4:#565550;
+    --coral:#E88A6E; --coral-ink:#EE9B82; --flag:#F0776C; --flag-wash:#2A1A18;
+    --good:#5FBE93; --good-wash:#17241E;
+    --t-risk:#8B85F0; --t-type:#3FB8B1; --t-dept:#E39140; --t-docs:#B482EA;
+    --shell:#1B1C1D; --panel:#202122; --sh:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  .wrap{
+    font-family:var(--sans); color:var(--ink); background:var(--paper);
+    -webkit-font-smoothing:antialiased; line-height:1.5;
+    max-width:1120px; margin:0 auto; padding:56px 28px 96px;
+  }
+  .wrap :where(h1,h2,h3,p,ul,ol){margin:0}
+  .num{font-variant-numeric:tabular-nums}
+  .mono{font-family:var(--mono)}
+
+  /* ── header ── */
+  .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--coral-ink); font-weight:600}
+  h1{font-family:var(--serif); font-weight:600; font-size:clamp(32px,5vw,46px); line-height:1.04; letter-spacing:-.015em; text-wrap:balance; margin-top:14px!important}
+  .lede{max-width:65ch; color:var(--ink-2); font-size:16px; margin-top:14px!important}
+  .route{font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-top:6px!important; word-break:break-all}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
+  .chip{display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:500;
+    background:var(--flag-wash); color:var(--flag); border:1px solid color-mix(in srgb,var(--flag) 26%,transparent);
+    padding:5px 11px; border-radius:999px}
+  .chip b{font-family:var(--mono); font-weight:700}
+
+  /* ── section scaffolding ── */
+  section{margin-top:52px}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:18px; border-bottom:1px solid var(--hair); padding-bottom:12px}
+  .sec-idx{font-family:var(--mono); font-size:12px; color:var(--coral-ink); font-weight:700}
+  h2{font-size:21px; font-weight:650; letter-spacing:-.01em}
+  .sec-sub{color:var(--ink-3); font-size:13.5px; margin-left:auto; text-align:right}
+
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:760px){.two{grid-template-columns:1fr}}
+
+  .panel{background:var(--card); border:1px solid var(--hair); border-radius:16px; box-shadow:var(--sh)}
+  .panel-flag{border-color:color-mix(in srgb,var(--flag) 34%,var(--hair))}
+  .panel-good{border-color:color-mix(in srgb,var(--good) 40%,var(--hair))}
+  .panel-hd{display:flex; align-items:center; gap:9px; padding:13px 16px; border-bottom:1px solid var(--hair); font-size:12px; font-family:var(--mono); letter-spacing:.06em; text-transform:uppercase; font-weight:600}
+  .dot{width:8px; height:8px; border-radius:99px; flex:none}
+  .badge{margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; padding:3px 8px; border-radius:999px; font-weight:700}
+  .badge-flag{background:var(--flag-wash); color:var(--flag)}
+  .badge-good{background:var(--good-wash); color:var(--good)}
+
+  /* ── numbers section ── */
+  .nrows{padding:6px 16px 14px}
+  .nrow{display:grid; grid-template-columns:1fr auto; gap:10px 14px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--hair)}
+  .nrow:last-child{border-bottom:0}
+  .nkey{font-size:12px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em; color:var(--ink-3); grid-column:1 / -1; margin-bottom:2px}
+  .nlabel{color:var(--ink-2); font-size:13.5px}
+  .nlabel small{display:block; color:var(--ink-4); font-size:12px}
+  .nval{font-family:var(--mono); font-weight:700; font-size:16px; text-align:right; white-space:nowrap}
+  .nval.dupe{color:var(--flag)}
+  .nval.solid{color:var(--ink)}
+  .ncap{padding:12px 16px; font-size:12.5px; color:var(--ink-3); border-top:1px dashed var(--hair-2); font-style:italic}
+  .ncap.good{color:var(--good)}
+
+  /* ── structure maps ── */
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:16px; font-size:12.5px; color:var(--ink-2)}
+  .legend span{display:inline-flex; align-items:center; gap:6px}
+  .stack{display:flex; flex-direction:column; gap:9px}
+  .blk{position:relative; background:var(--card); border:1px solid var(--hair); border-radius:12px; padding:12px 14px 12px 15px; box-shadow:0 1px 2px rgba(26,28,30,.03)}
+  .blk-i{font-family:var(--mono); font-size:11px; color:var(--ink-4); font-weight:700}
+  .blk-t{font-weight:600; font-size:14px; margin:2px 0 3px}
+  .blk-m{font-size:12.5px; color:var(--ink-3); font-family:var(--mono)}
+  .blk-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
+  .tag{font-size:10.5px; font-weight:700; font-family:var(--mono); letter-spacing:.03em; padding:3px 8px; border-radius:6px;
+    color:#fff}
+  .tag-out{background:transparent; border:1px solid currentColor}
+  .blk.dup{border-left:3px solid var(--tagc,var(--flag))}
+  .blk.junk{border-left:3px solid var(--flag)}
+  .blk.gone{opacity:.5}
+  .blk-good{border-color:color-mix(in srgb,var(--good) 34%,var(--hair)); border-left:3px solid var(--good)}
+  .absorb{margin-top:9px; display:flex; flex-direction:column; gap:5px}
+  .absorb div{font-size:12px; color:var(--ink-2); display:flex; gap:7px; align-items:baseline}
+  .absorb .k{color:var(--good); font-weight:700; font-family:var(--mono); font-size:14px; line-height:1}
+  .col-label{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px}
+  .col-label .n{font-size:11px; color:var(--ink-4)}
+
+  /* ── faithful app render ── */
+  .frame{border:1px solid var(--hair-2); border-radius:16px; overflow:hidden; box-shadow:var(--sh); background:var(--shell)}
+  .titlebar{display:flex; align-items:center; gap:8px; padding:9px 13px; background:var(--card-2); border-bottom:1px solid var(--hair)}
+  .tb-dots{display:flex; gap:6px}
+  .tb-dots i{width:10px; height:10px; border-radius:99px; background:var(--hair-2); display:block}
+  .tb-url{font-family:var(--mono); font-size:11.5px; color:var(--ink-3); background:var(--paper); border:1px solid var(--hair); border-radius:7px; padding:3px 10px; margin:0 auto; max-width:70%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .app{display:flex; gap:8px; padding:8px; min-height:10px}
+  .rail{width:34px; flex:none; background:var(--panel); border-radius:12px; display:flex; flex-direction:column; align-items:center; gap:14px; padding:12px 0}
+  .rail i{width:16px; height:16px; border-radius:5px; background:var(--hair-2); display:block}
+  .rail i.on{background:var(--coral)}
+  .surface{flex:1; min-width:0; background:var(--panel); border-radius:12px; padding:18px 20px}
+  .app-eyebrow{font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
+  .app-h1{font-family:var(--serif); font-size:26px; font-weight:600; letter-spacing:-.01em; margin:5px 0 0}
+  .stat-strip{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+  .stat{flex:1 1 150px; background:var(--card); border:1px solid var(--hair); border-radius:12px; padding:11px 13px}
+  .stat .l{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
+  .stat .v{font-family:var(--mono); font-size:22px; font-weight:700; margin-top:6px; line-height:1}
+  .stat .s{font-size:11px; color:var(--ink-4); margin-top:5px}
+  .app-actions{display:flex; gap:8px; margin-top:14px; flex-wrap:wrap}
+  .btn{font-size:12px; font-weight:600; padding:7px 13px; border-radius:9px; border:1px solid var(--hair-2); background:var(--card); color:var(--ink); cursor:pointer}
+  .btn-coral{background:var(--coral); border-color:var(--coral); color:#fff}
+  .inv-h{font-size:13px; font-weight:700; margin:22px 0 3px}
+  .inv-sub{font-size:12px; color:var(--ink-3); margin-bottom:12px; font-family:var(--mono)}
+  .pillrow{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:7px}
+  .pill{font-size:11.5px; padding:4px 10px; border-radius:999px; border:1px solid var(--hair-2); background:var(--card); color:var(--ink-2); white-space:nowrap}
+  .pill .c{font-family:var(--mono); color:var(--ink-4); margin-left:5px; font-size:10.5px}
+  .pill.on{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .pill.on .c{color:color-mix(in srgb,var(--paper) 70%,transparent)}
+  .pill-lead{font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-4); align-self:center; margin-right:2px; font-weight:700}
+  .tbl-scroll{overflow-x:auto; margin-top:12px; border-top:1px solid var(--hair)}
+  table.inv{width:100%; border-collapse:collapse; font-size:12.5px; min-width:560px}
+  table.inv th{font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); text-align:left; font-weight:600; padding:9px 10px; border-bottom:1px solid var(--hair)}
+  table.inv td{padding:10px; border-bottom:1px solid var(--hair); vertical-align:middle}
+  table.inv th.r,table.inv td.r{text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums}
+  .risk{font-family:var(--mono); font-weight:800; font-size:12px}
+  .fn{font-size:12.5px; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:230px; display:block}
+  .fn-sub{font-size:10.5px; color:var(--ink-4)}
+  .state{font-size:10.5px; font-family:var(--mono); font-weight:700; letter-spacing:.03em; padding:3px 8px; border-radius:6px; background:var(--card-2); color:var(--ink-2); border:1px solid var(--hair)}
+  .rowact{display:flex; gap:5px}
+  .rowact button{font-size:11px; font-weight:600; padding:4px 9px; border-radius:7px; border:1px solid var(--hair-2); background:var(--card); color:var(--ink-2); cursor:pointer}
+  .loadmore{display:flex; justify-content:center; margin-top:12px}
+  .disc{margin-top:12px; border:1px dashed var(--hair-2); border-radius:10px; padding:11px 14px; font-size:12.5px; color:var(--ink-3); display:flex; align-items:center; gap:8px}
+  .disc b{color:var(--ink-2); font-weight:600}
+
+  /* ── ledger ── */
+  .ledger-scroll{overflow-x:auto}
+  table.ledger{width:100%; border-collapse:collapse; font-size:13.5px; min-width:620px}
+  table.ledger th{text-align:left; font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); font-weight:600; padding:10px 12px; border-bottom:1.5px solid var(--hair-2)}
+  table.ledger td{padding:12px; border-bottom:1px solid var(--hair); vertical-align:top}
+  table.ledger tr:last-child td{border-bottom:0}
+  .act{font-family:var(--mono); font-size:11px; font-weight:700; padding:3px 9px; border-radius:6px; white-space:nowrap; display:inline-block}
+  .act-remove{background:var(--flag-wash); color:var(--flag)}
+  .act-merge{background:color-mix(in srgb,var(--t-risk) 14%,transparent); color:var(--t-risk)}
+  .act-fix{background:var(--good-wash); color:var(--good)}
+  .led-el{font-weight:600}
+  .led-why{color:var(--ink-2); font-size:12.5px}
+
+  /* ── note ── */
+  .note{background:var(--card-2); border:1px solid var(--hair); border-left:3px solid var(--coral); border-radius:12px; padding:16px 18px; font-size:13.5px; color:var(--ink-2)}
+  .note h3{font-size:14px; color:var(--ink); margin-bottom:8px!important}
+  .note ul{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:6px}
+  .note code{font-family:var(--mono); font-size:12px; background:var(--paper); border:1px solid var(--hair); border-radius:5px; padding:1px 5px}
+  .owner{display:inline-block; font-family:var(--mono); font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:5px; margin-right:6px}
+  .own-client{background:var(--good-wash); color:var(--good)}
+  .own-api{background:color-mix(in srgb,var(--t-dept) 16%,transparent); color:var(--t-dept)}
+
+  footer{margin-top:56px; padding-top:20px; border-top:1px solid var(--hair); font-size:12.5px; color:var(--ink-4); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+
+  .reveal{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease}
+  .reveal.in{opacity:1; transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none; transition:none}}
+  :focus-visible{outline:2px solid var(--coral); outline-offset:2px; border-radius:4px}
+</style>
+
+<div class="wrap">
+
+  <header class="reveal">
+    <div class="eyebrow">Design review · Entity scan page</div>
+    <h1>One page, told two&nbsp;or three&nbsp;times</h1>
+    <p class="lede">The Preliminary scan page staples an analytics dashboard on top of an inventory browser — and the dashboard's three charts reappear as the browser's filter controls. The same document totals disagree by section, and four different "pages" numbers sit unlabeled side by side. Here's the structure today and the proposed collapse to a single source of truth per number.</p>
+    <div class="route">/app/entity/cmm9dolld000fhmbshr6hs92d/scan · City of Dallas · dallascityhall.com</div>
+    <div class="chips">
+      <span class="chip">Duplicated distributions <b>×3</b></span>
+      <span class="chip">Two tables, <b>same rows</b></span>
+      <span class="chip"><b>3</b> doc totals · <b>4</b> page totals</span>
+      <span class="chip">Crawler junk in <b>179</b> "departments"</span>
+    </div>
+  </header>
+
+  <!-- 1 · THE NUMBERS -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-idx">01</span>
+      <h2>The numbers don't reconcile</h2>
+      <span class="sec-sub">the "stale vs live" problem</span>
+    </div>
+    <div class="two">
+      <div class="panel panel-flag">
+        <div class="panel-hd" style="color:var(--flag)"><span class="dot" style="background:var(--flag)"></span> Today <span class="badge badge-flag">7 figures · 4 meanings</span></div>
+        <div class="nrows">
+          <div class="nrow"><div class="nkey">Documents</div>
+            <div class="nlabel">Hero, KPI card, risk &amp; type totals</div><div class="nval dupe num">68,936</div></div>
+          <div class="nrow">
+            <div class="nlabel">"Documents" list subheading <small>Found only — excludes 8 imported</small></div><div class="nval dupe num">68,928</div></div>
+          <div class="nrow">
+            <div class="nlabel">"All departments" pill total <small>drops the government catch-all</small></div><div class="nval dupe num">68,207</div></div>
+          <div class="nrow"><div class="nkey">Pages</div>
+            <div class="nlabel">Hero + department table total <small>discovery-time estimate</small></div><div class="nval dupe num">~457,634</div></div>
+          <div class="nrow">
+            <div class="nlabel">KPI "Real pages (parsed)"</div><div class="nval dupe num">2,065,542</div></div>
+          <div class="nrow">
+            <div class="nlabel">"Documents" list subheading</div><div class="nval dupe num">≈2,195,906</div></div>
+          <div class="nrow">
+            <div class="nlabel">KPI "Pages crawled" <small>HTML pages walked — a different unit</small></div><div class="nval dupe num">480</div></div>
+        </div>
+        <div class="ncap">Nothing on screen cross-references them. "480" next to "2,065,542" reads like the scan is 0.02% done.</div>
+      </div>
+
+      <div class="panel panel-good">
+        <div class="panel-hd" style="color:var(--good)"><span class="dot" style="background:var(--good)"></span> Proposed <span class="badge badge-good">1 per concept</span></div>
+        <div class="nrows">
+          <div class="nrow"><div class="nkey">Documents</div>
+            <div class="nlabel">Total discovered <small>68,928 found · 8 imported · 0 dismissed</small></div><div class="nval solid num">68,936</div></div>
+          <div class="nrow"><div class="nkey">Pages</div>
+            <div class="nlabel">Parsed by enrichment <small>~457,634 estimated at crawl time</small></div><div class="nval solid num">2,065,542</div></div>
+          <div class="nrow"><div class="nkey">Site reach</div>
+            <div class="nlabel">HTML pages walked by the crawler</div><div class="nval solid num">480</div></div>
+          <div class="nrow"><div class="nkey">Enrichment</div>
+            <div class="nlabel">Classified: type · pages · risk</div><div class="nval solid num">100%</div></div>
+        </div>
+        <div class="ncap good">One headline number per concept; the estimate becomes a derivation, not a competing figure; the import gap is a sublabel, not a second total.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · THE STRUCTURE -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-idx">02</span>
+      <h2>Seven stacked blocks → three</h2>
+      <span class="sec-sub">each distribution should exist once</span>
+    </div>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--t-risk)"></span> Risk distribution</span>
+      <span><span class="dot" style="background:var(--t-type)"></span> Type distribution</span>
+      <span><span class="dot" style="background:var(--t-dept)"></span> Department distribution</span>
+      <span><span class="dot" style="background:var(--t-docs)"></span> Highest-risk docs</span>
+      <span style="color:var(--ink-4)">— colored blocks are the pieces that repeat</span>
+    </div>
+    <div class="two">
+      <div>
+        <div class="col-label" style="color:var(--flag)"><span class="dot" style="background:var(--flag)"></span> Today <span class="n">— 7 blocks, one scroll</span></div>
+        <div class="stack">
+          <div class="blk"><div class="blk-i">01</div><div class="blk-t">Hero + Rescan</div><div class="blk-m">title · doc/page line · scan freshness</div></div>
+          <div class="blk"><div class="blk-i">02</div><div class="blk-t">4 KPI cards</div><div class="blk-m">68,936 · 2,065,542 · 480 · 179</div>
+            <div class="blk-tags"><span class="tag" style="background:var(--flag)">unlabeled units</span></div></div>
+          <div class="blk"><div class="blk-i">03</div><div class="blk-t">Enrichment bar + CSV</div><div class="blk-m">68,936 / 68,936 (100%)</div></div>
+          <div class="blk dup" style="--tagc:var(--t-risk)"><div class="blk-i">04</div><div class="blk-t">Risk-tier bars &nbsp;+&nbsp; Doc-type bars</div><div class="blk-m">F 9,051 … A+ 414 &nbsp;·&nbsp; Agendas 22,516 …</div>
+            <div class="blk-tags"><span class="tag" style="background:var(--t-risk)">risk · chart</span><span class="tag" style="background:var(--t-type)">type · chart</span></div></div>
+          <div class="blk dup" style="--tagc:var(--t-docs)"><div class="blk-i">05</div><div class="blk-t">"Highest-risk documents" table</div><div class="blk-m">top 25 F-risk docs</div>
+            <div class="blk-tags"><span class="tag" style="background:var(--t-docs)">risk docs · table</span></div></div>
+          <div class="blk dup junk" style="--tagc:var(--t-dept)"><div class="blk-i">06</div><div class="blk-t">Department table — all 179 rows</div><div class="blk-m">General Government 22,203 … + 497, Kittencare, Mynewpet…</div>
+            <div class="blk-tags"><span class="tag" style="background:var(--t-dept)">dept · table</span><span class="tag" style="background:var(--flag)">crawler junk</span></div></div>
+          <div class="blk dup" style="--tagc:var(--flag)"><div class="blk-i">07</div><div class="blk-t">"Documents" browser</div><div class="blk-m">68,928 docs · ≈2,195,906 pages · 5 pill rows + full table</div>
+            <div class="blk-tags">
+              <span class="tag tag-out" style="color:var(--t-risk)">risk · pills</span>
+              <span class="tag tag-out" style="color:var(--t-type)">type · pills</span>
+              <span class="tag tag-out" style="color:var(--t-dept)">dept · pills</span>
+              <span class="tag tag-out" style="color:var(--t-docs)">same rows as ⑤</span>
+            </div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="col-label" style="color:var(--good)"><span class="dot" style="background:var(--good)"></span> Proposed <span class="n">— 3 blocks</span></div>
+        <div class="stack">
+          <div class="blk blk-good"><div class="blk-i">01</div><div class="blk-t">Hero + honest stat strip</div><div class="blk-m">title · one number per concept · Rescan · Download CSV</div>
+            <div class="absorb"><div><span class="k">↳</span> absorbs the 4 KPI cards + enrichment bar, relabeled</div></div></div>
+          <div class="blk blk-good"><div class="blk-i">02</div><div class="blk-t">Inventory — the one surface</div><div class="blk-m">filter pills (= the distributions) over the deduped, risk-sorted table</div>
+            <div class="absorb">
+              <div><span class="k" style="color:var(--t-risk)">●</span> risk distribution → the risk pills</div>
+              <div><span class="k" style="color:var(--t-type)">●</span> type distribution → the type pills</div>
+              <div><span class="k" style="color:var(--t-docs)">●</span> "highest-risk" table → default risk sort, same list</div>
+            </div></div>
+          <div class="blk blk-good"><div class="blk-i">03</div><div class="blk-t">Department detail <span style="font-weight:400;color:var(--ink-4)">(collapsed)</span></div><div class="blk-m">"All 34 departments ▾" — real departments only</div>
+            <div class="absorb"><div><span class="k" style="color:var(--t-dept)">●</span> department distribution, demoted from headline to disclosure</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · THE RENDER -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-idx">03</span>
+      <h2>The proposed page, rendered</h2>
+      <span class="sec-sub">real Dallas data · deduped · junk filtered</span>
+    </div>
+    <div class="frame">
+      <div class="titlebar"><span class="tb-dots"><i></i><i></i><i></i></span><span class="tb-url">foresera.com/app/entity/…/scan</span></div>
+      <div class="app">
+        <div class="rail"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+        <div class="surface">
+          <div class="app-eyebrow">Preliminary scan</div>
+          <h3 class="app-h1">What we found on dallascityhall.com</h3>
+
+          <div class="stat-strip">
+            <div class="stat"><div class="l">Documents</div><div class="v num">68,936</div><div class="s">68,928 found · 8 imported</div></div>
+            <div class="stat"><div class="l">Pages parsed</div><div class="v num">2.07M</div><div class="s">~457,634 est. at crawl</div></div>
+            <div class="stat"><div class="l">Site reach</div><div class="v num">480</div><div class="s">HTML pages walked</div></div>
+            <div class="stat"><div class="l">Enrichment</div><div class="v num">100%</div><div class="s">type · pages · risk</div></div>
+          </div>
+          <div class="app-actions">
+            <button class="btn btn-coral" type="button">↻ Rescan now</button>
+            <button class="btn" type="button">Download inventory CSV</button>
+          </div>
+
+          <div class="inv-h">Documents</div>
+          <div class="inv-sub">68,928 found · sorted by risk · duplicates collapsed</div>
+
+          <div class="pillrow"><span class="pill-lead">Status</span>
+            <span class="pill on">Found <span class="c num">68,928</span></span>
+            <span class="pill">Imported <span class="c num">8</span></span>
+            <span class="pill">Dismissed <span class="c num">0</span></span></div>
+          <div class="pillrow"><span class="pill-lead">Risk</span>
+            <span class="pill">All</span>
+            <span class="pill on">F <span class="c num">9,051</span></span>
+            <span class="pill">D <span class="c num">26,922</span></span>
+            <span class="pill">C <span class="c num">26,087</span></span>
+            <span class="pill">B <span class="c num">4,388</span></span>
+            <span class="pill">A <span class="c num">2,074</span></span>
+            <span class="pill">A+ <span class="c num">414</span></span></div>
+          <div class="pillrow"><span class="pill-lead">Type</span>
+            <span class="pill">All</span>
+            <span class="pill">Agendas <span class="c num">22,516</span></span>
+            <span class="pill">General <span class="c num">11,016</span></span>
+            <span class="pill">Meeting Minutes <span class="c num">7,369</span></span>
+            <span class="pill">Permit Forms <span class="c num">5,233</span></span></div>
+          <div class="pillrow"><span class="pill-lead">Domain</span>
+            <span class="pill">All</span>
+            <span class="pill">dallascityhall.com <span class="c num">36,836</span></span>
+            <span class="pill">dallas.gov <span class="c num">17,569</span></span></div>
+
+          <div class="tbl-scroll">
+            <table class="inv">
+              <thead><tr><th>Risk</th><th>Document</th><th>Category</th><th class="r">Pages</th><th>Department</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td><span class="risk" style="color:var(--f)">F</span></td>
+                  <td><span class="fn">DallasNow_Conservation Submittal.pdf</span><span class="fn-sub">Planning &amp; Urban Design · form · resident-facing</span></td>
+                  <td>Guides Manuals</td><td class="r">39</td><td>Planning &amp; Urban Design</td>
+                  <td><span class="state">Found</span></td>
+                  <td><div class="rowact"><button type="button">Import</button><button type="button">Dismiss</button></div></td></tr>
+                <tr><td><span class="risk" style="color:var(--f)">F</span></td>
+                  <td><span class="fn">LT APPLICATION - 07302024.pdf</span><span class="fn-sub">Housing &amp; Neighborhood Revitalization · form</span></td>
+                  <td>Vital Resident Svc</td><td class="r">34</td><td>Housing &amp; Neigh. Rev.</td>
+                  <td><span class="state">Found</span></td>
+                  <td><div class="rowact"><button type="button">Import</button><button type="button">Dismiss</button></div></td></tr>
+                <tr><td><span class="risk" style="color:var(--f)">F</span></td>
+                  <td><span class="fn">BOA-25-000079_Application Materials.pdf</span><span class="fn-sub">Sustainable Development · form · 1 of 2 domains</span></td>
+                  <td>Permit Forms</td><td class="r">23</td><td>Sustainable Dev.</td>
+                  <td><span class="state">Found</span></td>
+                  <td><div class="rowact"><button type="button">Import</button><button type="button">Dismiss</button></div></td></tr>
+                <tr><td><span class="risk" style="color:var(--f)">F</span></td>
+                  <td><span class="fn">2026 Community Survey.pdf</span><span class="fn-sub">City Manager's Office · form · resident-facing</span></td>
+                  <td>General</td><td class="r">17</td><td>City Manager's Office</td>
+                  <td><span class="state">Found</span></td>
+                  <td><div class="rowact"><button type="button">Import</button><button type="button">Dismiss</button></div></td></tr>
+                <tr><td><span class="risk" style="color:var(--d)">D</span></td>
+                  <td><span class="fn">FY 2025-26 Consolidated Plan Activity Listing.pdf</span><span class="fn-sub">Office of Budget &amp; Management Services</span></td>
+                  <td>Vital Resident Svc</td><td class="r">18</td><td>Budget &amp; Mgmt</td>
+                  <td><span class="state">Found</span></td>
+                  <td><div class="rowact"><button type="button">Import</button><button type="button">Dismiss</button></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="loadmore"><button class="btn" type="button">Load more (68,923 remaining)</button></div>
+
+          <div class="disc"><span aria-hidden="true">▸</span> <b>All 34 departments</b> &nbsp;·&nbsp; est. pages &amp; avg per doc &nbsp;<span style="color:var(--ink-4)">— real departments only, numeric &amp; article slugs filtered out</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · LEDGER -->
+  <section class="reveal">
+    <div class="sec-head">
+      <span class="sec-idx">04</span>
+      <h2>What changes, element by element</h2>
+      <span class="sec-sub">every edit, and why</span>
+    </div>
+    <div class="panel">
+      <div class="ledger-scroll">
+        <table class="ledger">
+          <thead><tr><th style="width:32%">Element today</th><th style="width:14%">Action</th><th>Becomes / why</th></tr></thead>
+          <tbody>
+            <tr><td class="led-el">Risk-tier bar chart</td><td><span class="act act-remove">remove</span></td><td class="led-why">Same data already lives as the interactive <b>risk</b> filter pills. A static bar you can't click earns no space.</td></tr>
+            <tr><td class="led-el">Doc-type bar chart</td><td><span class="act act-remove">remove</span></td><td class="led-why">Redundant with the <b>type</b> filter pills.</td></tr>
+            <tr><td class="led-el">"Highest-risk documents" table</td><td><span class="act act-remove">remove</span></td><td class="led-why">The inventory already opens sorted by risk — its first rows <em>are</em> this list. Two tables, identical rows.</td></tr>
+            <tr><td class="led-el">179-row department table</td><td><span class="act act-merge">demote</span></td><td class="led-why">Moves into a collapsed "All departments" disclosure. It's a facet, not a headline.</td></tr>
+            <tr><td class="led-el">4 unlabeled KPI cards</td><td><span class="act act-fix">relabel</span></td><td class="led-why">One honest stat strip; units on every figure; the 8 imported docs become a sublabel, not a rival total.</td></tr>
+            <tr><td class="led-el">3 doc totals / 4 page totals</td><td><span class="act act-fix">reconcile</span></td><td class="led-why">One number per concept. Estimate shown as a derivation of the parsed count, not a competing headline.</td></tr>
+            <tr><td class="led-el">Duplicate PDF rows</td><td><span class="act act-fix">dedupe</span></td><td class="led-why">The same file crawled across dallascityhall.com / dallas.gov / www3… collapses to one row with a domain count.</td></tr>
+            <tr><td class="led-el">Junk departments (497, Kittencare…)</td><td><span class="act act-fix">filter</span></td><td class="led-why">Hide 0-doc numeric &amp; news-article slugs so "34 departments" is trustworthy.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · OWNERSHIP -->
+  <section class="reveal">
+    <div class="note">
+      <h3>Where the work lives — and one caveat before Wednesday</h3>
+      <ul>
+        <li><span class="owner own-client">CLIENT</span> Removing the two charts + the twin table, relabeling the stat strip, reconciling counts, and collapsing the department table are pure <code>EntityScan.tsx</code> layout — low risk, fully reversible.</li>
+        <li><span class="owner own-api">API</span> Row-level dedupe and junk-department filtering are best done at the source (<code>/website-scan/inventory</code> + the department derivation) so counts and CSV agree. I can guard both client-side as a stopgap if we want it before the review without an API deploy.</li>
+        <li><span class="owner own-api">API</span> The cleanest count reconciliation folds "imported" into the summary aggregate so hero and list never diverge — a small <code>document-states</code> shape tweak.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>Mock · not wired — real City of Dallas figures, pulled from the live scan page today</span>
+    <span>Foresera · V1 <span class="mono">/app</span></span>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion:reduce)').matches){
+      els.forEach(function(e){e.classList.add('in')}); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    }, {threshold:.08, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e)});
+  })();
+</script>
+
+</body></html>
