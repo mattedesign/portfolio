@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^1.1.0",
-    "@vercel/functions": "^3.10.4"
+    "@anthropic-ai/sdk": "^1.1.0"
   },
   "devDependencies": {
     "vite": "^7.3.1"

@@ -7,6 +7,11 @@
 <meta name="description" content="Private work samples: seven pieces made with Claude Design and Claude Code, with the decision each one served and how it ties to the method.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#EEF2EF">
+<script>
+// Front-end gate: without the flag the unlock page set in this browser, go there first.
+(function(){var ok=false;try{var t=+(localStorage.getItem('mb_samples')||sessionStorage.getItem('mb_samples'))||0;ok=Date.now()-t<30*864e5}catch(e){}
+if(!ok)location.replace('/unlock/?next='+encodeURIComponent(location.pathname+location.hash))})();
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

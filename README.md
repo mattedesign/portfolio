@@ -27,25 +27,21 @@ npm run preview   # serve dist/
 
 ## Work samples (private)
 
-`/samples/` is a password-protected page of design work made with Claude Design and Claude Code,
-each piece with the decision it served and how it ties to the method on the home page. It is built
-from `samples/index.html` (styles in `src/samples.css`, behaviour in `src/samples.js`), with
-screenshots under `public/samples/img/` and self-contained interactive examples under
-`public/samples/examples/`. Both pages carry `noindex` and are disallowed in `robots.txt`.
+`/samples/` is a page of design work made with Claude Design and Claude Code, each piece with the
+decision it served and how it ties to the method on the home page. It is built from
+`samples/index.html` (styles in `src/samples.css`, behaviour in `src/samples.js`), with screenshots
+under `public/samples/img/` and self-contained interactive examples under `public/samples/examples/`.
+Both pages carry `noindex` and are disallowed in `robots.txt`.
 
-The gate:
+The gate is front-end only. `/unlock/` (`unlock/index.html`, `src/unlock.js`) checks the password in
+the browser against a SHA-256 hash and remembers a pass in that browser for 30 days; a script in the
+head of `samples/index.html` sends visitors without it to `/unlock/`. This keeps casual visitors and
+crawlers out. It is not security: anything under `/samples/` is served to anyone who has a file's URL.
+To change the password, replace `HASH` in `src/unlock.js` with the output of
 
-- `middleware.js` (Vercel Routing Middleware, matcher `/samples/:path*`) checks a signed cookie and
-  otherwise redirects to `/unlock/?next=...`. Static files under `/samples` go through it too.
-- `unlock/index.html` posts the password to `api/unlock.js`, which compares it in constant time,
-  rate-limits per IP, sets the cookie (HMAC-SHA256, 30 days, HttpOnly) and sends the visitor on.
-- `lib/gate.js` holds the token code shared by both.
-- `node scripts/test-gate.mjs` exercises the whole flow without a server.
-
-Environment: set `SAMPLES_PASSWORD` in the Vercel project (and optionally `SAMPLES_SECRET`, the
-cookie signing key; without it the key is derived from the password). With neither set the gate
-fails closed and the unlock page says the samples are not set up. `npm run dev` serves `/samples/`
-without the gate, since Vite does not run the middleware; `vercel dev` runs all of it.
+```bash
+node -e "console.log(require('node:crypto').createHash('sha256').update('new password').digest('hex'))"
+```
 
 To add a Figma example, give a button `data-src` pointing at the file's embed URL
 (`https://embed.figma.com/design/<key>/<name>?embed-host=matthewbrown`) and a `data-title`; the
@@ -57,8 +53,6 @@ shared dialog opens it. To add a screenshot, drop a WebP under `public/samples/i
 | Variable | Where | Purpose |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | Vercel project env, server side | Live Analyze fit. Without it the endpoint returns 503 and the page keeps the example result. |
-| `SAMPLES_PASSWORD` | Vercel project env, server side | Opens `/samples/`. Without it the gate fails closed. |
-| `SAMPLES_SECRET` | Vercel project env, optional | Cookie signing key for the samples gate. Derived from the password when unset. |
 
 Never prefix it with `VITE_`: Vite inlines `VITE_*` variables into the public JavaScript bundle.
 

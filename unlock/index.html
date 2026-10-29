@@ -43,11 +43,10 @@
       <p class="lede">Seven pieces of work made with Claude Design, for Foresera and for this site, with the reasoning behind each one and where it sits in the method on the home page.</p>
       <p class="lede small">They include product and client material that is not public, so this page sits behind a password.</p>
     </div>
-    <form class="card unlock-form" method="post" action="/api/unlock">
+    <form class="card unlock-form">
       <p class="form-error" role="status" data-unlock-error></p>
       <label for="unlock-password">Password</label>
       <input id="unlock-password" name="password" type="password" required autocomplete="current-password" autocapitalize="off" spellcheck="false">
-      <input type="hidden" name="next" value="/samples/" data-unlock-next>
       <button class="s2 btn btn-primary" type="submit">Open the samples</button>
       <p class="form-note">Need the password? <a href="mailto:sparkingmatt@gmail.com?subject=Work%20samples%20password">Email Matthew</a>.</p>
     </form>
