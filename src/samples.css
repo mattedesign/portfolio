@@ -68,7 +68,7 @@
 
 /* Gallery */
 .gallery{display:flex;flex-direction:column;gap:20px;min-width:0}
-.gallery-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.gallery-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 .shot{margin:0;background:#FFFFFF;border:1px solid #C9D4CD;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(15,23,18,0.08)}
 .shot img{display:block;width:100%;height:auto}
 .shot figcaption{padding:12px 18px 14px;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;line-height:1.5;color:#56645B;border-top:1px solid #C9D4CD}
@@ -110,4 +110,4 @@
 }
 
 /* Phone capture sits narrow and centered in its row */
-.shot--phone{width:min(100%,380px);justify-self:center}
+.shot--phone{width:min(100%,380px);margin:0 auto}
