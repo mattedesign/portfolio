@@ -1,50 +1,50 @@
-// Example role and its precomputed result, from the design source. Shown until a live analysis returns.
-export const DEFAULT_JD = "Director, Design Strategy\n\nA new AI innovation lab is building a design strategy studio. You will lead design strategy engagements from problem framing to strategic recommendation.\n\n- Run discovery interviews and workshops with senior stakeholders\n- Synthesize research into problem statements and opportunity areas\n- Produce experience visions, service concepts, journey maps, service blueprints and roadmaps\n- Align design intent with technology and delivery teams\n- Validate strategy with evidence\n- Help shape design-led transformation alongside agentic AI and infrastructure modernization\n\nThis is a founding role.";
+// Example role and its precomputed result. Shown until a live analysis returns.
+export const DEFAULT_JD = "Director, Experience Strategy\n\nLead experience strategy for customers and employees across a large organization. You will set the principles and the journey architecture that product, service and technology teams build to, and make the case for change with evidence.\n\n- Define experience principles and end-to-end journey architecture\n- Use research and service data to find friction and decide what to fix first\n- Establish experience measures and baselines, and report progress against them\n- Influence product, technology and business leaders without owning their delivery\n- Identify AI opportunities across the customer and employee lifecycle\n- Set responsible AI governance: traceability, human review and auditability\n\nThe role sets standards for teams that own their own delivery.";
 
 export const DEFAULT_RES = {
-  "verdict": "Strong fit across every core requirement.",
-  "summary": "The role asks for one person who can run strategy with senior stakeholders and make it real with technology teams. The work here does both, often on the same engagement.",
+  "verdict": "Strong fit on strategy, measures and responsible AI.",
+  "summary": "The role asks for someone who can set experience direction with evidence and get teams that own delivery to build to it. The work here does both, for customers and for employees, in regulated organizations.",
   "rows": [
     {
-      "req": "Lead engagements from problem framing to recommendation",
-      "ev": "Ran a municipal proof of concept end to end and structured the executive readout as a five-question decision path.",
+      "req": "Experience principles and journey architecture",
+      "ev": "Framed a city's accessibility program as a five-question decision path; separated three booking journeys for a security firm and recommended a thin coordination layer.",
       "level": "strong"
     },
     {
-      "req": "Discovery interviews and workshops with senior stakeholders",
-      "ev": "Led discovery with leadership at a security services firm and readouts for city leadership and counsel.",
+      "req": "Research and service data to find friction",
+      "ev": "Discovery with leadership and content owners, a weighted scorecard of 14 platforms, and public filings rebuilt into a source-linked obligation register.",
       "level": "strong"
     },
     {
-      "req": "Synthesis into problem statements and opportunity areas",
-      "ev": "Separated three distinct booking problems; framed four entry points for a carbon management operator.",
+      "req": "Experience measures and baselines",
+      "ev": "Thousands of findings weighted by impact into an A to F grade that city leaders can track, with every claim traced to its source.",
       "level": "strong"
     },
     {
-      "req": "Experience visions, journey maps, blueprints and roadmaps",
-      "ev": "Delivered an architecture brief and phased roadmap; built a source-linked obligation register as the shared picture.",
+      "req": "Influence without owning delivery",
+      "ev": "Architecture briefs and phased roadmaps for teams that do the building; a module-by-module map product and engineering agreed to before any screen changed.",
       "level": "strong"
     },
     {
-      "req": "Align design intent with technology and delivery",
-      "ev": "Architects and builds the systems; redesigned an enterprise design-to-engineering handoff, raising release cadence 40%.",
+      "req": "AI opportunities across the lifecycle",
+      "ev": "Human-in-the-loop remediation for a city's document library; explainable credit decisions in payments; four AI entry points framed for a carbon operator.",
       "level": "strong"
     },
     {
-      "req": "Validate strategy with evidence",
-      "ev": "Risk-scoring model weighted by impact; results verified against PDF/UA with regression and visual-fidelity gates.",
+      "req": "Responsible AI governance",
+      "ev": "Every claim traced to a source, every automated change reviewable, and every reviewer correction fed back as signal.",
       "level": "strong"
     },
     {
-      "req": "Agentic AI and infrastructure modernization",
-      "ev": "Human-in-the-loop AI systems in production; ten provisional patents filed as sole inventor; led ERP modernization strategy.",
+      "req": "Employee experience and internal tools",
+      "ev": "Streamlined employee-facing internal tools in a regulated title insurance business, with interactive style guides product teams used for ongoing feature development.",
       "level": "strong"
     },
     {
-      "req": "Founding role",
-      "ev": "Co-founded an AI accessibility company; established a global UX practice; grew a creative team from 6 to 40+.",
+      "req": "Standards across teams that own delivery",
+      "ev": "A design system shared across ERP modules and a company built on one method, but not yet experience standards set across an enterprise's business units.",
       "level": "partial"
     }
   ],
-  "gap": "Has built practices and a company, but has not yet led a studio inside a larger lab. Ask how he would set operating rhythm with lab leadership."
+  "gap": "Has led experience strategy for customers and internal teams, and built a company. Ask how he would set standards across teams that own their own delivery."
 };
