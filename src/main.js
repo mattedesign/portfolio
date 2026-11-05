@@ -160,7 +160,7 @@ class Portfolio {
     this.cLayers.forEach(l => { l.style.top = top; l.style.willChange = 'transform, opacity'; });
     [this.mIntro, this.mBody, this.mLoop, ...this.mSteps, this.heroCopy].forEach(l => { l.style.willChange = 'transform, opacity'; });
     this.stage.style.willChange = 'clip-path';
-    this.sfG = this.sfG || [0, 0, 0];
+    this.sfG = this.sfG || qa('[data-gcase]').map(() => 0);
     this.gcases = qa('[data-gcase]').map(el => {
       const layers = [...el.querySelectorAll('[data-glayer]')], N = layers.length, w = 1000 / N;
       const kOf = e => +e.closest('[data-glayer]').dataset.glayer;
