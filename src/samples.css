@@ -40,6 +40,12 @@
 .toc a:hover{border-color:#0F1712;color:#0F1712}
 .toc .n{font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#56645B}
 
+/* Part divider */
+.part{padding:clamp(96px,14svh,160px) 6% clamp(24px,4svh,40px);border-top:1px solid #C9D4CD;scroll-margin-top:72px}
+.part .wrap{display:flex;flex-direction:column;gap:22px}
+.part h2{font-size:clamp(40px,6vw,112px);line-height:0.92;letter-spacing:-0.05em;max-width:14ch}
+.part .lede{max-width:60ch}
+
 /* One sample */
 .sample{padding:clamp(72px,11svh,128px) 6%;border-top:1px solid #C9D4CD;scroll-margin-top:72px}
 .sample .wrap{display:flex;flex-direction:column;gap:clamp(32px,5svh,56px)}
